@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    letter-spacing: -0.01em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: #1a1a17;
+    color: #faf8f4;
+  }
+  h1, h2, h3, h4 {
+    @apply font-serif;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+  h1 { font-weight: 500; }
+  h2 { font-weight: 500; }
+  a { @apply transition-colors; }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-container px-6 sm:px-8 lg:px-16;
+  }
+  .display {
+    font-family: var(--font-fraunces), Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(2.5rem, 6.5vw, 5.75rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+  }
+  .display-italic {
+    font-style: italic;
+    font-variation-settings: 'opsz' 144;
+  }
+  .eyebrow {
+    @apply text-xs uppercase tracking-[0.2em] text-stone;
+  }
+  .body-lg {
+    @apply text-lg sm:text-xl leading-relaxed text-ink/85;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-4 text-sm uppercase tracking-[0.18em] transition-all duration-300;
+  }
+  .btn-primary {
+    @apply btn bg-ink text-paper hover:bg-moss;
+  }
+  .btn-ghost {
+    @apply btn border border-ink text-ink hover:bg-ink hover:text-paper;
+  }
+  .link-underline {
+    @apply relative inline-block;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 300ms ease;
+  }
+  .link-underline:hover {
+    background-size: 0 1px;
+    background-position: 100% 100%;
+  }
+  .rule {
+    @apply h-px w-full bg-line;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+}
