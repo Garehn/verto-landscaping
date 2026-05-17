@@ -36,7 +36,7 @@ export function ProjectCard({ title, location, year, image, size = 'lg' }: Props
           <h3 className="font-serif text-2xl tracking-tighter2">{title}</h3>
           <div className="mt-1 text-sm text-stone">{location}</div>
         </div>
-        <div className="text-xs uppercase tracking-[0.2em] text-stone">{year}</div>
+        <div className="text-xs uppercase tracking-[0.2em] text-stone tabular">{year}</div>
       </div>
     </motion.article>
   );

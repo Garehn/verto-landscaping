@@ -88,7 +88,7 @@ export function SixServices() {
                     {ICON_PATHS[s.icon]}
                   </svg>
                 </span>
-                <div className="text-xs uppercase tracking-[0.18em] text-stone pt-3.5">
+                <div className="text-xs uppercase tracking-[0.18em] text-stone pt-3.5 tabular">
                   0{i + 1}
                 </div>
               </div>

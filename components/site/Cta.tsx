@@ -21,9 +21,9 @@ export function Cta({
           <h2 className="md:col-span-7 display display-italic text-balance">{title}</h2>
           <div className="md:col-span-5 md:pl-8">
             <p className="body-lg max-w-md mb-8 text-pretty">{body}</p>
-            <Link href={href} className="btn-primary">
+            <Link href={href} className="group btn-primary">
               {cta}
-              <span aria-hidden>→</span>
+              <span aria-hidden className="arrow">→</span>
             </Link>
           </div>
         </FadeIn>

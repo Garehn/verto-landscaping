@@ -102,7 +102,7 @@ export function JobsSlider({ jobs, eyebrow = 'Recent work', heading }: Props) {
 
       <div
         ref={scrollerRef}
-        className="flex gap-6 lg:gap-8 overflow-x-auto snap-x snap-mandatory pb-16 pt-6 px-6 sm:px-8 lg:px-16 scroll-smooth"
+        className="edge-mask-x flex gap-6 lg:gap-8 overflow-x-auto snap-x snap-mandatory pb-16 pt-6 px-6 sm:px-8 lg:px-16 scroll-smooth"
         style={{ scrollbarWidth: 'none' }}
       >
         <style jsx>{`div::-webkit-scrollbar { display: none; }`}</style>
@@ -129,7 +129,7 @@ export function JobsSlider({ jobs, eyebrow = 'Recent work', heading }: Props) {
             </div>
             {j.caption && (
               <figcaption className="mt-4 text-xs uppercase tracking-[0.2em] text-paper/70">
-                {String(i + 1).padStart(2, '0')} — {j.caption}
+                <span className="tabular">{String(i + 1).padStart(2, '0')}</span> — {j.caption}
               </figcaption>
             )}
           </motion.figure>

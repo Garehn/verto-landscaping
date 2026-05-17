@@ -36,11 +36,12 @@ export default function HomePage() {
               {home.hero.sub}
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <Link href="/contact" className="bg-paper text-ink btn hover:bg-cream">
-                Request a quote <span aria-hidden>→</span>
+              <Link href="/contact" className="group bg-paper text-ink btn hover:bg-cream">
+                Request a quote <span aria-hidden className="arrow">→</span>
               </Link>
-              <Link href="/portfolio" className="text-paper border border-paper/40 btn hover:bg-paper hover:text-ink">
+              <Link href="/portfolio" className="group text-paper border border-paper/40 btn hover:bg-paper hover:text-ink">
                 See the work
+                <span aria-hidden className="arrow opacity-70 group-hover:opacity-100">→</span>
               </Link>
             </div>
           </div>

@@ -11,6 +11,7 @@
     letter-spacing: -0.01em;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    font-feature-settings: 'ss01', 'cv01', 'cv11';
   }
   ::selection {
     background: #1a1a17;
@@ -24,6 +25,24 @@
   h1 { font-weight: 500; }
   h2 { font-weight: 500; }
   a { @apply transition-colors; }
+
+  /* Numerals — tabular figures wherever numbers appear (years, counters, phone numbers) */
+  .tabular,
+  time,
+  [data-numeric] {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Visible focus rings for keyboard navigation only */
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  /* Suppress for elements that handle their own focus state */
+  [data-focus-self]:focus-visible {
+    outline: none;
+  }
 }
 
 @layer components {
@@ -48,7 +67,7 @@
     @apply text-lg sm:text-xl leading-relaxed text-ink/85;
   }
   .btn {
-    @apply inline-flex items-center justify-center gap-2 px-7 py-4 text-sm uppercase tracking-[0.18em] transition-all duration-300;
+    @apply inline-flex items-center justify-center gap-2 px-7 py-4 text-sm uppercase tracking-[0.18em] transition-[background-color,color,transform,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.985];
   }
   .btn-primary {
     @apply btn bg-ink text-paper hover:bg-moss;
@@ -56,13 +75,23 @@
   .btn-ghost {
     @apply btn border border-ink text-ink hover:bg-ink hover:text-paper;
   }
+  /* Arrow inside a .btn shifts on hover — pair via group-hover or :hover */
+  .btn .arrow,
+  .group:hover .arrow {
+    transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .btn:hover .arrow,
+  .group:hover .arrow {
+    transform: translateX(2px);
+  }
+
   .link-underline {
     @apply relative inline-block;
     background-image: linear-gradient(currentColor, currentColor);
     background-size: 100% 1px;
     background-position: 0 100%;
     background-repeat: no-repeat;
-    transition: background-size 300ms ease;
+    transition: background-size 400ms cubic-bezier(0.22, 1, 0.36, 1);
   }
   .link-underline:hover {
     background-size: 0 1px;
@@ -71,9 +100,27 @@
   .rule {
     @apply h-px w-full bg-line;
   }
+
+  /* Soft edge mask for horizontal scrollers */
+  .edge-mask-x {
+    mask-image: linear-gradient(to right, transparent 0, #000 56px, #000 calc(100% - 56px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 56px, #000 calc(100% - 56px), transparent 100%);
+  }
 }
 
 @layer utilities {
   .text-balance { text-wrap: balance; }
   .text-pretty { text-wrap: pretty; }
+}
+
+/* Respect prefers-reduced-motion across the site */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
