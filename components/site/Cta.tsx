@@ -37,7 +37,7 @@ export function Cta({
         ))}
       </Marquee>
 
-      <div className="container-x py-32 lg:py-44">
+      <div className="container-x py-20 lg:py-28">
         <div className="grid gap-16 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
             <WordRise as="h2" className="display-md" segments={segments} stagger={0.07} />
@@ -75,6 +75,14 @@ export function Cta({
                     {studio.phone}
                   </a>
                 </div>
+              </div>
+              <div>
+                <div className="meta-sm mb-2 text-sage">Hours</div>
+                <div className="text-sm leading-relaxed text-paper/75">Mon–Fri · 8am–5pm</div>
+              </div>
+              <div>
+                <div className="meta-sm mb-2 text-sage">Response</div>
+                <div className="text-sm leading-relaxed text-paper/75">Every enquiry answered within two business days</div>
               </div>
               <div className="meta-sm pt-2 text-sage/70" data-numeric>
                 {studio.coords}

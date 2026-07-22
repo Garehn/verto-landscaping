@@ -47,8 +47,8 @@ export function ServicesIndex() {
 
   return (
     <section className="bg-paper text-ink">
-      <div className="container-x pb-28 pt-4 lg:pb-40">
-        <Reveal className="mb-14 flex items-center gap-6">
+      <div className="container-x pb-20 pt-2 lg:pb-28">
+        <Reveal className="mb-10 flex items-center gap-6">
           <span className="meta-sm text-brass" data-numeric>04</span>
           <span className="meta text-stone">Capabilities</span>
           <span className="h-px flex-1 bg-ink/10" aria-hidden />
@@ -67,7 +67,7 @@ export function ServicesIndex() {
             <Reveal key={service.id} delay={i * 0.06} y={24}>
               <Link
                 href="/services"
-                className="group relative z-10 flex items-baseline gap-6 border-t border-ink/10 py-7 transition-colors duration-500 last:border-b last:border-ink/10 sm:gap-10 sm:py-9"
+                className="group relative z-10 flex items-baseline gap-6 border-t border-ink/10 py-6 transition-colors duration-500 last:border-b last:border-ink/10 sm:gap-10 sm:py-7"
                 onMouseEnter={() => setActive(service.id)}
                 onFocus={() => setActive(service.id)}
                 onBlur={() => setActive(null)}
@@ -75,8 +75,18 @@ export function ServicesIndex() {
                 <span className="meta-sm w-8 shrink-0 text-brass" data-numeric>
                   {String(i + 1).padStart(2, '0')}
                 </span>
-                <span className="font-serif text-3xl tracking-tighter2 transition-transform duration-500 ease-out-expo group-hover:translate-x-2 sm:text-5xl">
-                  {service.title}
+                <span className="min-w-0">
+                  <span className="block font-serif text-3xl tracking-tighter2 transition-transform duration-500 ease-out-expo group-hover:translate-x-2 sm:text-4xl lg:text-5xl">
+                    {service.title}
+                  </span>
+                  <span className="meta-sm mt-2 flex flex-wrap items-center gap-x-3 text-stone">
+                    {service.scope.map((tag, t) => (
+                      <span key={tag} className="flex items-center gap-3">
+                        {t > 0 && <span className="text-brass">·</span>}
+                        {tag}
+                      </span>
+                    ))}
+                  </span>
                 </span>
                 <span className="ml-auto hidden max-w-[16rem] text-sm leading-snug text-stone md:block">
                   {service.body}

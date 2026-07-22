@@ -49,36 +49,42 @@ export const coreServices = [
     id: 'design',
     title: 'Landscape Design',
     body: 'Site survey, master plan and planting design — measured drawings, not mood boards.',
+    scope: ['Survey', 'Master plan', 'Planting design'],
     icon: 'design' as const,
   },
   {
     id: 'hardscape',
     title: 'Hardscape Construction',
     body: 'Paving, retaining walls, timber decks, pergolas and outdoor structures.',
+    scope: ['Paving', 'Retaining', 'Decks & pergolas'],
     icon: 'hardscape' as const,
   },
   {
     id: 'planting',
     title: 'Planting & Horticulture',
     body: 'Trees, hedges and garden beds — plant palettes built for the soil and climate.',
+    scope: ['Trees', 'Hedging', 'Garden beds'],
     icon: 'planting' as const,
   },
   {
     id: 'turf',
     title: 'Lawn & Turf',
     body: 'New lawn installation, renovation and a quarterly care programme.',
+    scope: ['New lawns', 'Renovation', 'Care programme'],
     icon: 'turf' as const,
   },
   {
     id: 'irrigation',
     title: 'Irrigation & Drainage',
     body: 'Smart drip and spray systems, stormwater detention and subsurface drainage.',
+    scope: ['Drip systems', 'Stormwater', 'Subsurface'],
     icon: 'irrigation' as const,
   },
   {
     id: 'lighting',
     title: 'Garden Lighting',
     body: 'Low-voltage path, feature and architectural lighting — designed and installed.',
+    scope: ['Path', 'Feature', 'Architectural'],
     icon: 'lighting' as const,
   },
 ];
@@ -146,6 +152,9 @@ export const portfolio = [
     location: 'Mosman, NSW',
     year: '2024',
     image: 'portfolio_1' as const,
+    blurb:
+      'A walled courtyard rebuilt around one feature tree — bluestone paving, clipped hedging, warm up-lighting.',
+    scope: ['Design', 'Stone', 'Lighting'],
   },
   {
     id: 'pittwater-coastal',
@@ -153,6 +162,9 @@ export const portfolio = [
     location: 'Avalon Beach, NSW',
     year: '2023',
     image: 'portfolio_2' as const,
+    blurb:
+      'Native coastal planting holds the dune line; banksia, grasses and sand-toned paths down to the deck.',
+    scope: ['Design', 'Planting', 'Decking'],
   },
   {
     id: 'paddington-terrace',
@@ -160,6 +172,9 @@ export const portfolio = [
     location: 'Paddington, NSW',
     year: '2023',
     image: 'portfolio_3' as const,
+    blurb:
+      'A narrow terrace courtyard opened up with pale stone walls, climbing greenery and a standard fig.',
+    scope: ['Design', 'Build', 'Planting'],
   },
   {
     id: 'wahroonga-grounds',
@@ -167,6 +182,9 @@ export const portfolio = [
     location: 'Wahroonga, NSW',
     year: '2022',
     image: 'portfolio_4' as const,
+    blurb:
+      'A wide buffalo lawn framed by mature jacarandas, with a mown-path meadow at the boundary.',
+    scope: ['Design', 'Planting', 'Care'],
   },
 ];
 

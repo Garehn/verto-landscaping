@@ -10,9 +10,9 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     if (window.localStorage.getItem('verto-debug-nosmooth') === '1') return;
 
     const lenis = new Lenis({
-      lerp: 0.1,
-      wheelMultiplier: 0.95,
-      touchMultiplier: 1.4,
+      lerp: 0.14,
+      wheelMultiplier: 1.6,
+      touchMultiplier: 2,
     });
 
     let rafId = requestAnimationFrame(function loop(time) {

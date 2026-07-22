@@ -38,7 +38,7 @@ export function TerrainSection() {
 
   return (
     <section ref={sectionRef} className="relative bg-ink text-paper">
-      <div className="relative h-[170vh]">
+      <div className="relative h-[140vh]">
         <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
           {/* Terrain canvas */}
           {!reduced && near && (
@@ -65,17 +65,35 @@ export function TerrainSection() {
               stagger={0.08}
             />
 
-            <Reveal delay={0.3} className="mt-10 max-w-md">
+            <Reveal delay={0.3} className="mt-8 max-w-md">
               <p className="text-base leading-relaxed text-paper/70 sm:text-lg">
                 Levels, drainage, soil and stone — the parts of a garden nobody
                 photographs, done so well that everything above them looks inevitable.
               </p>
             </Reveal>
 
-            <div className="pointer-events-none absolute bottom-10 left-0 right-0">
-              <div className="container-x flex items-center justify-between">
-                <span className="meta-sm text-sage/70">Survey — {studio.address.suburb}</span>
-                <span className="meta-sm text-sage/70" data-numeric>{studio.coords}</span>
+            {/* Groundwork capability strip */}
+            <div className="absolute bottom-8 left-0 right-0">
+              <div className="container-x">
+                <div className="grid gap-6 border-t border-paper/15 pt-6 sm:grid-cols-3">
+                  {[
+                    { n: 'A', title: 'Levels & retaining', body: 'Cut, fill and walls that hold' },
+                    { n: 'B', title: 'Drainage & stormwater', body: 'Detention and subsurface systems' },
+                    { n: 'C', title: 'Soil & preparation', body: 'The budget below grade, spent well' },
+                  ].map((item) => (
+                    <div key={item.n} className="flex items-baseline gap-4">
+                      <span className="meta-sm text-brass" data-numeric>{item.n}</span>
+                      <span>
+                        <span className="meta block text-paper/85">{item.title}</span>
+                        <span className="mt-1 block text-xs text-sage/80">{item.body}</span>
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-5 flex items-center justify-between">
+                  <span className="meta-sm text-sage/70">Survey — {studio.address.suburb}</span>
+                  <span className="meta-sm text-sage/70" data-numeric>{studio.coords}</span>
+                </div>
               </div>
             </div>
           </div>

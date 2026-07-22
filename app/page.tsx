@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import Link from 'next/link';
 import { beforeAfters } from '@/lib/content';
 import { images } from '@/lib/unsplash';
@@ -14,10 +16,15 @@ import { Cta } from '@/components/site/Cta';
 
 export default function HomePage() {
   const featuredBA = beforeAfters[0];
+  // Drop a compressed loop at public/video/hero.mp4 and the hero upgrades
+  // itself from still to cinematic video automatically.
+  const heroVideo = fs.existsSync(path.join(process.cwd(), 'public/video/hero.mp4'))
+    ? '/video/hero.mp4'
+    : undefined;
 
   return (
     <>
-      <Hero />
+      <Hero videoSrc={heroVideo} />
       <Manifesto />
       <ShowcasePanels />
       <StatsBand />
@@ -26,8 +33,8 @@ export default function HomePage() {
 
       {/* Before / after — proof in one drag */}
       <section className="bg-paper text-ink">
-        <div className="container-x py-28 lg:py-36">
-          <Reveal className="mb-14 flex items-center gap-6">
+        <div className="container-x py-16 lg:py-24">
+          <Reveal className="mb-10 flex items-center gap-6">
             <span className="meta-sm text-brass" data-numeric>06</span>
             <span className="meta text-stone">Before — After</span>
             <span className="h-px flex-1 bg-ink/10" aria-hidden />
