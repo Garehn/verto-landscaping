@@ -13,19 +13,19 @@ const cards: { title: string; body: string; image: ImageRef; href: string }[] = 
   {
     title: 'Construction',
     body: 'Stone, timber, water and steel — built by crews we keep.',
-    image: 'service_build',
+    image: 'real_passage',
     href: '/services#build',
   },
   {
     title: 'Planting',
     body: 'Palettes built for the soil and climate, grown on at our nursery.',
-    image: 'service_planting',
+    image: 'real_planting',
     href: '/services#planting',
   },
   {
     title: 'Care',
     body: 'Quarterly visits that hold the garden while it grows in.',
-    image: 'service_care',
+    image: 'real_facade',
     href: '/services#care',
   },
 ];

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { studio } from '@/lib/content';
 import { Marquee } from '@/components/motion/Marquee';
 import { WordRise, type WordSegment } from '@/components/motion/WordRise';
@@ -45,7 +46,7 @@ export function Cta({
               <p className="text-lg leading-relaxed text-paper/75 text-pretty">{body}</p>
             </Reveal>
             <Reveal delay={0.4} className="mt-12 flex flex-wrap gap-4">
-              <Link href={href} className="btn-light group">
+              <Link href={href} className="btn-cta group">
                 {cta} <span aria-hidden className="arrow">→</span>
               </Link>
               <a href={studio.phoneHref} className="btn-ghost-light group" data-numeric>
@@ -56,6 +57,7 @@ export function Cta({
 
           <Reveal delay={0.3} className="lg:col-span-4 lg:col-start-9">
             <div className="space-y-6 border-l border-paper/15 pl-8">
+              <Image src="/images/real/logo-white.png" alt="" aria-hidden width={160} height={128} className="h-20 w-auto opacity-90" />
               <div>
                 <div className="meta-sm mb-2 text-sage">Studio</div>
                 <div className="text-sm leading-relaxed text-paper/75">

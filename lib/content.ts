@@ -147,34 +147,34 @@ export const process = [
 
 export const portfolio = [
   {
-    id: 'mosman-courtyard',
-    title: 'Courtyard & rear garden',
-    location: 'Mosman, NSW',
+    id: 'castlecrag-pool',
+    title: 'Pool & harbour terrace',
+    location: 'Castlecrag, NSW',
+    year: '2025',
+    image: 'real_pool' as const,
+    blurb:
+      'An infinity-edge pool set against the harbour valley — pale stone surrounds, potted olives along the boundary.',
+    scope: ['Construction', 'Stone', 'Pool surrounds'],
+  },
+  {
+    id: 'castlecrag-deck',
+    title: 'Hardwood pool deck',
+    location: 'Castlecrag, NSW',
+    year: '2025',
+    image: 'real_deck' as const,
+    blurb:
+      'A wide hardwood deck wrapping the pool — glass fencing, sculptural planting, furniture-ready from day one.',
+    scope: ['Decking', 'Glass fencing', 'Planting'],
+  },
+  {
+    id: 'castlecrag-arrival',
+    title: 'Cobblestone arrival court',
+    location: 'Castlecrag, NSW',
     year: '2024',
-    image: 'portfolio_1' as const,
+    image: 'real_driveway' as const,
     blurb:
-      'A walled courtyard rebuilt around one feature tree — bluestone paving, clipped hedging, warm up-lighting.',
-    scope: ['Design', 'Stone', 'Lighting'],
-  },
-  {
-    id: 'pittwater-coastal',
-    title: 'Coastal garden',
-    location: 'Avalon Beach, NSW',
-    year: '2023',
-    image: 'portfolio_2' as const,
-    blurb:
-      'Native coastal planting holds the dune line; banksia, grasses and sand-toned paths down to the deck.',
-    scope: ['Design', 'Planting', 'Decking'],
-  },
-  {
-    id: 'paddington-terrace',
-    title: 'Terrace garden',
-    location: 'Paddington, NSW',
-    year: '2023',
-    image: 'portfolio_3' as const,
-    blurb:
-      'A narrow terrace courtyard opened up with pale stone walls, climbing greenery and a standard fig.',
-    scope: ['Design', 'Build', 'Planting'],
+      'A cobbled arrival court edged in sandstone — olives, magnolias and layered evergreen beds at the boundary.',
+    scope: ['Paving', 'Stone', 'Planting'],
   },
   {
     id: 'wahroonga-grounds',

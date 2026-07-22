@@ -96,6 +96,13 @@ export const images = {
   slider_4: { src: local('slider_4'), alt: 'Productive kitchen garden with raised hardwood beds and espaliered citrus' },
   slider_5: { src: local('slider_5'), alt: 'Coastal Northern Beaches deck with native planting and ocean view' },
   slider_6: { src: local('slider_6'), alt: 'Wahroonga garden vista bordered by jacarandas in full bloom' },
+  // Real project photography — Verto Landscapes, Castlecrag
+  real_pool: { src: local('real/pool'), alt: 'Infinity-edge pool looking over the harbour valley, potted olives along the boundary wall' },
+  real_deck: { src: local('real/deck'), alt: 'Hardwood pool deck with glass fencing and white outdoor furniture' },
+  real_driveway: { src: local('real/driveway'), alt: 'Cobblestone arrival court edged in sandstone with olive trees and layered garden beds' },
+  real_passage: { src: local('real/passage'), alt: 'Stone-cobbled side passage with timber batten gate and screen' },
+  real_planting: { src: local('real/planting'), alt: 'Magnolia and layered planting in a sandstone-edged bed with brass garden lighting' },
+  real_facade: { src: local('real/facade'), alt: 'Finished front garden and stone entry path at a modern Castlecrag home' },
 };
 
 export type ImageRef = keyof typeof images;

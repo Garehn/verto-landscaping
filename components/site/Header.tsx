@@ -64,7 +64,7 @@ export function Header() {
             >
               {studio.phone}
             </a>
-            <Link href="/contact" className="btn-dark group whitespace-nowrap !px-4 !py-2.5 sm:!px-7 sm:!py-3">
+            <Link href="/contact" className="btn-cta group whitespace-nowrap !px-4 !py-2.5 sm:!px-7 sm:!py-3">
               Get a quote <span aria-hidden className="arrow">→</span>
             </Link>
             <button

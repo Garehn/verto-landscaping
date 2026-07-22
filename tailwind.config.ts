@@ -17,6 +17,8 @@ const config: Config = {
         stone: '#8A897E',
         sage: '#97A18C',
         brass: '#A98F63',
+        ember: '#C4622D',
+        'ember-dark': '#A94E20',
         line: '#E2DED2',
       },
       fontFamily: {

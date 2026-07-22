@@ -116,6 +116,18 @@
   .btn-dark {
     @apply btn bg-ink text-paper hover:bg-moss;
   }
+  .btn-cta {
+    @apply btn bg-ember text-white hover:bg-ember-dark;
+    box-shadow: 0 10px 28px -6px rgba(196, 98, 45, 0.5);
+    transition-property: background-color, color, transform, border-color, box-shadow;
+  }
+  .btn-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 36px -6px rgba(196, 98, 45, 0.55);
+  }
+  .btn-cta:active {
+    transform: translateY(0) scale(0.985);
+  }
   .btn-ghost-dark {
     @apply btn border border-ink/40 text-ink hover:bg-ink hover:text-paper;
   }

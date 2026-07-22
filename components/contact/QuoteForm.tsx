@@ -158,7 +158,7 @@ export function QuoteForm() {
             <button
               type="submit"
               disabled={status === 'submitting'}
-              className="btn-dark group disabled:opacity-60 disabled:cursor-not-allowed"
+              className="btn-cta group disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {status === 'submitting' ? 'Sending…' : 'Send enquiry'}
               <span aria-hidden>→</span>

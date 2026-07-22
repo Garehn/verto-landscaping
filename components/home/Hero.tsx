@@ -91,7 +91,7 @@ export function Hero({ videoSrc }: { videoSrc?: string }) {
               animate={show ? { opacity: 1, y: 0 } : undefined}
               transition={{ duration: 0.9, delay: 0.65, ease: EASE }}
             >
-              <Link href="/contact" className="btn-light group !px-10 !py-5 text-sm">
+              <Link href="/contact" className="btn-cta group !px-10 !py-5 text-sm">
                 Start your project <span aria-hidden className="arrow">→</span>
               </Link>
               <Link href="/portfolio" className="btn-ghost-light group">
