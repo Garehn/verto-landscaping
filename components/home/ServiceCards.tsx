@@ -38,9 +38,6 @@ export function ServiceCards() {
           <span className="meta-sm text-brass" data-numeric>02</span>
           <span className="meta text-stone">What we do</span>
           <span className="h-px flex-1 bg-ink/10" aria-hidden />
-          <Link href="/services" className="meta link-underline hidden py-1 sm:inline-block">
-            All services
-          </Link>
         </Reveal>
 
         <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">

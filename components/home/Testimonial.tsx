@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { home, about } from '@/lib/content';
 import { ScrubText } from '@/components/motion/ScrubText';
 import { Reveal } from '@/components/motion/Reveal';
@@ -33,9 +32,6 @@ export function Testimonial() {
               <p className="text-sm leading-relaxed text-ink/70 text-pretty">
                 {about.pullQuote}
               </p>
-              <Link href="/about" className="meta-sm link-underline mt-5 inline-block py-1 text-ink/80">
-                About the studio
-              </Link>
             </div>
           </Reveal>
         </div>

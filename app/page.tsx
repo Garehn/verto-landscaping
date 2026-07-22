@@ -38,9 +38,6 @@ export default function HomePage() {
             <span className="meta-sm text-brass" data-numeric>05</span>
             <span className="meta text-stone">Before — After</span>
             <span className="h-px flex-1 bg-ink/10" aria-hidden />
-            <Link href="/portfolio" className="meta link-underline hidden py-1 sm:inline-block">
-              More projects
-            </Link>
           </Reveal>
           <Reveal>
             <BeforeAfter

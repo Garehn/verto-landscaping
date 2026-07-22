@@ -29,7 +29,9 @@ export default function PortfolioPage() {
       <section className="container-x py-20 lg:py-28">
         <div className="grid gap-12 md:grid-cols-2 lg:gap-16">
           {portfolio.slice(0, 2).map((p) => (
-            <ProjectCard key={p.id} title={p.title} location={p.location} year={p.year} image={p.image} />
+            <ProjectCard
+              key={p.id}
+              href={`/portfolio/${p.id}`} title={p.title} location={p.location} year={p.year} image={p.image} />
           ))}
         </div>
       </section>
@@ -59,7 +61,9 @@ export default function PortfolioPage() {
       <section className="container-x py-20 lg:py-28">
         <div className="grid gap-12 md:grid-cols-2 lg:gap-16">
           {portfolio.slice(2, 4).map((p) => (
-            <ProjectCard key={p.id} title={p.title} location={p.location} year={p.year} image={p.image} />
+            <ProjectCard
+              key={p.id}
+              href={`/portfolio/${p.id}`} title={p.title} location={p.location} year={p.year} image={p.image} />
           ))}
         </div>
       </section>

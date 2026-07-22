@@ -1,10 +1,12 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { images, type ImageRef } from '@/lib/unsplash';
 
 type Props = {
+  href?: string;
   title: string;
   location: string;
   year: string;
@@ -12,9 +14,9 @@ type Props = {
   size?: 'sm' | 'lg';
 };
 
-export function ProjectCard({ title, location, year, image, size = 'lg' }: Props) {
+export function ProjectCard({ href, title, location, year, image, size = 'lg' }: Props) {
   const ref = images[image];
-  return (
+  const card = (
     <motion.article
       className="group"
       initial={{ opacity: 0, y: 24 }}
@@ -40,4 +42,5 @@ export function ProjectCard({ title, location, year, image, size = 'lg' }: Props
       </div>
     </motion.article>
   );
+  return href ? <Link href={href} className="block">{card}</Link> : card;
 }

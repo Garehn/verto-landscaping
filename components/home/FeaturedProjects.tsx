@@ -30,7 +30,7 @@ export function FeaturedProjects() {
               <Reveal
                 className={`lg:col-span-8 ${i % 2 === 1 ? 'lg:order-2' : ''}`}
               >
-                <Link href="/portfolio" className="block">
+                <Link href={`/portfolio/${project.id}`} className="block">
                   <div className="overflow-hidden">
                     <ParallaxImage
                       src={images[project.image].src}
@@ -65,7 +65,7 @@ export function FeaturedProjects() {
                     </span>
                   ))}
                 </div>
-                <Link href="/portfolio" className="meta link-underline mt-6 inline-block py-1">
+                <Link href={`/portfolio/${project.id}`} className="meta link-underline mt-6 inline-block py-1">
                   View project
                 </Link>
               </Reveal>

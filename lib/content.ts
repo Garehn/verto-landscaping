@@ -13,15 +13,13 @@ export const studio = {
     postcode: '2068',
   },
   coords: '33.79°S — 151.22°E',
-  area: 'Sydney · Northern Beaches · North Shore',
+  area: 'Castlecrag · Willoughby · Lower North Shore',
 };
 
 export const nav = [
   { href: '/', label: 'Home' },
-  { href: '/services', label: 'Services' },
-  { href: '/process', label: 'Process' },
   { href: '/portfolio', label: 'Projects' },
-  { href: '/about', label: 'About' },
+  { href: '/services', label: 'Services' },
   { href: '/contact', label: 'Get a quote' },
 ];
 
@@ -39,7 +37,7 @@ export const home = {
     quote:
       'They listened first, drew second, dug third. Two years on the garden is still the best thing we did to the house.',
     author: 'Eleanor M.',
-    project: 'Mosman — courtyard and rear garden',
+    project: 'Castlecrag — courtyard and rear garden',
   },
 };
 
@@ -176,45 +174,35 @@ export const portfolio = [
       'A cobbled arrival court edged in sandstone — olives, magnolias and layered evergreen beds at the boundary.',
     scope: ['Paving', 'Stone', 'Planting'],
   },
-  {
-    id: 'wahroonga-grounds',
-    title: 'Grounds & meadow',
-    location: 'Wahroonga, NSW',
-    year: '2022',
-    image: 'portfolio_4' as const,
-    blurb:
-      'A wide buffalo lawn framed by mature jacarandas, with a mown-path meadow at the boundary.',
-    scope: ['Design', 'Planting', 'Care'],
-  },
 ];
 
 export const recentJobs = [
-  { image: 'slider_1' as const, caption: 'Mosman — courtyard at dusk' },
-  { image: 'slider_2' as const, caption: 'Pittwater — native poolside' },
-  { image: 'slider_3' as const, caption: 'Wahroonga — parterre & olive' },
-  { image: 'slider_4' as const, caption: 'Paddington — kitchen garden' },
-  { image: 'slider_5' as const, caption: 'Avalon — coastal deck' },
-  { image: 'slider_6' as const, caption: 'Wahroonga — jacaranda vista' },
-  { image: 'portfolio_1' as const, caption: 'Mosman — front courtyard' },
-  { image: 'portfolio_3' as const, caption: 'Paddington — terrace' },
+  { image: 'slider_1' as const, caption: 'Castlecrag — courtyard at dusk' },
+  { image: 'slider_2' as const, caption: 'Middle Cove — native poolside' },
+  { image: 'slider_3' as const, caption: 'Northbridge — parterre & olive' },
+  { image: 'slider_4' as const, caption: 'Willoughby — kitchen garden' },
+  { image: 'slider_5' as const, caption: 'Castle Cove — coastal deck' },
+  { image: 'slider_6' as const, caption: 'Northbridge — jacaranda vista' },
+  { image: 'portfolio_1' as const, caption: 'Castlecrag — front courtyard' },
+  { image: 'portfolio_3' as const, caption: 'Willoughby — terrace' },
 ];
 
 export const beforeAfters = [
   {
     id: 'ba1',
-    label: 'Mosman — front yard',
+    label: 'Castlecrag — front yard',
     before: 'ba1_before' as const,
     after: 'ba1_after' as const,
   },
   {
     id: 'ba2',
-    label: 'Paddington — terrace',
+    label: 'Willoughby — terrace',
     before: 'ba2_before' as const,
     after: 'ba2_after' as const,
   },
   {
     id: 'ba3',
-    label: 'Wahroonga — entry',
+    label: 'Northbridge — entry',
     before: 'ba3_before' as const,
     after: 'ba3_after' as const,
   },

@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { WordRise } from '@/components/motion/WordRise';
 import { Reveal } from '@/components/motion/Reveal';
 
@@ -20,9 +19,6 @@ export function Statement() {
           <p className="max-w-md text-lg leading-relaxed text-ink/70 text-pretty">
             A small Castlecrag studio. Six to eight projects a year — never more.
           </p>
-          <Link href="/about" className="meta link-underline py-1 text-ink/80">
-            About the studio
-          </Link>
         </Reveal>
       </div>
     </section>
