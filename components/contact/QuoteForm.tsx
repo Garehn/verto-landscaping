@@ -64,13 +64,13 @@ export function QuoteForm() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
-          className="bg-cream p-10 lg:p-14"
+          className="border border-paper/15 bg-ink-2 p-10 lg:p-14"
         >
-          <div className="eyebrow mb-4">Received</div>
+          <div className="meta mb-4 text-sage">Received</div>
           <p className="font-serif italic text-3xl md:text-4xl leading-tight tracking-tighter2 text-balance">
             Thanks, {submittedName} — we&rsquo;ll be in touch within two business days.
           </p>
-          <p className="mt-6 text-sm text-stone max-w-md">
+          <p className="mt-6 text-sm text-paper/60 max-w-md">
             We read every enquiry ourselves. If we&rsquo;re not the right fit for the project, we&rsquo;ll say so — and point you to someone who is.
           </p>
         </motion.div>
@@ -130,7 +130,7 @@ export function QuoteForm() {
             <select
               id="projectType"
               {...register('projectType')}
-              className="field-input appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 12 12%22 fill=%22none%22 stroke=%22%231A1A17%22 stroke-width=%221.5%22><path d=%22M2 4l4 4 4-4%22/></svg>')] bg-no-repeat bg-[right_0_center] pr-8"
+              className="field-input appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 12 12%22 fill=%22none%22 stroke=%22%23F2EFE7%22 stroke-width=%221.5%22><path d=%22M2 4l4 4 4-4%22/></svg>')] bg-no-repeat bg-[right_0_center] pr-8"
             >
               {PROJECT_TYPES.map((t) => (
                 <option key={t} value={t}>
@@ -151,19 +151,19 @@ export function QuoteForm() {
           </Field>
 
           {serverError && (
-            <div className="text-sm text-red-700 bg-red-50 border border-red-200 px-4 py-3">{serverError}</div>
+            <div className="border border-red-400/40 bg-red-950/40 px-4 py-3 text-sm text-red-200">{serverError}</div>
           )}
 
           <div className="pt-2 flex flex-col sm:flex-row sm:items-center gap-5">
             <button
               type="submit"
               disabled={status === 'submitting'}
-              className="btn-primary disabled:opacity-60 disabled:cursor-not-allowed"
+              className="btn-light group disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {status === 'submitting' ? 'Sending…' : 'Send enquiry'}
               <span aria-hidden>→</span>
             </button>
-            <p className="text-xs text-stone max-w-xs">
+            <p className="text-xs text-paper/50 max-w-xs">
               We&rsquo;ll only use your details to reply to this enquiry. No marketing, no list.
             </p>
           </div>
@@ -173,22 +173,25 @@ export function QuoteForm() {
               width: 100%;
               background: transparent;
               border: 0;
-              border-bottom: 1px solid #1a1a17;
+              border-bottom: 1px solid rgba(242, 239, 231, 0.28);
               padding: 14px 0;
               font-size: 17px;
-              color: #1a1a17;
+              color: #f2efe7;
               outline: none;
-              transition: border-color 200ms ease;
+              transition: border-color 300ms ease;
             }
             .field-input::placeholder {
-              color: #86847a;
+              color: rgba(154, 166, 146, 0.55);
             }
             .field-input:focus {
-              border-bottom-color: #2f4031;
+              border-bottom-color: #ac9469;
             }
             textarea.field-input {
-              border: 1px solid #1a1a17;
+              border: 1px solid rgba(242, 239, 231, 0.28);
               padding: 14px 16px;
+            }
+            textarea.field-input:focus {
+              border-color: #ac9469;
             }
             select.field-input {
               background-color: transparent;
@@ -214,11 +217,11 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="block text-xs uppercase tracking-[0.2em] text-stone mb-1.5">
+      <label htmlFor={id} className="meta-sm mb-2 block text-sage">
         {label}
       </label>
       {children}
-      {error && <p className="mt-1.5 text-xs text-red-700">{error}</p>}
+      {error && <p className="mt-1.5 text-xs text-red-300">{error}</p>}
     </div>
   );
 }

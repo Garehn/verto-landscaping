@@ -1,5 +1,10 @@
 import Link from 'next/link';
-import { FadeIn } from './FadeIn';
+import { studio } from '@/lib/content';
+import { Marquee } from '@/components/motion/Marquee';
+import { WordRise, type WordSegment } from '@/components/motion/WordRise';
+import { Reveal } from '@/components/motion/Reveal';
+
+const marqueeItems = ['Verto Landscapes', 'Castlecrag', 'Sydney', 'Design', 'Build', 'Care'];
 
 type Props = {
   title?: string;
@@ -8,25 +13,75 @@ type Props = {
   cta?: string;
 };
 
+const defaultSegments: WordSegment[] = [
+  { text: "Let's begin" },
+  { text: 'yours.', italic: true },
+];
+
 export function Cta({
-  title = 'Have a project in mind?',
-  body = 'Tell us about the garden. We reply to every enquiry within two business days.',
+  title,
+  body = `Tell ${studio.founder} about the garden you have, and the one you want. Every enquiry is answered within two business days.`,
   href = '/contact',
-  cta = 'Request a quote',
+  cta = 'Start a project',
 }: Props) {
+  const segments: WordSegment[] = title ? [{ text: title }] : defaultSegments;
+
   return (
-    <section className="bg-cream">
-      <div className="container-x py-24 lg:py-36">
-        <FadeIn className="grid gap-10 md:grid-cols-12 md:items-end">
-          <h2 className="md:col-span-7 display display-italic text-balance">{title}</h2>
-          <div className="md:col-span-5 md:pl-8">
-            <p className="body-lg max-w-md mb-8 text-pretty">{body}</p>
-            <Link href={href} className="group btn-primary">
-              {cta}
-              <span aria-hidden className="arrow">→</span>
-            </Link>
+    <section className="overflow-hidden bg-ink text-paper">
+      <Marquee className="border-y border-paper/10 py-5">
+        {marqueeItems.map((item) => (
+          <span key={item} className="meta flex items-center text-paper/60">
+            <span className="px-8">{item}</span>
+            <span className="text-brass">·</span>
+          </span>
+        ))}
+      </Marquee>
+
+      <div className="container-x py-32 lg:py-44">
+        <div className="grid gap-16 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-7">
+            <WordRise as="h2" className="display-md" segments={segments} stagger={0.07} />
+            <Reveal delay={0.25} className="mt-8 max-w-md">
+              <p className="text-lg leading-relaxed text-paper/75 text-pretty">{body}</p>
+            </Reveal>
+            <Reveal delay={0.4} className="mt-12 flex flex-wrap gap-4">
+              <Link href={href} className="btn-light group">
+                {cta} <span aria-hidden className="arrow">→</span>
+              </Link>
+              <a href={studio.phoneHref} className="btn-ghost-light group" data-numeric>
+                {studio.phone}
+              </a>
+            </Reveal>
           </div>
-        </FadeIn>
+
+          <Reveal delay={0.3} className="lg:col-span-4 lg:col-start-9">
+            <div className="space-y-6 border-l border-paper/15 pl-8">
+              <div>
+                <div className="meta-sm mb-2 text-sage">Studio</div>
+                <div className="text-sm leading-relaxed text-paper/75">
+                  {studio.address.street}
+                  <br />
+                  {studio.address.suburb} {studio.address.state} {studio.address.postcode}
+                </div>
+              </div>
+              <div>
+                <div className="meta-sm mb-2 text-sage">Direct</div>
+                <div className="text-sm leading-relaxed text-paper/75">
+                  <a href={`mailto:${studio.email}`} className="link-underline">
+                    {studio.email}
+                  </a>
+                  <br />
+                  <a href={studio.phoneHref} data-numeric className="hover:text-paper">
+                    {studio.phone}
+                  </a>
+                </div>
+              </div>
+              <div className="meta-sm pt-2 text-sage/70" data-numeric>
+                {studio.coords}
+              </div>
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

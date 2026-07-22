@@ -1,9 +1,18 @@
 export const studio = {
-  name: 'Verto Landscaping',
+  name: 'Verto Landscapes',
   short: 'Verto',
   tagline: 'Gardens that hold time.',
-  email: 'studio@vertolandscaping.com',
-  phone: '+61 2 8000 0000',
+  founder: 'Rory',
+  email: 'rory@vertolandscapes.com',
+  phone: '0488 728 767',
+  phoneHref: 'tel:+61488728767',
+  address: {
+    street: '164 Edinburgh Rd',
+    suburb: 'Castlecrag',
+    state: 'NSW',
+    postcode: '2068',
+  },
+  coords: '33.79°S — 151.22°E',
   area: 'Sydney · Northern Beaches · North Shore',
 };
 

@@ -11,7 +11,7 @@ export async function sendLeadEmail(
 ): Promise<SendResult> {
   const key = process.env.RESEND_API_KEY;
   const to = process.env.LEAD_TO_EMAIL;
-  const from = process.env.LEAD_FROM_EMAIL ?? 'Verto Studio <onboarding@resend.dev>';
+  const from = process.env.LEAD_FROM_EMAIL ?? 'Verto Landscapes <onboarding@resend.dev>';
 
   if (!key || !to) {
     return { ok: false, error: 'RESEND_API_KEY or LEAD_TO_EMAIL not configured' };
@@ -20,7 +20,7 @@ export async function sendLeadEmail(
   const subject = `New enquiry — ${data.name} (${PROJECT_TYPE_LABELS[data.projectType]})`;
 
   const text =
-    `New quote request from the Verto Landscaping website.\n\n` +
+    `New quote request from the Verto Landscapes website.\n\n` +
     `Name:     ${data.name}\n` +
     `Email:    ${data.email}\n` +
     `Phone:    ${data.phone}\n` +

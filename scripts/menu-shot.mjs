@@ -1,0 +1,10 @@
+import { chromium } from 'playwright';
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+await page.goto('http://localhost:3001', { waitUntil: 'networkidle' });
+await page.waitForTimeout(3200);
+await page.getByRole('button', { name: /open menu/i }).click();
+await page.waitForTimeout(1400);
+await page.screenshot({ path: 'shots/menu.png' });
+await browser.close();
+console.log('menu captured');

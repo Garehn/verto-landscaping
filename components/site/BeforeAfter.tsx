@@ -11,6 +11,7 @@ type Props = {
   afterAlt: string;
   label?: string;
   className?: string;
+  captionClassName?: string;
 };
 
 export function BeforeAfter({
@@ -20,6 +21,7 @@ export function BeforeAfter({
   afterAlt,
   label,
   className = '',
+  captionClassName = 'text-stone',
 }: Props) {
   const [pos, setPos] = useState(50);
   const ref = useRef<HTMLDivElement>(null);
@@ -64,7 +66,7 @@ export function BeforeAfter({
     <figure className={className}>
       <div
         ref={ref}
-        className="relative overflow-hidden bg-cream select-none cursor-ew-resize aspect-[16/10]"
+        className="relative aspect-[16/10] cursor-ew-resize select-none overflow-hidden bg-ink-2/40"
         onPointerDown={(e) => {
           dragging.current = true;
           updateFromClientX(e.clientX);
@@ -125,7 +127,7 @@ export function BeforeAfter({
         </motion.div>
       </div>
       {label && (
-        <figcaption className="mt-4 text-xs uppercase tracking-[0.2em] text-stone">
+        <figcaption className={`meta-sm mt-4 ${captionClassName}`}>
           {label}
         </figcaption>
       )}

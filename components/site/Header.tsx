@@ -3,143 +3,170 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import { nav, studio } from '@/lib/content';
+import { EASE, EASE_PANEL } from '@/components/motion/ease';
+
+const menuLinks = nav.filter((item) => item.href !== '/contact');
 
 export function Header() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const { scrollY } = useScroll();
 
-  // Pages that begin with a full-bleed dark hero — header must render light text at the top.
-  const hasDarkHero = pathname === '/';
-  const overDark = hasDarkHero && !scrolled && !open;
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    const prev = scrollY.getPrevious() ?? 0;
+    if (open) return;
+    setHidden(latest > prev && latest > 160);
+  });
 
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
-  const condensed = scrolled || open;
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = '';
+      };
+    }
+  }, [open]);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,border-color,height,color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-        condensed
-          ? 'bg-paper/95 backdrop-blur-md border-b border-line h-[80px] text-ink'
-          : `bg-transparent h-[104px] ${overDark ? 'text-paper' : 'text-ink'}`
-      }`}
-    >
-      {/* Subtle scrim only when over a dark hero — keeps text readable without a hard bar */}
-      {overDark && (
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-[140px] bg-gradient-to-b from-black/35 to-transparent"
-        />
-      )}
-
-      <div
-        className={`container-x relative flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          condensed ? 'h-[80px]' : 'h-[104px]'
-        }`}
+    <>
+      {/* Bar — mix-blend-difference keeps it legible over any ground */}
+      <motion.header
+        className={`fixed inset-x-0 top-0 z-[95] ${open ? '' : 'mix-blend-difference'} text-paper`}
+        animate={{ y: hidden && !open ? '-110%' : '0%' }}
+        transition={{ duration: 0.6, ease: EASE }}
       >
-        <Link
-          href="/"
-          className="group flex items-baseline gap-3 leading-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-4 focus-visible:ring-offset-transparent rounded-sm"
-        >
-          <span
-            className={`font-serif italic tracking-tighter2 leading-none transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-              condensed ? 'text-3xl md:text-4xl' : 'text-4xl md:text-5xl'
-            }`}
-          >
-            {studio.short}
-          </span>
-          <span
-            className={`hidden sm:inline-block not-italic font-sans uppercase tracking-[0.28em] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-              overDark ? 'text-paper/70' : 'text-stone'
-            } ${condensed ? 'text-[10px]' : 'text-xs'}`}
-          >
-            Landscaping
-          </span>
-        </Link>
+        <div className="container-x flex h-20 items-center justify-between sm:h-24">
+          <Link href="/" className="flex items-baseline gap-3 leading-none" onClick={() => setOpen(false)}>
+            <span className="font-serif italic text-3xl tracking-tighter2 sm:text-4xl">Verto</span>
+            <span className="meta hidden text-paper/70 sm:inline-block">Landscapes</span>
+          </Link>
 
-        <nav className="hidden md:flex items-center gap-9">
-          {nav.slice(1, -1).map((item) => {
-            const active = pathname === item.href;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                aria-current={active ? 'page' : undefined}
-                className={`group relative text-xs uppercase tracking-[0.18em] py-2 transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-4 focus-visible:ring-offset-transparent rounded-sm ${
-                  overDark
-                    ? active
-                      ? 'text-paper'
-                      : 'text-paper/65 hover:text-paper'
-                    : active
-                      ? 'text-ink'
-                      : 'text-stone hover:text-ink'
-                }`}
-              >
-                {item.label}
+          <div className="flex items-center gap-8">
+            <a
+              href={studio.phoneHref}
+              className="meta hidden text-paper/70 transition-colors hover:text-paper lg:inline-block"
+              data-numeric
+            >
+              {studio.phone}
+            </a>
+            <Link href="/contact" className="meta hidden link-underline py-1 md:inline-block">
+              Start a project
+            </Link>
+            <button
+              aria-label={open ? 'Close menu' : 'Open menu'}
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="group flex items-center gap-3 py-2"
+            >
+              <span className="meta">{open ? 'Close' : 'Menu'}</span>
+              <span className="relative block h-3 w-6">
                 <span
-                  aria-hidden
-                  className={`pointer-events-none absolute left-0 right-0 -bottom-0.5 mx-auto h-px origin-center bg-current transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    active ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-50'
+                  className={`absolute left-0 top-0 block h-px w-6 bg-current transition-transform duration-500 ease-out-expo ${
+                    open ? 'translate-y-[5.5px] rotate-45' : ''
                   }`}
                 />
-              </Link>
-            );
-          })}
-          <Link
-            href="/contact"
-            className={`group inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] border px-4 py-2.5 transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-4 focus-visible:ring-offset-transparent ${
-              overDark
-                ? 'border-paper/70 text-paper hover:bg-paper hover:text-ink'
-                : 'border-ink text-ink hover:bg-ink hover:text-paper'
-            }`}
-          >
-            Request a quote
-            <span aria-hidden className="inline-block transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0.5">
-              →
-            </span>
-          </Link>
-        </nav>
-
-        <button
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          aria-expanded={open}
-          className="md:hidden flex flex-col gap-1.5 p-2 -mr-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-2 rounded-sm"
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span className={`block h-px w-6 bg-current transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${open ? 'translate-y-[6px] rotate-45' : ''}`} />
-          <span className={`block h-px w-6 bg-current transition-opacity duration-300 ${open ? 'opacity-0' : ''}`} />
-          <span className={`block h-px w-6 bg-current transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${open ? '-translate-y-[6px] -rotate-45' : ''}`} />
-        </button>
-      </div>
-
-      {open && (
-        <nav className="md:hidden border-t border-line bg-paper text-ink">
-          <div className="container-x py-6 flex flex-col gap-5">
-            {nav.slice(1).map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`text-sm uppercase tracking-[0.18em] ${
-                  pathname === item.href ? 'text-ink' : 'text-stone'
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
+                <span
+                  className={`absolute bottom-0 left-0 block h-px w-6 bg-current transition-transform duration-500 ease-out-expo ${
+                    open ? '-translate-y-[5.5px] -rotate-45' : ''
+                  }`}
+                />
+              </span>
+            </button>
           </div>
-        </nav>
-      )}
-    </header>
+        </div>
+      </motion.header>
+
+      {/* Full-screen menu */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="fixed inset-0 z-[90] bg-ink text-paper"
+            initial={{ y: '-100%' }}
+            animate={{ y: '0%' }}
+            exit={{ y: '-100%' }}
+            transition={{ duration: 0.85, ease: EASE_PANEL }}
+          >
+            <div className="container-x flex h-full flex-col justify-between pb-10 pt-32 sm:pt-40">
+              <nav className="flex flex-col gap-1">
+                {menuLinks.map((item, i) => {
+                  const active = pathname === item.href;
+                  return (
+                    <div key={item.href} className="overflow-hidden">
+                      <motion.div
+                        initial={{ y: '110%' }}
+                        animate={{ y: '0%' }}
+                        exit={{ y: '110%', transition: { duration: 0.4, ease: EASE } }}
+                        transition={{ duration: 0.9, ease: EASE, delay: 0.25 + i * 0.07 }}
+                      >
+                        <Link
+                          href={item.href}
+                          className={`group flex items-baseline gap-6 py-1 font-serif text-5xl tracking-tighter2 transition-colors duration-500 sm:text-7xl ${
+                            active ? 'text-paper' : 'text-paper/45 hover:text-paper'
+                          }`}
+                        >
+                          <span className="meta-sm w-8 shrink-0 text-brass" data-numeric>
+                            {String(i + 1).padStart(2, '0')}
+                          </span>
+                          {item.label === 'Home' ? 'Grounds' : item.label}
+                        </Link>
+                      </motion.div>
+                    </div>
+                  );
+                })}
+                <div className="overflow-hidden">
+                  <motion.div
+                    initial={{ y: '110%' }}
+                    animate={{ y: '0%' }}
+                    exit={{ y: '110%', transition: { duration: 0.4, ease: EASE } }}
+                    transition={{ duration: 0.9, ease: EASE, delay: 0.25 + menuLinks.length * 0.07 }}
+                  >
+                    <Link
+                      href="/contact"
+                      className="group flex items-baseline gap-6 py-1 font-serif italic text-5xl tracking-tighter2 text-brass transition-colors duration-500 hover:text-paper sm:text-7xl"
+                    >
+                      <span className="meta-sm w-8 shrink-0 not-italic text-brass" data-numeric>
+                        {String(menuLinks.length + 1).padStart(2, '0')}
+                      </span>
+                      Start a project
+                    </Link>
+                  </motion.div>
+                </div>
+              </nav>
+
+              <motion.div
+                className="flex flex-col gap-6 border-t border-paper/15 pt-8 sm:flex-row sm:items-end sm:justify-between"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, transition: { duration: 0.25 } }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                <div className="space-y-1 text-sm text-paper/70">
+                  <div>{studio.address.street}</div>
+                  <div>
+                    {studio.address.suburb} {studio.address.state} {studio.address.postcode}
+                  </div>
+                </div>
+                <div className="space-y-1 text-sm text-paper/70">
+                  <a href={studio.phoneHref} className="block hover:text-paper" data-numeric>
+                    {studio.phone}
+                  </a>
+                  <a href={`mailto:${studio.email}`} className="block hover:text-paper">
+                    {studio.email}
+                  </a>
+                </div>
+                <div className="meta-sm text-sage">{studio.coords}</div>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

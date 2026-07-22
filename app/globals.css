@@ -6,40 +6,47 @@
   html {
     scroll-behavior: smooth;
   }
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
   body {
-    @apply bg-paper text-ink font-sans antialiased;
+    @apply bg-ink text-paper font-sans antialiased;
     letter-spacing: -0.01em;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     font-feature-settings: 'ss01', 'cv01', 'cv11';
   }
   ::selection {
-    background: #1a1a17;
-    color: #faf8f4;
+    background: #ac9469;
+    color: #0e120e;
   }
   h1, h2, h3, h4 {
     @apply font-serif;
     letter-spacing: -0.03em;
     line-height: 1.05;
   }
-  h1 { font-weight: 500; }
-  h2 { font-weight: 500; }
+  h1 { font-weight: 400; }
+  h2 { font-weight: 400; }
   a { @apply transition-colors; }
 
-  /* Numerals — tabular figures wherever numbers appear (years, counters, phone numbers) */
   .tabular,
   time,
   [data-numeric] {
     font-variant-numeric: tabular-nums;
   }
 
-  /* Visible focus rings for keyboard navigation only */
   :focus-visible {
     outline: 2px solid currentColor;
     outline-offset: 3px;
     border-radius: 2px;
   }
-  /* Suppress for elements that handle their own focus state */
   [data-focus-self]:focus-visible {
     outline: none;
   }
@@ -49,40 +56,75 @@
   .container-x {
     @apply mx-auto w-full max-w-container px-6 sm:px-8 lg:px-16;
   }
+
+  /* Display type — Fraunces, cinematic scale */
   .display {
     font-family: var(--font-fraunces), Georgia, serif;
-    font-weight: 500;
-    font-size: clamp(2.5rem, 6.5vw, 5.75rem);
-    line-height: 1.02;
+    font-weight: 380;
+    font-variation-settings: 'opsz' 144;
+    font-size: clamp(2.75rem, 7.2vw, 7rem);
+    line-height: 0.98;
     letter-spacing: -0.035em;
+  }
+  .display-md {
+    font-family: var(--font-fraunces), Georgia, serif;
+    font-weight: 380;
+    font-variation-settings: 'opsz' 144;
+    font-size: clamp(2.25rem, 4.6vw, 4.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
   }
   .display-italic {
     font-style: italic;
     font-variation-settings: 'opsz' 144;
   }
+
+  /* The surveyor voice — tiny mono labels */
+  .meta {
+    font-family: var(--font-plex-mono), ui-monospace, monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+  .meta-sm {
+    font-family: var(--font-plex-mono), ui-monospace, monospace;
+    font-size: 0.5625rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
   .eyebrow {
-    @apply text-xs uppercase tracking-[0.2em] text-stone;
+    font-family: var(--font-plex-mono), ui-monospace, monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    @apply text-stone;
   }
   .body-lg {
-    @apply text-lg sm:text-xl leading-relaxed text-ink/85;
+    @apply text-lg sm:text-xl leading-relaxed;
   }
+
   .btn {
-    @apply inline-flex items-center justify-center gap-2 px-7 py-4 text-sm uppercase tracking-[0.18em] transition-[background-color,color,transform,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.985];
+    @apply inline-flex items-center justify-center gap-3 px-8 py-4 text-xs uppercase tracking-[0.22em] font-mono transition-[background-color,color,transform,border-color] duration-500 ease-out-expo active:scale-[0.985];
   }
-  .btn-primary {
+  .btn-light {
+    @apply btn bg-paper text-ink hover:bg-brass hover:text-ink;
+  }
+  .btn-ghost-light {
+    @apply btn border border-paper/30 text-paper hover:border-paper hover:bg-paper hover:text-ink;
+  }
+  .btn-dark {
     @apply btn bg-ink text-paper hover:bg-moss;
   }
-  .btn-ghost {
-    @apply btn border border-ink text-ink hover:bg-ink hover:text-paper;
+  .btn-ghost-dark {
+    @apply btn border border-ink/40 text-ink hover:bg-ink hover:text-paper;
   }
-  /* Arrow inside a .btn shifts on hover — pair via group-hover or :hover */
-  .btn .arrow,
-  .group:hover .arrow {
-    transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  .btn .arrow {
+    transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
   }
   .btn:hover .arrow,
   .group:hover .arrow {
-    transform: translateX(2px);
+    transform: translateX(4px);
   }
 
   .link-underline {
@@ -91,20 +133,52 @@
     background-size: 100% 1px;
     background-position: 0 100%;
     background-repeat: no-repeat;
-    transition: background-size 400ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition: background-size 500ms cubic-bezier(0.16, 1, 0.3, 1);
   }
   .link-underline:hover {
     background-size: 0 1px;
     background-position: 100% 100%;
   }
+
   .rule {
-    @apply h-px w-full bg-line;
+    @apply h-px w-full bg-paper/10;
   }
 
-  /* Soft edge mask for horizontal scrollers */
+  /* Filmic grade for full-bleed imagery */
+  .grade {
+    filter: saturate(0.88) brightness(0.96) contrast(1.02);
+  }
+  .grade-overlay {
+    pointer-events: none;
+    background:
+      linear-gradient(to bottom, rgba(14, 18, 14, 0.62) 0%, rgba(14, 18, 14, 0.1) 32%, rgba(14, 18, 14, 0.1) 58%, rgba(14, 18, 14, 0.64) 100%),
+      rgba(14, 18, 14, 0.06);
+  }
+
   .edge-mask-x {
     mask-image: linear-gradient(to right, transparent 0, #000 56px, #000 calc(100% - 56px), transparent 100%);
     -webkit-mask-image: linear-gradient(to right, transparent 0, #000 56px, #000 calc(100% - 56px), transparent 100%);
+  }
+
+  /* Infinite marquee */
+  .marquee-track {
+    animation: marquee 28s linear infinite;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Scroll cue line */
+  .scroll-cue-line {
+    animation: cue 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    transform-origin: top;
+  }
+  @keyframes cue {
+    0% { transform: scaleY(0); transform-origin: top; }
+    45% { transform: scaleY(1); transform-origin: top; }
+    55% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
   }
 }
 

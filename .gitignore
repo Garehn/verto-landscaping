@@ -7,3 +7,7 @@
 .vercel
 node_modules
 out
+
+# design iteration artifacts
+shots/
+tsconfig.tsbuildinfo
