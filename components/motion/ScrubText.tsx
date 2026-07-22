@@ -16,7 +16,7 @@ export function ScrubText({ text, className }: { text: string; className?: strin
   const reduced = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start 0.82', 'end 0.42'],
+    offset: ['start 0.85', 'end 0.55'],
   });
   const words = text.split(' ');
 
@@ -49,7 +49,7 @@ function Word({
   start: number;
   end: number;
 }) {
-  const opacity = useTransform(progress, [start, end], [0.16, 1]);
+  const opacity = useTransform(progress, [start, end], [0.3, 1]);
   return (
     <motion.span style={{ opacity }} className="inline">
       {children}{' '}

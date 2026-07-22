@@ -14,11 +14,11 @@ export default function ServicesPage() {
     <>
       <section className="container-x pt-40 pb-20 lg:pt-48 lg:pb-28">
         <FadeIn>
-          <div className="meta mb-6 text-sage">Services</div>
+          <div className="meta mb-6 text-stone">Services</div>
           <h1 className="display max-w-5xl text-balance">
             Design, build, plant, <span className="display-italic">tend.</span>
           </h1>
-          <p className="mt-10 body-lg max-w-2xl text-paper/75 text-pretty">
+          <p className="mt-10 body-lg max-w-2xl text-ink/75 text-pretty">
             One studio. Four parts of the same job. We can take a project from a first conversation through to its third spring, or step in at any point in between.
           </p>
         </FadeIn>
@@ -34,7 +34,7 @@ export default function ServicesPage() {
                 <ParallaxImage
                   src={images[s.image].src}
                   alt={images[s.image].alt}
-                  className="relative aspect-[5/4] bg-ink-2"
+                  className="relative aspect-[5/4] bg-cream"
                   sizes="(min-width: 1024px) 720px, 100vw"
                   speed={0.07}
                 />
@@ -43,8 +43,8 @@ export default function ServicesPage() {
             <div className="md:col-span-5">
               <div className="meta-sm mb-4 text-brass" data-numeric>0{i + 1}</div>
               <h2 className="mb-6 font-serif text-4xl tracking-tighter2 text-balance md:text-5xl">{s.title}</h2>
-              <p className="text-lg leading-relaxed text-paper/75 text-pretty">{s.body}</p>
-              <Link href="/contact" className="meta link-underline mt-8 inline-block py-1 text-paper/85">
+              <p className="text-lg leading-relaxed text-ink/75 text-pretty">{s.body}</p>
+              <Link href="/contact" className="meta link-underline mt-8 inline-block py-1 text-ink/85">
                 Discuss a {s.title.toLowerCase()} project →
               </Link>
             </div>

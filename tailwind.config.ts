@@ -8,16 +8,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        paper: '#F2EFE7',
-        cream: '#E9E4D6',
-        ink: '#0E120E',
-        'ink-2': '#161B16',
-        moss: '#2E3D2E',
-        'moss-dark': '#1F2C21',
-        stone: '#8B8A7E',
-        sage: '#9AA692',
-        brass: '#AC9469',
-        line: '#DDD8C9',
+        paper: '#F5F3ED',
+        cream: '#ECE8DD',
+        ink: '#2F3436',
+        'ink-2': '#3A4043',
+        moss: '#37452F',
+        'moss-dark': '#28331F',
+        stone: '#8A897E',
+        sage: '#97A18C',
+        brass: '#A98F63',
+        line: '#E2DED2',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],

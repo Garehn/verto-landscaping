@@ -13,7 +13,7 @@ export function PullQuote({ children, attribution }: Props) {
           &ldquo;{children}&rdquo;
         </p>
         {attribution && (
-          <footer className="meta mt-8 text-sage">
+          <footer className="meta mt-8 text-stone">
             {attribution}
           </footer>
         )}

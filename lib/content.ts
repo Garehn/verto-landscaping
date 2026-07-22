@@ -20,9 +20,9 @@ export const nav = [
   { href: '/', label: 'Home' },
   { href: '/services', label: 'Services' },
   { href: '/process', label: 'Process' },
-  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/portfolio', label: 'Projects' },
   { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Request a quote' },
+  { href: '/contact', label: 'Get a quote' },
 ];
 
 export const home = {

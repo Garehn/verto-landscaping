@@ -21,7 +21,7 @@ export function Preloader() {
     }
     setPhase('active');
     const controls = animate(0, 100, {
-      duration: 1.5,
+      duration: 1.2,
       ease: [0.65, 0, 0.35, 1],
       onUpdate: (v) => setCount(Math.round(v)),
       onComplete: () => {
@@ -49,15 +49,15 @@ export function Preloader() {
       {phase === 'active' && (
         <motion.div
           key="curtain"
-          className="fixed inset-0 z-[100] bg-ink text-paper"
+          className="fixed inset-0 z-[100] bg-paper text-ink"
           exit={{ y: '-100%' }}
           transition={{ duration: 1, ease: EASE_PANEL }}
           aria-hidden
         >
-          <div className="absolute left-6 top-6 sm:left-8 sm:top-8 meta text-sage">
+          <div className="absolute left-6 top-6 sm:left-8 sm:top-8 meta text-stone">
             Verto — Landscapes
           </div>
-          <div className="absolute right-6 top-6 sm:right-8 sm:top-8 meta text-sage">
+          <div className="absolute right-6 top-6 sm:right-8 sm:top-8 meta text-stone">
             Castlecrag, Sydney
           </div>
 
@@ -72,7 +72,7 @@ export function Preloader() {
             </motion.div>
           </div>
 
-          <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 meta text-sage">
+          <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 meta text-stone">
             Garden design &amp; build
           </div>
           <div

@@ -9,7 +9,7 @@ export default function ContactPage() {
   return (
     <section className="container-x pt-40 pb-32 lg:pt-48 lg:pb-44">
       <FadeIn>
-        <div className="meta mb-6 text-sage">Contact</div>
+        <div className="meta mb-6 text-stone">Contact</div>
         <h1 className="display max-w-5xl text-balance">
           Request <span className="display-italic">a quote.</span>
         </h1>
@@ -17,7 +17,7 @@ export default function ContactPage() {
 
       <div className="mt-16 lg:mt-20 grid gap-16 lg:gap-24 md:grid-cols-12">
         <FadeIn as="div" className="md:col-span-5">
-          <p className="body-lg text-paper/75 text-pretty">{contact.lead}</p>
+          <p className="body-lg text-ink/75 text-pretty">{contact.lead}</p>
 
           <div className="mt-12 space-y-8">
             <ContactBlock label="Founder" value={studio.founder} />
@@ -43,7 +43,7 @@ export default function ContactPage() {
 function ContactBlock({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <div className="meta-sm mb-2 text-sage">{label}</div>
+      <div className="meta-sm mb-2 text-stone">{label}</div>
       <div className="font-serif text-2xl tracking-tighter2">{value}</div>
     </div>
   );

@@ -3,23 +3,15 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { nav, studio } from '@/lib/content';
 import { EASE, EASE_PANEL } from '@/components/motion/ease';
 
-const menuLinks = nav.filter((item) => item.href !== '/contact');
+const menuLinks = nav.filter((item) => item.href !== '/contact' && item.href !== '/');
 
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const { scrollY } = useScroll();
-
-  useMotionValueEvent(scrollY, 'change', (latest) => {
-    const prev = scrollY.getPrevious() ?? 0;
-    if (open) return;
-    setHidden(latest > prev && latest > 160);
-  });
 
   useEffect(() => {
     setOpen(false);
@@ -36,36 +28,51 @@ export function Header() {
 
   return (
     <>
-      {/* Bar — mix-blend-difference keeps it legible over any ground */}
-      <motion.header
-        className={`fixed inset-x-0 top-0 z-[95] ${open ? '' : 'mix-blend-difference'} text-paper`}
-        animate={{ y: hidden && !open ? '-110%' : '0%' }}
-        transition={{ duration: 0.6, ease: EASE }}
-      >
-        <div className="container-x flex h-20 items-center justify-between sm:h-24">
-          <Link href="/" className="flex items-baseline gap-3 leading-none" onClick={() => setOpen(false)}>
-            <span className="font-serif italic text-3xl tracking-tighter2 sm:text-4xl">Verto</span>
-            <span className="meta hidden text-paper/70 sm:inline-block">Landscapes</span>
+      {/* Solid light bar — always visible, always carrying the CTA */}
+      <header className="fixed inset-x-0 top-0 z-[95] border-b border-ink/10 bg-paper/95 backdrop-blur-md">
+        <div className="container-x flex h-16 items-center justify-between gap-6 sm:h-20">
+          <Link href="/" className="leading-none" onClick={() => setOpen(false)}>
+            <span className="block whitespace-nowrap font-serif text-lg tracking-tight sm:text-2xl">
+              VERTO LANDSCAPES
+            </span>
+            <span className="meta-sm mt-1 hidden text-stone sm:block">Design &amp; Construct</span>
           </Link>
 
-          <div className="flex items-center gap-8">
+          <nav className="hidden items-center gap-8 lg:flex">
+            {menuLinks.map((item) => {
+              const active = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={active ? 'page' : undefined}
+                  className={`meta py-2 transition-colors duration-300 ${
+                    active ? 'text-ink' : 'text-stone hover:text-ink'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="flex items-center gap-5">
             <a
               href={studio.phoneHref}
-              className="meta hidden text-paper/70 transition-colors hover:text-paper lg:inline-block"
+              className="meta hidden text-stone transition-colors hover:text-ink xl:inline-block"
               data-numeric
             >
               {studio.phone}
             </a>
-            <Link href="/contact" className="meta hidden link-underline py-1 md:inline-block">
-              Start a project
+            <Link href="/contact" className="btn-dark group whitespace-nowrap !px-4 !py-2.5 sm:!px-7 sm:!py-3">
+              Get a quote <span aria-hidden className="arrow">→</span>
             </Link>
             <button
               aria-label={open ? 'Close menu' : 'Open menu'}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
-              className="group flex items-center gap-3 py-2"
+              className="flex items-center gap-3 py-2 lg:hidden"
             >
-              <span className="meta">{open ? 'Close' : 'Menu'}</span>
               <span className="relative block h-3 w-6">
                 <span
                   className={`absolute left-0 top-0 block h-px w-6 bg-current transition-transform duration-500 ease-out-expo ${
@@ -81,87 +88,65 @@ export function Header() {
             </button>
           </div>
         </div>
-      </motion.header>
+      </header>
 
-      {/* Full-screen menu */}
+      {/* Full-screen menu (mobile / tablet) */}
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-[90] bg-ink text-paper"
+            className="fixed inset-0 z-[90] bg-paper text-ink"
             initial={{ y: '-100%' }}
             animate={{ y: '0%' }}
             exit={{ y: '-100%' }}
-            transition={{ duration: 0.85, ease: EASE_PANEL }}
+            transition={{ duration: 0.8, ease: EASE_PANEL }}
           >
-            <div className="container-x flex h-full flex-col justify-between pb-10 pt-32 sm:pt-40">
+            <div className="container-x flex h-full flex-col justify-between pb-10 pt-28">
               <nav className="flex flex-col gap-1">
-                {menuLinks.map((item, i) => {
-                  const active = pathname === item.href;
-                  return (
+                {[{ href: '/', label: 'Home' }, ...menuLinks, { href: '/contact', label: 'Get a quote' }].map(
+                  (item, i) => (
                     <div key={item.href} className="overflow-hidden">
                       <motion.div
                         initial={{ y: '110%' }}
                         animate={{ y: '0%' }}
-                        exit={{ y: '110%', transition: { duration: 0.4, ease: EASE } }}
-                        transition={{ duration: 0.9, ease: EASE, delay: 0.25 + i * 0.07 }}
+                        exit={{ y: '110%', transition: { duration: 0.35, ease: EASE } }}
+                        transition={{ duration: 0.8, ease: EASE, delay: 0.2 + i * 0.06 }}
                       >
                         <Link
                           href={item.href}
-                          className={`group flex items-baseline gap-6 py-1 font-serif text-5xl tracking-tighter2 transition-colors duration-500 sm:text-7xl ${
-                            active ? 'text-paper' : 'text-paper/45 hover:text-paper'
+                          className={`flex items-baseline gap-5 py-2 font-serif text-4xl tracking-tighter2 sm:text-6xl ${
+                            item.href === '/contact'
+                              ? 'italic text-brass'
+                              : pathname === item.href
+                                ? 'text-ink'
+                                : 'text-ink/50 hover:text-ink'
                           }`}
                         >
-                          <span className="meta-sm w-8 shrink-0 text-brass" data-numeric>
+                          <span className="meta-sm w-7 shrink-0 not-italic text-brass" data-numeric>
                             {String(i + 1).padStart(2, '0')}
                           </span>
-                          {item.label === 'Home' ? 'Grounds' : item.label}
+                          {item.label}
                         </Link>
                       </motion.div>
                     </div>
-                  );
-                })}
-                <div className="overflow-hidden">
-                  <motion.div
-                    initial={{ y: '110%' }}
-                    animate={{ y: '0%' }}
-                    exit={{ y: '110%', transition: { duration: 0.4, ease: EASE } }}
-                    transition={{ duration: 0.9, ease: EASE, delay: 0.25 + menuLinks.length * 0.07 }}
-                  >
-                    <Link
-                      href="/contact"
-                      className="group flex items-baseline gap-6 py-1 font-serif italic text-5xl tracking-tighter2 text-brass transition-colors duration-500 hover:text-paper sm:text-7xl"
-                    >
-                      <span className="meta-sm w-8 shrink-0 not-italic text-brass" data-numeric>
-                        {String(menuLinks.length + 1).padStart(2, '0')}
-                      </span>
-                      Start a project
-                    </Link>
-                  </motion.div>
-                </div>
+                  )
+                )}
               </nav>
 
               <motion.div
-                className="flex flex-col gap-6 border-t border-paper/15 pt-8 sm:flex-row sm:items-end sm:justify-between"
+                className="flex flex-col gap-4 border-t border-ink/10 pt-6 text-sm text-ink/70 sm:flex-row sm:justify-between"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                exit={{ opacity: 0, transition: { duration: 0.25 } }}
-                transition={{ duration: 0.8, delay: 0.6 }}
+                exit={{ opacity: 0, transition: { duration: 0.2 } }}
+                transition={{ duration: 0.7, delay: 0.5 }}
               >
-                <div className="space-y-1 text-sm text-paper/70">
-                  <div>{studio.address.street}</div>
-                  <div>
-                    {studio.address.suburb} {studio.address.state} {studio.address.postcode}
-                  </div>
+                <div>
+                  {studio.address.street}, {studio.address.suburb} {studio.address.state}{' '}
+                  {studio.address.postcode}
                 </div>
-                <div className="space-y-1 text-sm text-paper/70">
-                  <a href={studio.phoneHref} className="block hover:text-paper" data-numeric>
-                    {studio.phone}
-                  </a>
-                  <a href={`mailto:${studio.email}`} className="block hover:text-paper">
-                    {studio.email}
-                  </a>
+                <div className="flex gap-6">
+                  <a href={studio.phoneHref} data-numeric className="hover:text-ink">{studio.phone}</a>
+                  <a href={`mailto:${studio.email}`} className="hover:text-ink">{studio.email}</a>
                 </div>
-                <div className="meta-sm text-sage">{studio.coords}</div>
               </motion.div>
             </div>
           </motion.div>

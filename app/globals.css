@@ -17,15 +17,15 @@
     overflow: hidden;
   }
   body {
-    @apply bg-ink text-paper font-sans antialiased;
+    @apply bg-paper text-ink font-sans antialiased;
     letter-spacing: -0.01em;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     font-feature-settings: 'ss01', 'cv01', 'cv11';
   }
   ::selection {
-    background: #ac9469;
-    color: #0e120e;
+    background: #2f3436;
+    color: #f5f3ed;
   }
   h1, h2, h3, h4 {
     @apply font-serif;
@@ -141,7 +141,7 @@
   }
 
   .rule {
-    @apply h-px w-full bg-paper/10;
+    @apply h-px w-full bg-ink/10;
   }
 
   /* Filmic grade for full-bleed imagery */

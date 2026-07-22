@@ -37,7 +37,7 @@ export function TerrainSection() {
   });
 
   return (
-    <section ref={sectionRef} className="relative bg-ink text-paper">
+    <section ref={sectionRef} className="relative bg-paper text-ink">
       <div className="relative h-[140vh]">
         <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
           {/* Terrain canvas */}
@@ -48,10 +48,12 @@ export function TerrainSection() {
           )}
 
           {/* Statement */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-[68%] bg-gradient-to-r from-paper via-paper/70 to-transparent" aria-hidden />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-paper via-paper/75 to-transparent" aria-hidden />
           <div className="container-x relative flex h-full flex-col justify-center">
             <Reveal className="mb-10 flex items-center gap-6">
-              <span className="meta-sm text-brass" data-numeric>05</span>
-              <span className="meta text-sage">Topography</span>
+              <span className="meta-sm text-brass" data-numeric>04</span>
+              <span className="meta text-stone">Topography</span>
               <span className="h-px flex-1 bg-paper/10" aria-hidden />
             </Reveal>
 
@@ -66,7 +68,7 @@ export function TerrainSection() {
             />
 
             <Reveal delay={0.3} className="mt-8 max-w-md">
-              <p className="text-base leading-relaxed text-paper/70 sm:text-lg">
+              <p className="text-base leading-relaxed text-ink/70 sm:text-lg">
                 Levels, drainage, soil and stone — the parts of a garden nobody
                 photographs, done so well that everything above them looks inevitable.
               </p>
@@ -75,7 +77,7 @@ export function TerrainSection() {
             {/* Groundwork capability strip */}
             <div className="absolute bottom-8 left-0 right-0">
               <div className="container-x">
-                <div className="grid gap-6 border-t border-paper/15 pt-6 sm:grid-cols-3">
+                <div className="grid gap-6 border-t border-ink/10 pt-6 sm:grid-cols-3">
                   {[
                     { n: 'A', title: 'Levels & retaining', body: 'Cut, fill and walls that hold' },
                     { n: 'B', title: 'Drainage & stormwater', body: 'Detention and subsurface systems' },
@@ -84,15 +86,15 @@ export function TerrainSection() {
                     <div key={item.n} className="flex items-baseline gap-4">
                       <span className="meta-sm text-brass" data-numeric>{item.n}</span>
                       <span>
-                        <span className="meta block text-paper/85">{item.title}</span>
-                        <span className="mt-1 block text-xs text-sage/80">{item.body}</span>
+                        <span className="meta block text-ink/85">{item.title}</span>
+                        <span className="mt-1 block text-xs text-stone">{item.body}</span>
                       </span>
                     </div>
                   ))}
                 </div>
                 <div className="mt-5 flex items-center justify-between">
-                  <span className="meta-sm text-sage/70">Survey — {studio.address.suburb}</span>
-                  <span className="meta-sm text-sage/70" data-numeric>{studio.coords}</span>
+                  <span className="meta-sm text-stone/80">Survey — {studio.address.suburb}</span>
+                  <span className="meta-sm text-stone/80" data-numeric>{studio.coords}</span>
                 </div>
               </div>
             </div>

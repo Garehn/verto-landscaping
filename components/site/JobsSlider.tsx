@@ -68,10 +68,10 @@ export function JobsSlider({ jobs, eyebrow = 'Recent work', heading }: Props) {
   };
 
   return (
-    <section className="bg-ink text-paper overflow-hidden">
+    <section className="bg-paper text-ink overflow-hidden">
       <div className="container-x pt-24 lg:pt-32 pb-10 flex items-end justify-between gap-8 flex-wrap">
         <div>
-          <div className="eyebrow text-paper/60 mb-4">{eyebrow}</div>
+          <div className="eyebrow text-ink/60 mb-4">{eyebrow}</div>
           {heading ?? (
             <h2 className="font-serif text-4xl md:text-6xl tracking-tighter2 max-w-2xl text-balance">
               A few gardens, <span className="italic">recently finished.</span>
@@ -84,7 +84,7 @@ export function JobsSlider({ jobs, eyebrow = 'Recent work', heading }: Props) {
             aria-label="Previous"
             disabled={!canPrev}
             onClick={() => scrollBy(-1)}
-            className="size-12 rounded-full border border-paper/30 hover:border-paper hover:bg-paper hover:text-ink disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-paper transition-all flex items-center justify-center"
+            className="size-12 rounded-full border border-ink/30 hover:border-paper hover:bg-paper hover:text-ink disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-ink transition-all flex items-center justify-center"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14 6l-6 6 6 6" /></svg>
           </button>
@@ -93,7 +93,7 @@ export function JobsSlider({ jobs, eyebrow = 'Recent work', heading }: Props) {
             aria-label="Next"
             disabled={!canNext}
             onClick={() => scrollBy(1)}
-            className="size-12 rounded-full border border-paper/30 hover:border-paper hover:bg-paper hover:text-ink disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-paper transition-all flex items-center justify-center"
+            className="size-12 rounded-full border border-ink/30 hover:border-paper hover:bg-paper hover:text-ink disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-ink transition-all flex items-center justify-center"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M10 6l6 6-6 6" /></svg>
           </button>
@@ -128,7 +128,7 @@ export function JobsSlider({ jobs, eyebrow = 'Recent work', heading }: Props) {
               />
             </div>
             {j.caption && (
-              <figcaption className="mt-4 text-xs uppercase tracking-[0.2em] text-paper/70">
+              <figcaption className="mt-4 text-xs uppercase tracking-[0.2em] text-ink/70">
                 <span className="tabular">{String(i + 1).padStart(2, '0')}</span> — {j.caption}
               </figcaption>
             )}

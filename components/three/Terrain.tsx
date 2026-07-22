@@ -97,9 +97,9 @@ function TerrainMesh({ scrollRef }: { scrollRef: MutableRefObject<number> }) {
     () => ({
       uTime: { value: 0 },
       uScroll: { value: 0 },
-      uColorLine: { value: new THREE.Color('#AC9469') },
-      uColorBase: { value: new THREE.Color('#0E120E') },
-      uColorHigh: { value: new THREE.Color('#31402F') },
+      uColorLine: { value: new THREE.Color('#A98F63') },
+      uColorBase: { value: new THREE.Color('#EFEDE4') },
+      uColorHigh: { value: new THREE.Color('#D8D3C1') },
     }),
     []
   );

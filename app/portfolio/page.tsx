@@ -13,11 +13,11 @@ export default function PortfolioPage() {
     <>
       <section className="container-x pt-40 pb-20 lg:pt-48 lg:pb-24">
         <FadeIn>
-          <div className="meta mb-6 text-sage">Portfolio</div>
+          <div className="meta mb-6 text-stone">Portfolio</div>
           <h1 className="display max-w-5xl text-balance">
             Selected work across <span className="display-italic">Sydney.</span>
           </h1>
-          <p className="mt-10 body-lg max-w-2xl text-paper/75 text-pretty">
+          <p className="mt-10 body-lg max-w-2xl text-ink/75 text-pretty">
             A handful of recent gardens. Drag the sliders to see what changed.
           </p>
         </FadeIn>
@@ -40,7 +40,7 @@ export default function PortfolioPage() {
           <FadeIn className="mb-10 flex items-center gap-6">
             <span className="meta-sm text-brass">01</span>
             <span className="meta text-stone">Before — After</span>
-            <span className="h-px flex-1 bg-ink/10" aria-hidden />
+            <span className="h-px flex-1 bg-paper-KEEP/10" aria-hidden />
           </FadeIn>
           <FadeIn>
             <h2 className="mb-8 font-serif text-3xl tracking-tighter2 md:text-4xl">{beforeAfters[0].label}</h2>
@@ -70,7 +70,7 @@ export default function PortfolioPage() {
           <FadeIn className="mb-10 flex items-center gap-6">
             <span className="meta-sm text-brass">02</span>
             <span className="meta text-stone">Before — After</span>
-            <span className="h-px flex-1 bg-ink/10" aria-hidden />
+            <span className="h-px flex-1 bg-paper-KEEP/10" aria-hidden />
           </FadeIn>
           <FadeIn>
             <h2 className="mb-8 font-serif text-3xl tracking-tighter2 md:text-4xl">{beforeAfters[1].label}</h2>
@@ -89,7 +89,7 @@ export default function PortfolioPage() {
       <section className="container-x py-24 lg:py-32">
         <FadeIn className="mb-10 flex items-center gap-6">
           <span className="meta-sm text-brass">03</span>
-          <span className="meta text-sage">Before — After</span>
+          <span className="meta text-stone">Before — After</span>
           <span className="h-px flex-1 bg-paper/10" aria-hidden />
         </FadeIn>
         <FadeIn>
@@ -100,7 +100,7 @@ export default function PortfolioPage() {
             beforeAlt={images[beforeAfters[2].before].alt}
             afterAlt={images[beforeAfters[2].after].alt}
             label={beforeAfters[2].label}
-            captionClassName="text-sage"
+            captionClassName="text-stone"
           />
         </FadeIn>
       </section>

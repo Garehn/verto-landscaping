@@ -64,13 +64,13 @@ export function QuoteForm() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
-          className="border border-paper/15 bg-ink-2 p-10 lg:p-14"
+          className="border border-ink/15 bg-cream p-10 lg:p-14"
         >
-          <div className="meta mb-4 text-sage">Received</div>
+          <div className="meta mb-4 text-stone">Received</div>
           <p className="font-serif italic text-3xl md:text-4xl leading-tight tracking-tighter2 text-balance">
             Thanks, {submittedName} — we&rsquo;ll be in touch within two business days.
           </p>
-          <p className="mt-6 text-sm text-paper/60 max-w-md">
+          <p className="mt-6 text-sm text-ink/60 max-w-md">
             We read every enquiry ourselves. If we&rsquo;re not the right fit for the project, we&rsquo;ll say so — and point you to someone who is.
           </p>
         </motion.div>
@@ -158,12 +158,12 @@ export function QuoteForm() {
             <button
               type="submit"
               disabled={status === 'submitting'}
-              className="btn-light group disabled:opacity-60 disabled:cursor-not-allowed"
+              className="btn-dark group disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {status === 'submitting' ? 'Sending…' : 'Send enquiry'}
               <span aria-hidden>→</span>
             </button>
-            <p className="text-xs text-paper/50 max-w-xs">
+            <p className="text-xs text-ink/50 max-w-xs">
               We&rsquo;ll only use your details to reply to this enquiry. No marketing, no list.
             </p>
           </div>
@@ -217,7 +217,7 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="meta-sm mb-2 block text-sage">
+      <label htmlFor={id} className="meta-sm mb-2 block text-stone">
         {label}
       </label>
       {children}

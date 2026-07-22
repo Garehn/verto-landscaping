@@ -66,7 +66,7 @@ export function BeforeAfter({
     <figure className={className}>
       <div
         ref={ref}
-        className="relative aspect-[16/10] cursor-ew-resize select-none overflow-hidden bg-ink-2/40"
+        className="relative aspect-[16/10] cursor-ew-resize select-none overflow-hidden bg-cream/40"
         onPointerDown={(e) => {
           dragging.current = true;
           updateFromClientX(e.clientX);
@@ -99,7 +99,7 @@ export function BeforeAfter({
         </div>
 
         {/* Labels */}
-        <div className="absolute top-4 left-4 px-3 py-1.5 bg-ink/85 text-paper text-[10px] uppercase tracking-[0.2em] backdrop-blur-sm pointer-events-none">
+        <div className="absolute top-4 left-4 px-3 py-1.5 bg-paper-KEEP/85 text-ink text-[10px] uppercase tracking-[0.2em] backdrop-blur-sm pointer-events-none">
           Before
         </div>
         <div className="absolute top-4 right-4 px-3 py-1.5 bg-paper/95 text-ink text-[10px] uppercase tracking-[0.2em] pointer-events-none">
