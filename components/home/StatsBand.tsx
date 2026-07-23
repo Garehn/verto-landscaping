@@ -6,7 +6,7 @@ const stats = [
   {
     value: 8,
     label: 'Projects a year',
-    detail: 'Never more. Yours is one of them or it is not — we will not stretch.',
+    detail: 'Never more. Yours is one of them or it is not, we will not stretch.',
   },
   {
     value: 4,
@@ -16,7 +16,7 @@ const stats = [
   {
     value: 2,
     label: 'Design presentations',
-    detail: 'Formal reviews before costing — you sign off before we build.',
+    detail: 'Formal reviews before costing, you sign off before we build.',
   },
   {
     value: 1,

@@ -74,7 +74,7 @@ export function SixServices() {
           </h2>
         </div>
         <p className="max-w-md text-stone leading-relaxed">
-          A complete in-house team — so the path from a first conversation to the third spring runs through one studio, not six.
+          A complete in-house team, so the path from a first conversation to the third spring runs through one studio, not six.
         </p>
       </FadeIn>
 

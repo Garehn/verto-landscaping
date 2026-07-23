@@ -55,7 +55,7 @@ export function Preloader() {
           aria-hidden
         >
           <div className="absolute left-6 top-6 sm:left-8 sm:top-8 meta text-stone">
-            Verto — Landscapes
+            Verto Landscapes
           </div>
           <div className="absolute right-6 top-6 sm:right-8 sm:top-8 meta text-stone">
             Castlecrag, Sydney

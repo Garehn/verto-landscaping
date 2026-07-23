@@ -8,7 +8,7 @@ export function Footer() {
       <div className="container-x pb-8 pt-20 lg:pt-28">
         <div className="grid gap-14 md:grid-cols-12">
           <div className="md:col-span-5">
-            <Image src="/images/real/logo-white.png" alt="Verto Landscapes — Design & Construct" width={220} height={176} className="mb-8 h-28 w-auto opacity-95" />
+            <Image src="/images/real/logo-white.png" alt="Verto Landscapes, Design & Construct" width={220} height={176} className="mb-8 h-28 w-auto opacity-95" />
             <div className="font-serif italic text-4xl tracking-tighter2 text-balance md:text-5xl">
               Quiet gardens, <br className="hidden md:inline" /> built to last.
             </div>
@@ -20,7 +20,7 @@ export function Footer() {
           <div className="md:col-span-3 md:col-start-7">
             <div className="meta-sm mb-5 text-sage">Studio</div>
             <ul className="space-y-2 text-sm text-paper/75">
-              <li>{studio.founder} — Founder</li>
+              <li>{studio.founder} · Founder</li>
               <li>{studio.address.street}</li>
               <li>
                 {studio.address.suburb} {studio.address.state} {studio.address.postcode}
@@ -64,7 +64,7 @@ export function Footer() {
           <div>
             © {new Date().getFullYear()} {studio.name}. All rights reserved.
           </div>
-          <div className="meta-sm">Garden design &amp; build — Castlecrag, Sydney</div>
+          <div className="meta-sm">Garden design &amp; build · Castlecrag, Sydney</div>
         </div>
       </div>
 

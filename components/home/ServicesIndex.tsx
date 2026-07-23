@@ -101,7 +101,7 @@ export function ServicesIndex() {
             </Reveal>
           ))}
 
-          {/* Floating cursor preview — pointer devices only */}
+          {/* Floating cursor preview, pointer devices only */}
           {!reduced && (
             <motion.div
               className="pointer-events-none absolute left-0 top-0 z-20 hidden lg:block"

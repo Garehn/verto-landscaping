@@ -6,13 +6,13 @@ import { Reveal } from '@/components/motion/Reveal';
 const cards: { title: string; body: string; image: ImageRef; href: string }[] = [
   {
     title: 'Design',
-    body: 'Site survey, master plan and planting design — measured drawings.',
+    body: 'Site survey, master plan and planting design, measured drawings.',
     image: 'svc_design',
     href: '/services#design',
   },
   {
     title: 'Construction',
-    body: 'Stone, timber, water and steel — built by crews we keep.',
+    body: 'Stone, timber, water and steel, built by crews we keep.',
     image: 'svc_construct',
     href: '/services#build',
   },

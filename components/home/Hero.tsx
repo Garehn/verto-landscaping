@@ -65,7 +65,7 @@ export function Hero({ videoSrc }: { videoSrc?: string }) {
           </motion.div>
           <div className="grade-overlay absolute inset-0" aria-hidden />
 
-          {/* Content — short, with a large CTA */}
+          {/* Content, short, with a large CTA */}
           <div className="relative flex h-full flex-col justify-end p-6 sm:p-10 lg:p-14">
             <motion.div
               className="meta mb-5 text-paper/80"
@@ -73,7 +73,7 @@ export function Hero({ videoSrc }: { videoSrc?: string }) {
               animate={show ? { opacity: 1, y: 0 } : undefined}
               transition={{ duration: 0.8, delay: 0.45, ease: EASE }}
             >
-              Landscape design &amp; construction — Sydney
+              Landscape design &amp; construction · Sydney
             </motion.div>
 
             <WordRise

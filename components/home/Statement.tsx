@@ -17,7 +17,7 @@ export function Statement() {
         />
         <Reveal delay={0.2} className="mt-8 flex flex-wrap items-center gap-x-10 gap-y-4">
           <p className="max-w-md text-lg leading-relaxed text-ink/70 text-pretty">
-            A small Castlecrag studio. Six to eight projects a year — never more.
+            A small Castlecrag studio. Six to eight projects a year, never more.
           </p>
         </Reveal>
       </div>

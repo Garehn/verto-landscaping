@@ -129,7 +129,7 @@ export function JobsSlider({ jobs, eyebrow = 'Recent work', heading }: Props) {
             </div>
             {j.caption && (
               <figcaption className="mt-4 text-xs uppercase tracking-[0.2em] text-ink/70">
-                <span className="tabular">{String(i + 1).padStart(2, '0')}</span> — {j.caption}
+                <span className="tabular">{String(i + 1).padStart(2, '0')}</span>, {j.caption}
               </figcaption>
             )}
           </motion.figure>

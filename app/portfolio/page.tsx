@@ -40,7 +40,7 @@ export default function PortfolioPage() {
       <div className="container-x"><div className="rule" /></div>
 
       <section className="container-x pb-24 pt-16 lg:pb-32 lg:pt-24">
-        {/* 01 — large left, text hanging right and low */}
+        {/* 01, large left, text hanging right and low */}
         <div className="grid gap-8 lg:grid-cols-12">
           <Reveal className="lg:col-span-7">
             <Link href={`/portfolio/${pool.id}`} className="group block">
@@ -69,7 +69,7 @@ export default function PortfolioPage() {
           </Reveal>
         </div>
 
-        {/* 02 — portrait right, text left, staggered upward */}
+        {/* 02, portrait right, text left, staggered upward */}
         <div className="mt-20 grid gap-8 lg:mt-28 lg:grid-cols-12">
           <Reveal delay={0.1} className="order-2 lg:order-1 lg:col-span-4 lg:col-start-2 lg:self-center">
             <div className="meta-sm mb-4 flex items-center gap-4 text-stone">
@@ -98,7 +98,7 @@ export default function PortfolioPage() {
           </Reveal>
         </div>
 
-        {/* 03 — wide, offset from the left edge, text trailing right */}
+        {/* 03, wide, offset from the left edge, text trailing right */}
         <div className="mt-20 grid gap-8 lg:mt-28 lg:grid-cols-12">
           <Reveal className="lg:col-span-8 lg:col-start-2">
             <Link href={`/portfolio/${arrival.id}`} className="group block">

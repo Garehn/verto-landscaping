@@ -17,7 +17,7 @@ export async function sendLeadEmail(
     return { ok: false, error: 'RESEND_API_KEY or LEAD_TO_EMAIL not configured' };
   }
 
-  const subject = `New enquiry — ${data.name} (${PROJECT_TYPE_LABELS[data.projectType]})`;
+  const subject = `New enquiry, ${data.name} (${PROJECT_TYPE_LABELS[data.projectType]})`;
 
   const text =
     `New quote request from the Verto Landscapes website.\n\n` +
@@ -26,9 +26,9 @@ export async function sendLeadEmail(
     `Phone:    ${data.phone}\n` +
     `Project:  ${PROJECT_TYPE_LABELS[data.projectType]}\n\n` +
     `Message:\n${data.message}\n\n` +
-    `— Submitted ${new Date().toISOString()}\n` +
-    `— IP ${meta.ip ?? 'unknown'}\n` +
-    `— UA ${meta.userAgent ?? 'unknown'}\n`;
+    `Submitted ${new Date().toISOString()}\n` +
+    `IP ${meta.ip ?? 'unknown'}\n` +
+    `UA ${meta.userAgent ?? 'unknown'}\n`;
 
   const html =
     `<div style="font-family: -apple-system, system-ui, sans-serif; max-width: 560px; color: #1A1A17;">` +

@@ -20,23 +20,23 @@ const media: Record<
     before: '/images/real/gen/before-pool.jpg',
     story: {
       brief:
-        'A tired paved terrace holding the best view on the street, and nothing to frame it. The owners asked for a pool that would sit in the view — not in front of it.',
+        'A tired paved terrace holding the best view on the street, and nothing to frame it. The owners asked for a pool that would sit in the view, not in front of it.',
       excelled:
-        'We cut the pool into the level so the water line runs to the horizon, kept every finish pale and quiet — stone surrounds, three olives on the boundary — and let the harbour do the talking.',
+        'We cut the pool into the level so the water line runs to the horizon, kept every finish pale and quiet, stone surrounds, three olives on the boundary, and let the harbour do the talking.',
       quote:
-        'Every trade turned up when Rory said they would. The pool looks like it was always here — the view finally has somewhere to land.',
-      owner: 'Private clients — Castlecrag',
+        'Every trade turned up when Rory said they would. The pool looks like it was always here, the view finally has somewhere to land.',
+      owner: 'Private clients, Castlecrag',
     },
     angles: [
       {
         src: '/images/real/gen/angle-pool-2.jpg',
-        alt: 'Skimming the water line — stone coping and olives, harbour valley beyond',
-        caption: 'At the water line — coping, olives, the valley beyond',
+        alt: 'Skimming the water line, stone coping and olives, harbour valley beyond',
+        caption: 'At the water line, coping, olives, the valley beyond',
       },
       {
         src: '/images/real/gen/angle-pool-3.jpg',
-        alt: 'The pool from above — terrace, water and lawn in plan',
-        caption: 'From above — the terrace reads like the drawing',
+        alt: 'The pool from above, terrace, water and lawn in plan',
+        caption: 'From above, the terrace reads like the drawing',
       },
     ],
   },
@@ -44,23 +44,23 @@ const media: Record<
     before: '/images/real/gen/before-deck.jpg',
     story: {
       brief:
-        'The house opened straight onto a pool the family could barely use — no deck, no shade, nowhere to sit. They asked for an outdoor room, not a walkway.',
+        'The house opened straight onto a pool the family could barely use, no deck, no shade, nowhere to sit. They asked for an outdoor room, not a walkway.',
       excelled:
         'Wide hardwood boards laid flush with the interior floor, glass fencing so the pool reads as part of the room, and planting to soften every hard edge.',
       quote:
         'It is the room we use most now. The kids are in the pool every afternoon and we have not moved the chairs since the crew left.',
-      owner: 'Owners — Castlecrag',
+      owner: 'Owners, Castlecrag',
     },
     angles: [
       {
         src: '/images/real/passage.jpg',
         alt: 'Stone-cobbled side passage with timber batten gate at the same property',
-        caption: 'The side passage — cobbles and timber battens',
+        caption: 'The side passage, cobbles and timber battens',
       },
       {
         src: '/images/real/gen/angle-deck-2.jpg',
         alt: 'Low along the deck boards at dusk, pool glowing beyond the glass fence',
-        caption: 'Deck boards at dusk — the pool just beyond the glass',
+        caption: 'Deck boards at dusk, the pool just beyond the glass',
       },
     ],
   },
@@ -70,21 +70,21 @@ const media: Record<
       brief:
         'A cracked concrete drive and a front garden that apologised for the house. The brief was one line: make the arrival worth the address.',
       excelled:
-        'Granite cobbles laid in course, sandstone-edged beds, olives and magnolias for year-round structure — and low brass lighting that carries it after dark.',
+        'Granite cobbles laid in course, sandstone-edged beds, olives and magnolias for year-round structure, and low brass lighting that carries it after dark.',
       quote:
         'People genuinely slow down as they drive past. It changed how the whole house presents from the street.',
-      owner: 'Owners — Castlecrag',
+      owner: 'Owners, Castlecrag',
     },
     angles: [
       {
         src: '/images/real/planting.jpg',
         alt: 'Magnolia and layered planting in the sandstone-edged entry bed',
-        caption: 'The entry bed — magnolia, layered planting, brass lighting',
+        caption: 'The entry bed, magnolia, layered planting, brass lighting',
       },
       {
         src: '/images/real/gen/angle-arrival-2.jpg',
         alt: 'The cobbled arrival court at dusk, garden lighting glowing along the beds',
-        caption: 'The arrival at dusk — the lighting carries it',
+        caption: 'The arrival at dusk, the lighting carries it',
       },
     ],
   },
@@ -110,7 +110,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               {String(index).padStart(2, '0')} / {String(portfolio.length).padStart(2, '0')}
             </span>
             <span className="meta text-stone">
-              {project.location} — {project.year}
+              {project.location} · {project.year}
             </span>
             <span className="h-px flex-1 bg-ink/10" aria-hidden />
             <Link href="/portfolio" className="meta link-underline hidden py-1 sm:inline-block">
@@ -138,18 +138,18 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             </div>
           </Reveal>
 
-          {/* The transformation — drag to reveal */}
+          {/* The transformation, drag to reveal */}
           <Reveal className="mt-12">
             <BeforeAfter
               beforeSrc={images[project.image].src}
               afterSrc={m.before}
               beforeAlt={images[project.image].alt}
-              afterAlt={`Before the works — ${project.title.toLowerCase()}`}
-              label={`${project.location} — before / after`}
+              afterAlt={`Before the works, ${project.title.toLowerCase()}`}
+              label={`${project.location} · before / after`}
             />
           </Reveal>
 
-          {/* The story — angles either side of the copy */}
+          {/* The story, angles either side of the copy */}
           <div className="mt-20 grid gap-8 lg:mt-28 lg:grid-cols-12">
             <Reveal className="lg:col-span-7">
               <figure>
@@ -204,7 +204,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       </article>
       <Cta
         title="Want a garden like this one?"
-        body={`Tell ${studio.founder} about your block — every enquiry is answered within two business days.`}
+        body={`Tell ${studio.founder} about your block, every enquiry is answered within two business days.`}
       />
     </>
   );

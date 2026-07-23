@@ -41,7 +41,7 @@ export function QuoteForm() {
       if (!res.ok || !json.ok) {
         const msg =
           json?.errors?.[0]?.message ||
-          (res.status === 429 ? 'Too many submissions — please try again in a few minutes.' : 'Something went wrong. Please try again or email us directly.');
+          (res.status === 429 ? 'Too many submissions, please try again in a few minutes.' : 'Something went wrong. Please try again or email us directly.');
         setServerError(msg);
         setStatus('error');
         return;
@@ -68,10 +68,10 @@ export function QuoteForm() {
         >
           <div className="meta mb-4 text-stone">Received</div>
           <p className="font-serif italic text-3xl md:text-4xl leading-tight tracking-tighter2 text-balance">
-            Thanks, {submittedName} — we&rsquo;ll be in touch within two business days.
+            Thanks, {submittedName}, we&rsquo;ll be in touch within two business days.
           </p>
           <p className="mt-6 text-sm text-ink/60 max-w-md">
-            We read every enquiry ourselves. If we&rsquo;re not the right fit for the project, we&rsquo;ll say so — and point you to someone who is.
+            We read every enquiry ourselves. If we&rsquo;re not the right fit for the project, we&rsquo;ll say so, and point you to someone who is.
           </p>
         </motion.div>
       ) : (
@@ -84,7 +84,7 @@ export function QuoteForm() {
           noValidate
           className="space-y-7"
         >
-          {/* Honeypot — hidden from real users */}
+          {/* Honeypot, hidden from real users */}
           <div className="absolute -left-[10000px]" aria-hidden="true">
             <label>
               Leave this field empty

@@ -69,7 +69,7 @@ export function TerrainSection() {
 
             <Reveal delay={0.3} className="mt-8 max-w-md">
               <p className="text-base leading-relaxed text-ink/70 sm:text-lg">
-                Levels, drainage, soil and stone — the parts of a garden nobody
+                Levels, drainage, soil and stone, the parts of a garden nobody
                 photographs, done so well that everything above them looks inevitable.
               </p>
             </Reveal>
@@ -93,7 +93,7 @@ export function TerrainSection() {
                   ))}
                 </div>
                 <div className="mt-5 flex items-center justify-between">
-                  <span className="meta-sm text-stone/80">Survey — {studio.address.suburb}</span>
+                  <span className="meta-sm text-stone/80">Survey · {studio.address.suburb}</span>
                   <span className="meta-sm text-stone/80" data-numeric>{studio.coords}</span>
                 </div>
               </div>

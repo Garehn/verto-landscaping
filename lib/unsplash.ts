@@ -6,7 +6,7 @@ const local = (slot: string) => `/images/${slot}.jpg`;
 export const images = {
   hero: {
     src: local('hero'),
-    alt: 'Wide cinematic view of a modern Sydney garden at golden hour — bluestone paving, sandstone seating, mature plantings',
+    alt: 'Wide cinematic view of a modern Sydney garden at golden hour, bluestone paving, sandstone seating, mature plantings',
   },
   intro: {
     src: local('intro'),
@@ -26,7 +26,7 @@ export const images = {
   },
   service_care: {
     src: local('service_care'),
-    alt: 'A meticulously maintained Sydney garden — crisp lawn, clipped buxus, mature jacaranda',
+    alt: 'A meticulously maintained Sydney garden, crisp lawn, clipped buxus, mature jacaranda',
   },
   process_consult: {
     src: local('process_consult'),
@@ -38,7 +38,7 @@ export const images = {
   },
   process_build: {
     src: local('process_build'),
-    alt: 'Active landscape construction site in a Sydney backyard — retaining wall, fresh soil, bagged plants',
+    alt: 'Active landscape construction site in a Sydney backyard, retaining wall, fresh soil, bagged plants',
   },
   process_care: {
     src: local('process_care'),
@@ -46,7 +46,7 @@ export const images = {
   },
   about: {
     src: local('about'),
-    alt: 'A mature designed Australian garden at golden hour — dry-stone walls, ornamental grasses, eucalypts',
+    alt: 'A mature designed Australian garden at golden hour, dry-stone walls, ornamental grasses, eucalypts',
   },
   portfolio_1: {
     src: local('portfolio_1'),
@@ -58,7 +58,7 @@ export const images = {
   },
   portfolio_3: {
     src: local('portfolio_3'),
-    alt: 'A small Paddington terrace garden — walled courtyard with bluestone pavers and a fiddle-leaf fig',
+    alt: 'A small Paddington terrace garden, walled courtyard with bluestone pavers and a fiddle-leaf fig',
   },
   portfolio_4: {
     src: local('portfolio_4'),
@@ -67,27 +67,27 @@ export const images = {
   // Before / after pairs
   ba1_before: {
     src: local('ba1_before'),
-    alt: 'A neglected Mosman front yard before landscaping — patchy lawn, cracked path, weeds',
+    alt: 'A neglected Mosman front yard before landscaping, patchy lawn, cracked path, weeds',
   },
   ba1_after: {
     src: local('ba1_after'),
-    alt: 'The same Mosman front yard after landscaping — crisp lawn, bluestone path, clipped hedging',
+    alt: 'The same Mosman front yard after landscaping, crisp lawn, bluestone path, clipped hedging',
   },
   ba2_before: {
     src: local('ba2_before'),
-    alt: 'A tired Paddington terrace courtyard before renovation — cracked bricks, dead pots, peeling paint',
+    alt: 'A tired Paddington terrace courtyard before renovation, cracked bricks, dead pots, peeling paint',
   },
   ba2_after: {
     src: local('ba2_after'),
-    alt: 'The same Paddington courtyard renovated — bluestone pavers, climbing jasmine, built-in timber bench',
+    alt: 'The same Paddington courtyard renovated, bluestone pavers, climbing jasmine, built-in timber bench',
   },
   ba3_before: {
     src: local('ba3_before'),
-    alt: 'A neglected Wahroonga entry path before renovation — cracked stepping stones, weeds, dying buxus',
+    alt: 'A neglected Wahroonga entry path before renovation, cracked stepping stones, weeds, dying buxus',
   },
   ba3_after: {
     src: local('ba3_after'),
-    alt: 'The same Wahroonga entry renovated — crisp bluestone path, low buxus hedging, standard frangipani',
+    alt: 'The same Wahroonga entry renovated, crisp bluestone path, low buxus hedging, standard frangipani',
   },
   // Jobs slider
   slider_1: { src: local('slider_1'), alt: 'Modern Sydney courtyard at dusk with up-lighting and a water feature' },

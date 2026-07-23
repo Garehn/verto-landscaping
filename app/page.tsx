@@ -29,21 +29,21 @@ export default function HomePage() {
       <StatsBand />
       <TerrainSection />
 
-      {/* Before / after — proof in one drag */}
+      {/* Before / after, proof in one drag */}
       <section className="bg-paper text-ink">
         <div className="container-x py-16 lg:py-24">
           <Reveal className="mb-10 flex items-center gap-6">
             <span className="meta-sm text-brass" data-numeric>05</span>
-            <span className="meta text-stone">Before — After</span>
+            <span className="meta text-stone">Before · After</span>
             <span className="h-px flex-1 bg-ink/10" aria-hidden />
           </Reveal>
           <Reveal>
             <BeforeAfter
               beforeSrc="/images/real/gen/before-facade.jpg"
               afterSrc={images.real_facade.src}
-              beforeAlt="The same frontage before the works — cracked path, patchy lawn"
+              beforeAlt="The same frontage before the works, cracked path, patchy lawn"
               afterAlt={images.real_facade.alt}
-              label="Castlecrag — front garden"
+              label="Castlecrag, front garden"
             />
           </Reveal>
         </div>

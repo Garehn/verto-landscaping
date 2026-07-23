@@ -30,7 +30,7 @@ const plexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Verto Landscapes — Garden design & build studio, Sydney',
+    default: 'Verto Landscapes, Garden design & build studio, Sydney',
     template: '%s · Verto Landscapes',
   },
   description:

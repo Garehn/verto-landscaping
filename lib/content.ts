@@ -12,7 +12,7 @@ export const studio = {
     state: 'NSW',
     postcode: '2068',
   },
-  coords: '33.79°S — 151.22°E',
+  coords: '33.79°S · 151.22°E',
   area: 'Castlecrag · Willoughby · Lower North Shore',
 };
 
@@ -30,14 +30,14 @@ export const home = {
     sub: 'A small studio building considered outdoor spaces for homes that deserve them.',
   },
   intro:
-    'We design and build gardens that settle into a place — quiet compositions of stone, timber, water and planting. The work is slow on purpose. We take on a small number of projects each year, and we stay with them until the planting has rooted.',
+    'We design and build gardens that settle into a place, quiet compositions of stone, timber, water and planting. The work is slow on purpose. We take on a small number of projects each year, and we stay with them until the planting has rooted.',
   pullQuote:
     'A good garden is the one you forget you have. It is simply there, becoming itself.',
   testimonial: {
     quote:
       'They listened first, drew second, dug third. Two years on the garden is still the best thing we did to the house.',
     author: 'Eleanor M.',
-    project: 'Castlecrag — courtyard and rear garden',
+    project: 'Castlecrag, courtyard and rear garden',
   },
 };
 
@@ -46,7 +46,7 @@ export const coreServices = [
   {
     id: 'design',
     title: 'Landscape Design',
-    body: 'Site survey, master plan and planting design — measured drawings, not mood boards.',
+    body: 'Site survey, master plan and planting design, measured drawings, not mood boards.',
     scope: ['Survey', 'Master plan', 'Planting design'],
     icon: 'design' as const,
   },
@@ -60,7 +60,7 @@ export const coreServices = [
   {
     id: 'planting',
     title: 'Planting & Horticulture',
-    body: 'Trees, hedges and garden beds — plant palettes built for the soil and climate.',
+    body: 'Trees, hedges and garden beds, plant palettes built for the soil and climate.',
     scope: ['Trees', 'Hedging', 'Garden beds'],
     icon: 'planting' as const,
   },
@@ -81,7 +81,7 @@ export const coreServices = [
   {
     id: 'lighting',
     title: 'Garden Lighting',
-    body: 'Low-voltage path, feature and architectural lighting — designed and installed.',
+    body: 'Low-voltage path, feature and architectural lighting, designed and installed.',
     scope: ['Path', 'Feature', 'Architectural'],
     icon: 'lighting' as const,
   },
@@ -93,19 +93,19 @@ export const services = [
   {
     id: 'design',
     title: 'Garden Design',
-    body: 'Site survey, master plan, planting design, and full documentation. We work in measured drawings, not mood boards. You leave with a plan you could hand to any builder — but ideally hand to us.',
+    body: 'Site survey, master plan, planting design, and full documentation. We work in measured drawings, not mood boards. You leave with a plan you could hand to any builder, but ideally hand to us.',
     image: 'service_design' as const,
   },
   {
     id: 'build',
     title: 'Landscape Build',
-    body: 'Stonework, carpentry, drainage, irrigation, lighting. Our crews are small and they stay on a site until it is done. We use materials that age well — bluestone, timber, mild steel, lime mortar.',
+    body: 'Stonework, carpentry, drainage, irrigation, lighting. Our crews are small and they stay on a site until it is done. We use materials that age well, bluestone, timber, mild steel, lime mortar.',
     image: 'service_build' as const,
   },
   {
     id: 'planting',
     title: 'Planting & Horticulture',
-    body: 'Plant palettes built for the soil and the climate, not the catalogue. We grow on key specimens at our nursery so they go in mature. Soil first, plants second — most gardens fail underground.',
+    body: 'Plant palettes built for the soil and the climate, not the catalogue. We grow on key specimens at our nursery so they go in mature. Soil first, plants second, most gardens fail underground.',
     image: 'service_planting' as const,
   },
   {
@@ -151,7 +151,7 @@ export const portfolio = [
     year: '2025',
     image: 'real_pool' as const,
     blurb:
-      'An infinity-edge pool set against the harbour valley — pale stone surrounds, potted olives along the boundary.',
+      'An infinity-edge pool set against the harbour valley, pale stone surrounds, potted olives along the boundary.',
     scope: ['Construction', 'Stone', 'Pool surrounds'],
   },
   {
@@ -161,7 +161,7 @@ export const portfolio = [
     year: '2025',
     image: 'real_deck' as const,
     blurb:
-      'A wide hardwood deck wrapping the pool — glass fencing, sculptural planting, furniture-ready from day one.',
+      'A wide hardwood deck wrapping the pool, glass fencing, sculptural planting, furniture-ready from day one.',
     scope: ['Decking', 'Glass fencing', 'Planting'],
   },
   {
@@ -171,38 +171,38 @@ export const portfolio = [
     year: '2024',
     image: 'real_driveway' as const,
     blurb:
-      'A cobbled arrival court edged in sandstone — olives, magnolias and layered evergreen beds at the boundary.',
+      'A cobbled arrival court edged in sandstone, olives, magnolias and layered evergreen beds at the boundary.',
     scope: ['Paving', 'Stone', 'Planting'],
   },
 ];
 
 export const recentJobs = [
-  { image: 'slider_1' as const, caption: 'Castlecrag — courtyard at dusk' },
-  { image: 'slider_2' as const, caption: 'Middle Cove — native poolside' },
-  { image: 'slider_3' as const, caption: 'Northbridge — parterre & olive' },
-  { image: 'slider_4' as const, caption: 'Willoughby — kitchen garden' },
-  { image: 'slider_5' as const, caption: 'Castle Cove — coastal deck' },
-  { image: 'slider_6' as const, caption: 'Northbridge — jacaranda vista' },
-  { image: 'portfolio_1' as const, caption: 'Castlecrag — front courtyard' },
-  { image: 'portfolio_3' as const, caption: 'Willoughby — terrace' },
+  { image: 'slider_1' as const, caption: 'Castlecrag, courtyard at dusk' },
+  { image: 'slider_2' as const, caption: 'Middle Cove, native poolside' },
+  { image: 'slider_3' as const, caption: 'Northbridge, parterre & olive' },
+  { image: 'slider_4' as const, caption: 'Willoughby, kitchen garden' },
+  { image: 'slider_5' as const, caption: 'Castle Cove, coastal deck' },
+  { image: 'slider_6' as const, caption: 'Northbridge, jacaranda vista' },
+  { image: 'portfolio_1' as const, caption: 'Castlecrag, front courtyard' },
+  { image: 'portfolio_3' as const, caption: 'Willoughby, terrace' },
 ];
 
 export const beforeAfters = [
   {
     id: 'ba1',
-    label: 'Castlecrag — front yard',
+    label: 'Castlecrag, front yard',
     before: 'ba1_before' as const,
     after: 'ba1_after' as const,
   },
   {
     id: 'ba2',
-    label: 'Willoughby — terrace',
+    label: 'Willoughby, terrace',
     before: 'ba2_before' as const,
     after: 'ba2_after' as const,
   },
   {
     id: 'ba3',
-    label: 'Northbridge — entry',
+    label: 'Northbridge, entry',
     before: 'ba3_before' as const,
     after: 'ba3_after' as const,
   },
@@ -212,8 +212,8 @@ export const about = {
   lead:
     'Verto is a landscape design and build studio. We take on a small number of projects a year, and we look after them long after the planting is in.',
   body: [
-    'The studio was founded on a simple idea: that a garden is a piece of architecture, and a piece of agriculture, and a piece of someone\'s home — and it deserves to be handled with all three in mind.',
-    'We draw in measured plans. We build with crews we have worked with for years. We plant from a nursery we run ourselves, so the trees that go in are not the ones that fit in a ute — they are the ones the garden needed.',
+    'The studio was founded on a simple idea: that a garden is a piece of architecture, and a piece of agriculture, and a piece of someone\'s home, and it deserves to be handled with all three in mind.',
+    'We draw in measured plans. We build with crews we have worked with for years. We plant from a nursery we run ourselves, so the trees that go in are not the ones that fit in a ute, they are the ones the garden needed.',
   ],
   pullQuote:
     'We are not the cheapest. We are not the fastest. We are the ones still on the phone in year three.',
@@ -228,7 +228,7 @@ export const about = {
     },
     {
       title: 'Slow on purpose',
-      body: 'We take six to eight projects a year. Yours is one of them or it is not — we will not stretch.',
+      body: 'We take six to eight projects a year. Yours is one of them or it is not, we will not stretch.',
     },
   ],
 };
