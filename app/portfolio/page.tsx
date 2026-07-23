@@ -63,7 +63,7 @@ export default function PortfolioPage() {
             </div>
             <h2 className="font-serif text-3xl tracking-tighter2 sm:text-4xl">{pool.title}</h2>
             <p className="mt-4 text-base leading-relaxed text-ink/70 text-pretty">{pool.blurb}</p>
-            <Link href={`/portfolio/${pool.id}`} className="meta link-underline mt-6 inline-block py-1">
+            <Link href={`/portfolio/${pool.id}`} className="meta link-underline mt-6 inline-block py-2">
               View project
             </Link>
           </Reveal>
@@ -79,7 +79,7 @@ export default function PortfolioPage() {
             </div>
             <h2 className="font-serif text-3xl tracking-tighter2 sm:text-4xl">{deck.title}</h2>
             <p className="mt-4 text-base leading-relaxed text-ink/70 text-pretty">{deck.blurb}</p>
-            <Link href={`/portfolio/${deck.id}`} className="meta link-underline mt-6 inline-block py-1">
+            <Link href={`/portfolio/${deck.id}`} className="meta link-underline mt-6 inline-block py-2">
               View project
             </Link>
           </Reveal>
@@ -121,7 +121,7 @@ export default function PortfolioPage() {
             </div>
             <h2 className="font-serif text-3xl tracking-tighter2">{arrival.title}</h2>
             <p className="mt-4 text-base leading-relaxed text-ink/70 text-pretty">{arrival.blurb}</p>
-            <Link href={`/portfolio/${arrival.id}`} className="meta link-underline mt-6 inline-block py-1">
+            <Link href={`/portfolio/${arrival.id}`} className="meta link-underline mt-6 inline-block py-2">
               View project
             </Link>
           </Reveal>

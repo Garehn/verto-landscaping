@@ -44,7 +44,7 @@ export default function ServicesPage() {
               <div className="meta-sm mb-4 text-brass" data-numeric>0{i + 1}</div>
               <h2 className="mb-6 font-serif text-4xl tracking-tighter2 text-balance md:text-5xl">{s.title}</h2>
               <p className="text-lg leading-relaxed text-ink/75 text-pretty">{s.body}</p>
-              <Link href="/contact" className="meta link-underline mt-8 inline-block py-1 text-ink/85">
+              <Link href="/contact" className="meta link-underline mt-8 inline-block py-2 text-ink/85">
                 Discuss a {s.title.toLowerCase()} project →
               </Link>
             </div>

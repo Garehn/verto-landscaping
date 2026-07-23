@@ -25,13 +25,13 @@ export function Footer() {
               <li>
                 {studio.address.suburb} {studio.address.state} {studio.address.postcode}
               </li>
-              <li className="pt-2">
-                <a href={studio.phoneHref} className="hover:text-paper" data-numeric>
+              <li className="pt-1">
+                <a href={studio.phoneHref} className="inline-block py-1.5 hover:text-paper" data-numeric>
                   {studio.phone}
                 </a>
               </li>
               <li>
-                <a href={`mailto:${studio.email}`} className="hover:text-paper">
+                <a href={`mailto:${studio.email}`} className="inline-block py-1.5 hover:text-paper">
                   {studio.email}
                 </a>
               </li>
@@ -40,10 +40,10 @@ export function Footer() {
 
           <div className="md:col-span-2">
             <div className="meta-sm mb-5 text-sage">Site</div>
-            <ul className="space-y-2 text-sm">
+            <ul className="text-sm">
               {nav.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="text-paper/75 hover:text-paper">
+                  <Link href={item.href} className="inline-block py-1.5 text-paper/75 hover:text-paper">
                     {item.label}
                   </Link>
                 </li>

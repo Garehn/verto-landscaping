@@ -16,7 +16,7 @@ export function FeaturedProjects() {
           <span className="meta-sm text-brass" data-numeric>01</span>
           <span className="meta text-stone">Selected work</span>
           <span className="h-px flex-1 bg-ink/10" aria-hidden />
-          <Link href="/portfolio" className="meta link-underline hidden py-1 sm:inline-block">
+          <Link href="/portfolio" className="meta link-underline hidden py-2 sm:inline-block">
             All projects
           </Link>
         </Reveal>
@@ -65,7 +65,7 @@ export function FeaturedProjects() {
                     </span>
                   ))}
                 </div>
-                <Link href={`/portfolio/${project.id}`} className="meta link-underline mt-6 inline-block py-1">
+                <Link href={`/portfolio/${project.id}`} className="meta link-underline mt-6 inline-block py-2">
                   View project
                 </Link>
               </Reveal>

@@ -113,7 +113,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               {project.location} · {project.year}
             </span>
             <span className="h-px flex-1 bg-ink/10" aria-hidden />
-            <Link href="/portfolio" className="meta link-underline hidden py-1 sm:inline-block">
+            <Link href="/portfolio" className="meta link-underline hidden py-2 sm:inline-block">
               All projects
             </Link>
           </Reveal>

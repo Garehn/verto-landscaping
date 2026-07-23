@@ -31,7 +31,7 @@ export function Header() {
       {/* Solid light bar, always visible, always carrying the CTA */}
       <header className="fixed inset-x-0 top-0 z-[95] border-b border-ink/10 bg-paper/95 backdrop-blur-md">
         <div className="container-x flex h-16 items-center justify-between gap-6 sm:h-20">
-          <Link href="/" className="leading-none" onClick={() => setOpen(false)}>
+          <Link href="/" className="inline-flex items-center py-2.5 leading-none" onClick={() => setOpen(false)}>
             <span className="block whitespace-nowrap font-serif text-base tracking-tight sm:text-2xl">
               VERTO LANDSCAPES
             </span>
@@ -64,7 +64,7 @@ export function Header() {
             >
               {studio.phone}
             </a>
-            <Link href="/contact" className="btn-cta group whitespace-nowrap !gap-1.5 !px-3 !py-2 text-[10px] sm:!gap-3 sm:!px-7 sm:!py-3 sm:text-xs">
+            <Link href="/contact" className="btn-cta group min-h-[40px] whitespace-nowrap !gap-1.5 !px-3 !py-2 text-[10px] sm:!gap-3 sm:!px-7 sm:!py-3 sm:text-xs">
               Get a quote <span aria-hidden className="arrow">→</span>
             </Link>
             <button
