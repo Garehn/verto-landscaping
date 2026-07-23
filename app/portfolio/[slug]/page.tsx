@@ -82,9 +82,9 @@ const media: Record<
         caption: 'The entry bed — magnolia, layered planting, brass lighting',
       },
       {
-        src: '/images/real/facade.jpg',
-        alt: 'The finished front garden and entry path from the street',
-        caption: 'The finished arrival, seen from the street',
+        src: '/images/real/gen/angle-arrival-2.jpg',
+        alt: 'The cobbled arrival court at dusk, garden lighting glowing along the beds',
+        caption: 'The arrival at dusk — the lighting carries it',
       },
     ],
   },

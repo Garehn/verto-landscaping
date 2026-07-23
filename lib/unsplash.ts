@@ -103,6 +103,10 @@ export const images = {
   real_passage: { src: local('real/passage'), alt: 'Stone-cobbled side passage with timber batten gate and screen' },
   real_planting: { src: local('real/planting'), alt: 'Magnolia and layered planting in a sandstone-edged bed with brass garden lighting' },
   real_facade: { src: local('real/facade'), alt: 'Finished front garden and stone entry path at a modern Castlecrag home' },
+  svc_design: { src: local('real/gen/svc-design'), alt: 'Hand-drawn master plan of the Castlecrag front garden on the drafting table' },
+  svc_construct: { src: local('real/gen/svc-construct'), alt: 'Cobblestones being laid on a sand screed during the driveway build' },
+  svc_planting: { src: local('real/gen/svc-planting'), alt: 'Gloved hands planting a young magnolia in the sandstone-edged bed' },
+  svc_care: { src: local('real/gen/svc-care'), alt: 'Hand-pruning the olive tree on a quarterly care visit' },
 };
 
 export type ImageRef = keyof typeof images;

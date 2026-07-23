@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { nav, studio } from '@/lib/content';
 import { EASE, EASE_PANEL } from '@/components/motion/ease';
 
-const menuLinks = nav.filter((item) => item.href !== '/contact' && item.href !== '/');
+const menuLinks = nav.filter((item) => item.href !== '/contact');
 
 export function Header() {
   const pathname = usePathname();
@@ -102,7 +102,7 @@ export function Header() {
           >
             <div className="container-x flex h-full flex-col justify-between pb-10 pt-28">
               <nav className="flex flex-col gap-1">
-                {[{ href: '/', label: 'Home' }, ...menuLinks, { href: '/contact', label: 'Get a quote' }].map(
+                {[...menuLinks, { href: '/contact', label: 'Get a quote' }].map(
                   (item, i) => (
                     <div key={item.href} className="overflow-hidden">
                       <motion.div

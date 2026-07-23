@@ -1,7 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import Link from 'next/link';
-import { beforeAfters } from '@/lib/content';
 import { images } from '@/lib/unsplash';
 import { Hero } from '@/components/home/Hero';
 import { Statement } from '@/components/home/Statement';
@@ -15,7 +14,6 @@ import { Reveal } from '@/components/motion/Reveal';
 import { Cta } from '@/components/site/Cta';
 
 export default function HomePage() {
-  const featuredBA = beforeAfters[0];
   // Drop a compressed loop at public/video/hero.mp4 and the hero upgrades
   // itself from still to cinematic video automatically.
   const heroVideo = fs.existsSync(path.join(process.cwd(), 'public/video/hero.mp4'))
@@ -41,11 +39,11 @@ export default function HomePage() {
           </Reveal>
           <Reveal>
             <BeforeAfter
-              beforeSrc={images[featuredBA.before].src}
-              afterSrc={images[featuredBA.after].src}
-              beforeAlt={images[featuredBA.before].alt}
-              afterAlt={images[featuredBA.after].alt}
-              label={featuredBA.label}
+              beforeSrc="/images/real/gen/before-facade.jpg"
+              afterSrc={images.real_facade.src}
+              beforeAlt="The same frontage before the works — cracked path, patchy lawn"
+              afterAlt={images.real_facade.alt}
+              label="Castlecrag — front garden"
             />
           </Reveal>
         </div>

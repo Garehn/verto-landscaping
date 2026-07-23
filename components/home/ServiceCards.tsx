@@ -7,25 +7,25 @@ const cards: { title: string; body: string; image: ImageRef; href: string }[] = 
   {
     title: 'Design',
     body: 'Site survey, master plan and planting design — measured drawings.',
-    image: 'service_design',
+    image: 'svc_design',
     href: '/services#design',
   },
   {
     title: 'Construction',
     body: 'Stone, timber, water and steel — built by crews we keep.',
-    image: 'real_passage',
+    image: 'svc_construct',
     href: '/services#build',
   },
   {
     title: 'Planting',
     body: 'Palettes built for the soil and climate, grown on at our nursery.',
-    image: 'real_planting',
+    image: 'svc_planting',
     href: '/services#planting',
   },
   {
     title: 'Care',
     body: 'Quarterly visits that hold the garden while it grows in.',
-    image: 'real_facade',
+    image: 'svc_care',
     href: '/services#care',
   },
 ];
