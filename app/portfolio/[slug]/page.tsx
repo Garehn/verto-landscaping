@@ -11,27 +11,46 @@ import { Cta } from '@/components/site/Cta';
 // Every photo on a project page belongs to that project: the real hero shot
 // first (as the After in the drag slider, against an AI-imagined Before),
 // then two more angles of the same garden.
+type Story = { brief: string; excelled: string; quote: string; owner: string };
 const media: Record<
   string,
-  { before: string; angles: { src: string; alt: string; caption: string }[] }
+  { before: string; story: Story; angles: { src: string; alt: string; caption: string }[] }
 > = {
   'castlecrag-pool': {
     before: '/images/real/gen/before-pool.jpg',
+    story: {
+      brief:
+        'A tired paved terrace holding the best view on the street, and nothing to frame it. The owners asked for a pool that would sit in the view — not in front of it.',
+      excelled:
+        'We cut the pool into the level so the water line runs to the horizon, kept every finish pale and quiet — stone surrounds, three olives on the boundary — and let the harbour do the talking.',
+      quote:
+        'Every trade turned up when Rory said they would. The pool looks like it was always here — the view finally has somewhere to land.',
+      owner: 'Private clients — Castlecrag',
+    },
     angles: [
       {
         src: '/images/real/gen/angle-pool-2.jpg',
-        alt: 'Along the pool edge — stone coping, potted olives, harbour valley beyond',
-        caption: 'Along the pool edge — coping, olives, the valley beyond',
+        alt: 'Skimming the water line — stone coping and olives, harbour valley beyond',
+        caption: 'At the water line — coping, olives, the valley beyond',
       },
       {
         src: '/images/real/gen/angle-pool-3.jpg',
-        alt: 'From the far corner of the pool terrace looking back at the house',
-        caption: 'Looking back at the house from the terrace corner',
+        alt: 'The pool from above — terrace, water and lawn in plan',
+        caption: 'From above — the terrace reads like the drawing',
       },
     ],
   },
   'castlecrag-deck': {
     before: '/images/real/gen/before-deck.jpg',
+    story: {
+      brief:
+        'The house opened straight onto a pool the family could barely use — no deck, no shade, nowhere to sit. They asked for an outdoor room, not a walkway.',
+      excelled:
+        'Wide hardwood boards laid flush with the interior floor, glass fencing so the pool reads as part of the room, and planting to soften every hard edge.',
+      quote:
+        'It is the room we use most now. The kids are in the pool every afternoon and we have not moved the chairs since the crew left.',
+      owner: 'Owners — Castlecrag',
+    },
     angles: [
       {
         src: '/images/real/passage.jpg',
@@ -40,13 +59,22 @@ const media: Record<
       },
       {
         src: '/images/real/gen/angle-deck-2.jpg',
-        alt: 'Across the hardwood boards toward the furniture and glass pool fence',
-        caption: 'Across the boards to the glass pool fence',
+        alt: 'Low along the deck boards at dusk, pool glowing beyond the glass fence',
+        caption: 'Deck boards at dusk — the pool just beyond the glass',
       },
     ],
   },
   'castlecrag-arrival': {
     before: '/images/real/gen/before-driveway.jpg',
+    story: {
+      brief:
+        'A cracked concrete drive and a front garden that apologised for the house. The brief was one line: make the arrival worth the address.',
+      excelled:
+        'Granite cobbles laid in course, sandstone-edged beds, olives and magnolias for year-round structure — and low brass lighting that carries it after dark.',
+      quote:
+        'People genuinely slow down as they drive past. It changed how the whole house presents from the street.',
+      owner: 'Owners — Castlecrag',
+    },
     angles: [
       {
         src: '/images/real/planting.jpg',
@@ -121,25 +149,57 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             />
           </Reveal>
 
-          {/* Two more angles of the same project */}
-          <div className="mt-16 space-y-16 lg:mt-20">
-            {m.angles.map((photo) => (
-              <Reveal key={photo.src}>
-                <figure>
-                  <div className="relative aspect-[16/10] overflow-hidden bg-cream">
-                    <Image
-                      src={photo.src}
-                      alt={photo.alt}
-                      fill
-                      sizes="(min-width: 1440px) 1312px, 100vw"
-                      className="grade object-cover"
-                    />
-                  </div>
-                  <figcaption className="meta-sm mt-4 text-stone">{photo.caption}</figcaption>
-                </figure>
-              </Reveal>
-            ))}
+          {/* The story — angles either side of the copy */}
+          <div className="mt-20 grid gap-8 lg:mt-28 lg:grid-cols-12">
+            <Reveal className="lg:col-span-7">
+              <figure>
+                <div className="relative aspect-[4/3] overflow-hidden bg-cream">
+                  <Image
+                    src={m.angles[0].src}
+                    alt={m.angles[0].alt}
+                    fill
+                    sizes="(min-width: 1024px) 800px, 100vw"
+                    className="grade object-cover"
+                  />
+                </div>
+                <figcaption className="meta-sm mt-4 text-stone">{m.angles[0].caption}</figcaption>
+              </figure>
+            </Reveal>
+            <Reveal delay={0.15} className="lg:col-span-4 lg:col-start-9 lg:self-center">
+              <div className="meta-sm mb-3 text-brass">The brief</div>
+              <p className="text-base leading-relaxed text-ink/75 text-pretty">{m.story.brief}</p>
+            </Reveal>
           </div>
+
+          <div className="mt-16 grid gap-8 lg:mt-24 lg:grid-cols-12">
+            <Reveal delay={0.1} className="order-2 lg:order-1 lg:col-span-4 lg:col-start-2 lg:self-center">
+              <div className="meta-sm mb-3 text-brass">How we delivered</div>
+              <p className="text-base leading-relaxed text-ink/75 text-pretty">{m.story.excelled}</p>
+            </Reveal>
+            <Reveal className="order-1 lg:order-2 lg:col-span-6 lg:col-start-7">
+              <figure>
+                <div className="relative aspect-[4/3] overflow-hidden bg-cream">
+                  <Image
+                    src={m.angles[1].src}
+                    alt={m.angles[1].alt}
+                    fill
+                    sizes="(min-width: 1024px) 700px, 100vw"
+                    className="grade object-cover"
+                  />
+                </div>
+                <figcaption className="meta-sm mt-4 text-stone">{m.angles[1].caption}</figcaption>
+              </figure>
+            </Reveal>
+          </div>
+
+          {/* From the owners */}
+          <Reveal className="mx-auto mt-20 max-w-3xl text-center lg:mt-28">
+            <span className="mx-auto block h-px w-10 bg-brass" aria-hidden />
+            <blockquote className="mt-8 font-serif italic text-2xl leading-snug tracking-tighter2 text-ink/90 sm:text-3xl">
+              &ldquo;{m.story.quote}&rdquo;
+            </blockquote>
+            <div className="meta-sm mt-6 text-stone">{m.story.owner}</div>
+          </Reveal>
         </div>
       </article>
       <Cta
