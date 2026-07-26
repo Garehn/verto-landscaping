@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Fraunces, IBM_Plex_Mono } from 'next/font/google';
+import { Inter, Cormorant, IBM_Plex_Mono } from 'next/font/google';
 import { Header } from '@/components/site/Header';
 import { Footer } from '@/components/site/Footer';
 import { SmoothScroll } from '@/components/motion/SmoothScroll';
@@ -14,11 +14,13 @@ const inter = Inter({
   display: 'swap',
 });
 
-const fraunces = Fraunces({
+// Cormorant matches the high-contrast serif of the Verto Landscapes logo.
+const cormorant = Cormorant({
   subsets: ['latin'],
-  variable: '--font-fraunces',
+  weight: ['300', '400', '500'],
+  style: ['normal', 'italic'],
+  variable: '--font-cormorant',
   display: 'swap',
-  axes: ['opsz'],
 });
 
 const plexMono = IBM_Plex_Mono({
@@ -30,23 +32,25 @@ const plexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Verto Landscapes, Garden design & build studio, Sydney',
+    default: 'Verto Landscapes, Landscape design & construction, Castlecrag Sydney',
     template: '%s · Verto Landscapes',
   },
   description:
-    'A small garden design and build studio in Castlecrag, Sydney. Considered outdoor spaces for the North Shore and Northern Beaches.',
+    'Landscape design and construction studio in Castlecrag. Paving, stonework, retaining walls, pool surrounds, decking and driveways across Sydney’s Lower North Shore.',
   openGraph: {
     title: 'Verto Landscapes',
     description:
-      'A small garden design and build studio in Castlecrag, Sydney. Considered outdoor spaces for the North Shore and Northern Beaches.',
+      'Landscape design and construction studio in Castlecrag. Paving, stonework, retaining walls, pool surrounds, decking and driveways.',
     type: 'website',
   },
 };
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'LandscapingBusiness',
+  '@type': 'GeneralContractor',
   name: studio.name,
+  description:
+    'Landscape design and construction studio specialising in hardscaping: paving, stonework, retaining walls, pool surrounds, decking, driveways and structures.',
   founder: { '@type': 'Person', name: studio.founder },
   email: studio.email,
   telephone: '+61 488 728 767',
@@ -58,12 +62,16 @@ const jsonLd = {
     postalCode: studio.address.postcode,
     addressCountry: 'AU',
   },
-  areaServed: 'Sydney, NSW',
+  areaServed: {
+    '@type': 'GeoCircle',
+    geoMidpoint: { '@type': 'GeoCoordinates', latitude: -33.7936, longitude: 151.2244 },
+    geoRadius: '15000',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${fraunces.variable} ${plexMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${cormorant.variable} ${plexMono.variable}`}>
       <body>
         <script
           type="application/ld+json"

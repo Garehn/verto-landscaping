@@ -21,7 +21,7 @@ const defaultSegments: WordSegment[] = [
 
 export function Cta({
   title,
-  body = `Tell ${studio.founder} about the garden you have, and the one you want. Every enquiry is answered within two business days.`,
+  body = `Tell ${studio.founder} what you are planning. Every enquiry is answered within two business days.`,
   href = '/contact',
   cta = 'Start a project',
 }: Props) {
@@ -33,7 +33,7 @@ export function Cta({
         {marqueeItems.map((item) => (
           <span key={item} className="meta flex items-center text-paper/60">
             <span className="px-8">{item}</span>
-            <span className="text-brass">·</span>
+            <span className="text-verde">·</span>
           </span>
         ))}
       </Marquee>

@@ -1,7 +1,7 @@
 export const studio = {
   name: 'Verto Landscapes',
   short: 'Verto',
-  tagline: 'Gardens that hold time.',
+  tagline: 'Built to hold its line.',
   founder: 'Rory',
   email: 'rory@vertolandscapes.com',
   phone: '0488 728 767',
@@ -13,7 +13,24 @@ export const studio = {
     postcode: '2068',
   },
   coords: '33.79°S · 151.22°E',
-  area: 'Castlecrag · Willoughby · Lower North Shore',
+  // Strictly hardscaping: design and construction. No planting, no maintenance.
+  discipline: 'Landscape design & construction',
+  radiusKm: 15,
+  area: 'Every suburb within 15km of Castlecrag',
+  suburbs: [
+    'Castlecrag',
+    'Northbridge',
+    'Willoughby',
+    'Middle Cove',
+    'Castle Cove',
+    'Naremburn',
+    'Cammeray',
+    'Mosman',
+    'Chatswood',
+    'Lane Cove',
+    'Crows Nest',
+    'Roseville',
+  ],
 };
 
 export const nav = [
@@ -25,216 +42,241 @@ export const nav = [
 
 export const home = {
   hero: {
-    eyebrow: 'Landscape design & build',
-    title: 'Gardens that hold time.',
-    sub: 'A small studio building considered outdoor spaces for homes that deserve them.',
+    eyebrow: 'Landscape design & construction · Castlecrag',
+    title: 'Built to hold its line.',
+    sub: 'A design and construction studio working in stone, timber and steel across Sydney’s Lower North Shore.',
   },
   intro:
-    'We design and build gardens that settle into a place, quiet compositions of stone, timber, water and planting. The work is slow on purpose. We take on a small number of projects each year, and we stay with them until the planting has rooted.',
-  pullQuote:
-    'A good garden is the one you forget you have. It is simply there, becoming itself.',
+    'We design and build the permanent parts of a property. Paving, stonework, retaining, pool surrounds, decking and driveways, set out precisely and built to stay true. The work is slow on purpose, and we take a small number of projects each year.',
   testimonial: {
     quote:
-      'They listened first, drew second, dug third. Two years on the garden is still the best thing we did to the house.',
-    author: 'Eleanor M.',
-    project: 'Castlecrag, courtyard and rear garden',
+      'They set it out, they built it, and every line is still true three years on. Nothing has moved, nothing has cracked.',
+    author: 'Private clients',
+    project: 'Castlecrag, pool terrace',
   },
 };
 
-// The six core capabilities. Shown on the home page near the top.
+// Six hardscaping capabilities. Design and construction only.
 export const coreServices = [
   {
     id: 'design',
-    title: 'Landscape Design',
-    body: 'Site survey, master plan and planting design, measured drawings, not mood boards.',
-    scope: ['Survey', 'Master plan', 'Planting design'],
-    icon: 'design' as const,
+    title: 'Design & Documentation',
+    body: 'Survey, levels, concept and full construction drawings. Measured plans a builder can price and set out from.',
+    scope: ['Survey & levels', 'Concept', 'Construction drawings'],
   },
   {
-    id: 'hardscape',
-    title: 'Hardscape Construction',
-    body: 'Paving, retaining walls, timber decks, pergolas and outdoor structures.',
-    scope: ['Paving', 'Retaining', 'Decks & pergolas'],
-    icon: 'hardscape' as const,
+    id: 'paving',
+    title: 'Paving & Stonework',
+    body: 'Sandstone, bluestone, granite cobble and porcelain, laid to line and fall with tight, consistent joints.',
+    scope: ['Natural stone', 'Cobble', 'Porcelain'],
   },
   {
-    id: 'planting',
-    title: 'Planting & Horticulture',
-    body: 'Trees, hedges and garden beds, plant palettes built for the soil and climate.',
-    scope: ['Trees', 'Hedging', 'Garden beds'],
-    icon: 'planting' as const,
+    id: 'retaining',
+    title: 'Retaining & Structures',
+    body: 'Sandstone block, core-filled masonry and engineered retaining, plus steps, piers, screens and gates.',
+    scope: ['Retaining walls', 'Steps', 'Screens & gates'],
   },
   {
-    id: 'turf',
-    title: 'Lawn & Turf',
-    body: 'New lawn installation, renovation and a quarterly care programme.',
-    scope: ['New lawns', 'Renovation', 'Care programme'],
-    icon: 'turf' as const,
+    id: 'pools',
+    title: 'Pool Surrounds & Decking',
+    body: 'Coping, surrounds, hardwood decking and frameless glass fencing, detailed to sit flush with the house.',
+    scope: ['Coping', 'Hardwood decks', 'Glass fencing'],
   },
   {
-    id: 'irrigation',
-    title: 'Irrigation & Drainage',
-    body: 'Smart drip and spray systems, stormwater detention and subsurface drainage.',
-    scope: ['Drip systems', 'Stormwater', 'Subsurface'],
-    icon: 'irrigation' as const,
+    id: 'driveways',
+    title: 'Driveways & Entries',
+    body: 'Cobble and stone driveways, crossovers, entry paths and thresholds built on properly prepared bases.',
+    scope: ['Driveways', 'Crossovers', 'Entry paths'],
   },
   {
-    id: 'lighting',
-    title: 'Garden Lighting',
-    body: 'Low-voltage path, feature and architectural lighting, designed and installed.',
-    scope: ['Path', 'Feature', 'Architectural'],
-    icon: 'lighting' as const,
-  },
-];
-
-export type CoreServiceIcon = (typeof coreServices)[number]['icon'];
-
-export const services = [
-  {
-    id: 'design',
-    title: 'Garden Design',
-    body: 'Site survey, master plan, planting design, and full documentation. We work in measured drawings, not mood boards. You leave with a plan you could hand to any builder, but ideally hand to us.',
-    image: 'service_design' as const,
-  },
-  {
-    id: 'build',
-    title: 'Landscape Build',
-    body: 'Stonework, carpentry, drainage, irrigation, lighting. Our crews are small and they stay on a site until it is done. We use materials that age well, bluestone, timber, mild steel, lime mortar.',
-    image: 'service_build' as const,
-  },
-  {
-    id: 'planting',
-    title: 'Planting & Horticulture',
-    body: 'Plant palettes built for the soil and the climate, not the catalogue. We grow on key specimens at our nursery so they go in mature. Soil first, plants second, most gardens fail underground.',
-    image: 'service_planting' as const,
-  },
-  {
-    id: 'care',
-    title: 'Ongoing Care',
-    body: 'Quarterly visits to edit, prune, feed, and replant. A new garden is half-finished on the day it is planted. Our care plans hold it in shape while it grows in.',
-    image: 'service_care' as const,
+    id: 'sitework',
+    title: 'Drainage & Site Works',
+    body: 'Excavation, bulk earthworks, subsurface drainage and stormwater. The work below grade that decides the rest.',
+    scope: ['Excavation', 'Drainage', 'Stormwater'],
   },
 ];
 
 export const process = [
   {
     n: '01',
-    title: 'Consultation',
-    body: 'A site visit and a long conversation. We walk the garden, look at the house, and ask how you live. By the end we know whether the project is right for both of us.',
-    image: 'process_consult' as const,
+    title: 'Site visit',
+    body: 'We walk the property, take levels and talk through what is possible. By the end we both know whether the project is a fit.',
   },
   {
     n: '02',
-    title: 'Design',
-    body: 'Survey, concept, master plan, planting plan, lighting plan. Two formal presentations and as many conversations between as the work needs. You sign off before we cost the build.',
-    image: 'process_design' as const,
+    title: 'Design & documentation',
+    body: 'Survey, concept and construction drawings. You sign off on the detail before we price the build.',
   },
   {
     n: '03',
-    title: 'Build',
-    body: 'Programmed across stone, structure, soil and planting. One project lead on site every day. Weekly client updates with photographs. We finish what we start.',
-    image: 'process_build' as const,
+    title: 'Construction',
+    body: 'Programmed across excavation, structure, drainage and finish. One project lead on site every day it is open.',
   },
   {
     n: '04',
-    title: 'Care',
-    body: 'The first year is the one that matters. We visit quarterly, edit the planting, and replace anything that does not establish. By year two the garden is yours to enjoy.',
-    image: 'process_care' as const,
+    title: 'Handover',
+    body: 'Set-out checked against the drawings, levels confirmed, and a full record of what sits under the finished surface.',
   },
 ];
 
-export const portfolio = [
+export type Project = {
+  id: string;
+  title: string;
+  subtitle: string;
+  location: string;
+  year: string;
+  scope: string[];
+  blurb: string;
+  intro: string;
+  body: string[];
+  images: string[];
+};
+
+// Five completed projects. Every image inside a project is the same site.
+export const projects: Project[] = [
   {
-    id: 'castlecrag-pool',
+    id: 'castlecrag-terrace',
     title: 'Pool & harbour terrace',
+    subtitle: 'Stone on the edge',
     location: 'Castlecrag, NSW',
     year: '2025',
-    image: 'real_pool' as const,
+    scope: ['Design', 'Pool surrounds', 'Stone paving'],
     blurb:
-      'An infinity-edge pool set against the harbour valley, pale stone surrounds, potted olives along the boundary.',
-    scope: ['Construction', 'Stone', 'Pool surrounds'],
+      'An infinity edge cut into the slope, pale stone surrounds, and a terrace set out to run straight at the water.',
+    intro:
+      'The best view on the street sat behind a tired paved terrace with nothing to frame it. The brief was a pool that would sit in the view rather than in front of it.',
+    body: [
+      'We cut the pool into the existing level so the water line reads flat against the harbour, then rebuilt the terrace around it. The surrounds are a pale sandstone laid to a tight joint, set out from the pool edge so every course runs parallel to the water rather than to the house.',
+      'Falls are carried away from the coping into a subsurface line at the boundary wall, which keeps the stone dry underfoot and the joints clean. The boundary wall was rebuilt and capped in the same stone to close the composition.',
+      'Everything above ground is quiet on purpose. One material, one colour, and a single strong horizontal so the view does the work.',
+    ],
+    images: [
+      '/images/real/pool.jpg',
+      '/images/real/gen/angle-pool-2.jpg',
+      '/images/projects/terrace-4.jpg',
+      '/images/projects/terrace-5.jpg',
+      '/images/real/gen/angle-pool-3.jpg',
+      '/images/projects/terrace-6.jpg',
+    ],
   },
   {
-    id: 'castlecrag-deck',
+    id: 'middle-cove-deck',
     title: 'Hardwood pool deck',
-    location: 'Castlecrag, NSW',
+    subtitle: 'An outdoor room',
+    location: 'Middle Cove, NSW',
     year: '2025',
-    image: 'real_deck' as const,
+    scope: ['Decking', 'Glass fencing', 'Stone coping'],
     blurb:
-      'A wide hardwood deck wrapping the pool, glass fencing, sculptural planting, furniture-ready from day one.',
-    scope: ['Decking', 'Glass fencing', 'Planting'],
+      'A wide hardwood deck laid flush with the interior floor, wrapping a pool the family could barely reach before.',
+    intro:
+      'The house opened straight onto a pool with no deck, no shade and nowhere to sit. The owners asked for an outdoor room rather than a walkway around the water.',
+    body: [
+      'The deck is laid flush with the internal floor level so the threshold disappears and the two spaces read as one. Boards run out from the house on a single direction, which pulls the eye toward the water and makes the deck feel wider than it is.',
+      'Frameless glass fencing sits on the deck line rather than in front of it, so the barrier does its job without cutting the space in half. Where deck meets pool the hardwood stops against a stone coping with a consistent shadow gap, a detail that hides the movement timber makes through the year.',
+      'Lighting is set low into the deck edge and the steps, enough to use the space after dark without lighting the house back at itself.',
+    ],
+    images: [
+      '/images/real/deck.jpg',
+      '/images/projects/deck-4.jpg',
+      '/images/projects/deck-3.jpg',
+      '/images/projects/deck-5.jpg',
+      '/images/real/gen/angle-deck-2.jpg',
+      '/images/projects/deck-6.jpg',
+    ],
   },
   {
     id: 'castlecrag-arrival',
     title: 'Cobblestone arrival court',
+    subtitle: 'Worth the address',
     location: 'Castlecrag, NSW',
     year: '2024',
-    image: 'real_driveway' as const,
+    scope: ['Driveway', 'Stone edging', 'Entry paths'],
     blurb:
-      'A cobbled arrival court edged in sandstone, olives, magnolias and layered evergreen beds at the boundary.',
-    scope: ['Paving', 'Stone', 'Planting'],
+      'Granite cobble laid in course, sandstone edge bands, and an entry sequence rebuilt from the street to the door.',
+    intro:
+      'A cracked concrete drive and a frontage that apologised for the house behind it. The brief came in one line: make the arrival worth the address.',
+    body: [
+      'The court is granite cobble laid in a running course on a full concrete base, edged with a sandstone band that turns the corner and carries through to the entry path. Setting the cobble in course rather than fan pattern keeps the surface calm enough to read as one plane from the street.',
+      'Levels were reworked so water leaves the court at the crossover instead of pooling at the garage, and the whole area drains to a single line under the edge band.',
+      'The same stone continues down the side of the house, so the passage reads as part of the arrival rather than a leftover. Low lighting is set into the edge to carry the sequence after dark.',
+    ],
+    images: [
+      '/images/real/driveway.jpg',
+      '/images/real/facade.jpg',
+      '/images/projects/arrival-6.jpg',
+      '/images/real/passage.jpg',
+      '/images/real/planting.jpg',
+      '/images/real/gen/angle-arrival-2.jpg',
+    ],
+  },
+  {
+    id: 'northbridge-terraces',
+    title: 'Sandstone terracing',
+    subtitle: 'Three levels from one slope',
+    location: 'Northbridge, NSW',
+    year: '2024',
+    scope: ['Retaining walls', 'Sandstone steps', 'Earthworks'],
+    blurb:
+      'A steep, unusable backyard cut into three sandstone terraces with a full flight of steps climbing between them.',
+    intro:
+      'The yard fell away so steeply from the house that the family used almost none of it. The brief was to win back level ground without the result reading as a retaining job.',
+    body: [
+      'We cut the slope into three terraces held by dry-stacked sandstone block. Each wall is founded on engineered footings with an agricultural line and free-draining backfill behind it, so the hydraulic load never reaches the face. The block coursing was set out to keep joint lines running through, and the capping was selected on site.',
+      'A single flight of sandstone treads climbs through all three levels on one axis, which gives the yard a spine and makes the height feel deliberate rather than defensive.',
+      'The top terrace is a flat lawn platform, the middle a paved sitting level, and the lowest holds the fall at the boundary. Step lighting is recessed into the risers to make the climb safe after dark.',
+    ],
+    images: [
+      '/images/projects/terraces-1.jpg',
+      '/images/projects/terraces-2.jpg',
+      '/images/projects/terraces-3.jpg',
+      '/images/projects/terraces-4.jpg',
+      '/images/projects/terraces-5.jpg',
+      '/images/projects/terraces-6.jpg',
+    ],
+  },
+  {
+    id: 'willoughby-courtyard',
+    title: 'Courtyard & screen',
+    subtitle: 'A room without a roof',
+    location: 'Willoughby, NSW',
+    year: '2023',
+    scope: ['Bluestone paving', 'Timber screen', 'Stone bench'],
+    blurb:
+      'Large format bluestone, a full height timber batten screen and a built-in stone bench in a tight rear courtyard.',
+    intro:
+      'A small walled courtyard hemmed in on three sides, overlooked and unused. The brief was to make it feel like a room rather than the space left over behind the house.',
+    body: [
+      'Large format bluestone runs the full width in a single direction with a consistent joint, which makes the floor read as one surface and the courtyard read wider. The slabs were set out from the door threshold so the first cut lands at the far wall, not underfoot.',
+      'A full height timber batten screen covers the worst of the overlooking without closing the space in. The batten spacing was set on site against the sightlines, close enough for privacy and open enough to keep air and light moving through.',
+      'A sandstone bench is built into the base of the screen wall, which gives the courtyard permanent seating without furniture eating the floor. Concealed lighting behind the screen washes the battens after dark and turns the wall into the light source for the whole room.',
+    ],
+    images: [
+      '/images/projects/courtyard-1.jpg',
+      '/images/projects/courtyard-2.jpg',
+      '/images/projects/courtyard-3.jpg',
+      '/images/projects/courtyard-4.jpg',
+      '/images/projects/courtyard-5.jpg',
+      '/images/projects/courtyard-6.jpg',
+    ],
   },
 ];
 
-export const recentJobs = [
-  { image: 'slider_1' as const, caption: 'Castlecrag, courtyard at dusk' },
-  { image: 'slider_2' as const, caption: 'Middle Cove, native poolside' },
-  { image: 'slider_3' as const, caption: 'Northbridge, parterre & olive' },
-  { image: 'slider_4' as const, caption: 'Willoughby, kitchen garden' },
-  { image: 'slider_5' as const, caption: 'Castle Cove, coastal deck' },
-  { image: 'slider_6' as const, caption: 'Northbridge, jacaranda vista' },
-  { image: 'portfolio_1' as const, caption: 'Castlecrag, front courtyard' },
-  { image: 'portfolio_3' as const, caption: 'Willoughby, terrace' },
-];
-
-export const beforeAfters = [
-  {
-    id: 'ba1',
-    label: 'Castlecrag, front yard',
-    before: 'ba1_before' as const,
-    after: 'ba1_after' as const,
-  },
-  {
-    id: 'ba2',
-    label: 'Willoughby, terrace',
-    before: 'ba2_before' as const,
-    after: 'ba2_after' as const,
-  },
-  {
-    id: 'ba3',
-    label: 'Northbridge, entry',
-    before: 'ba3_before' as const,
-    after: 'ba3_after' as const,
-  },
-];
+// Kept as an alias so older imports keep working.
+export const portfolio = projects;
 
 export const about = {
   lead:
-    'Verto is a landscape design and build studio. We take on a small number of projects a year, and we look after them long after the planting is in.',
+    'Verto Landscapes is a landscape design and construction studio in Castlecrag. We build the permanent parts of a property and nothing else.',
   body: [
-    'The studio was founded on a simple idea: that a garden is a piece of architecture, and a piece of agriculture, and a piece of someone\'s home, and it deserves to be handled with all three in mind.',
-    'We draw in measured plans. We build with crews we have worked with for years. We plant from a nursery we run ourselves, so the trees that go in are not the ones that fit in a ute, they are the ones the garden needed.',
+    'The studio was founded on a simple idea: that the built parts of a landscape are structures, and deserve to be documented, set out and constructed like structures.',
+    'We draw in measured plans, we build with crews we have worked with for years, and we do not take on planting or maintenance. What we build is meant to outlast us.',
   ],
   pullQuote:
-    'We are not the cheapest. We are not the fastest. We are the ones still on the phone in year three.',
-  values: [
-    {
-      title: 'Materials that age',
-      body: 'Bluestone, timber, mild steel, lime mortar. Nothing that needs replacing in five years.',
-    },
-    {
-      title: 'Soil first',
-      body: 'Most failed gardens fail underground. We spend the budget below grade where it counts.',
-    },
-    {
-      title: 'Slow on purpose',
-      body: 'We take six to eight projects a year. Yours is one of them or it is not, we will not stretch.',
-    },
-  ],
+    'We are not the cheapest and we are not the fastest. We are the ones whose set-out is still true in year ten.',
 };
 
 export const contact = {
-  title: 'Request a quote',
+  title: 'Get a quote',
   lead:
     'Tell us about the project. We reply to every enquiry within two business days. If we are not the right fit we will say so, and point you to someone who is.',
 };

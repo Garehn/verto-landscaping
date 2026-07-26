@@ -73,7 +73,7 @@ export function Preloader() {
           </div>
 
           <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 meta text-stone">
-            Garden design &amp; build
+            Design &amp; Construct
           </div>
           <div
             className="absolute bottom-6 right-6 sm:bottom-8 sm:right-8 font-mono text-sm tabular"

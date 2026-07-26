@@ -8,22 +8,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        paper: '#F5F3ED',
-        cream: '#ECE8DD',
-        ink: '#2F3436',
-        'ink-2': '#3A4043',
-        moss: '#37452F',
-        'moss-dark': '#28331F',
-        stone: '#8A897E',
-        sage: '#97A18C',
-        brass: '#A98F63',
-        ember: '#C4622D',
-        'ember-dark': '#A94E20',
-        line: '#E2DED2',
+        // Sampled directly from the Verto Landscapes logo artwork.
+        ink: '#3A3F42',        // logo charcoal
+        'ink-2': '#474D50',    // raised charcoal surface
+        verde: '#648574',      // logo sage green, the brand accent
+        'verde-dark': '#516D5F',
+        'verde-light': '#8FA79A',
+        paper: '#F4F4F1',      // off-white ground
+        cream: '#E7E8E3',
+        stone: '#868A88',      // muted label grey
+        sage: '#9EB0A5',       // muted label on dark
+        line: '#DCDDD8',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        serif: ['var(--font-fraunces)', 'Georgia', 'serif'],
+        serif: ['var(--font-cormorant)', 'Georgia', 'serif'],
         mono: ['var(--font-plex-mono)', 'ui-monospace', 'monospace'],
       },
       maxWidth: {
@@ -31,7 +30,7 @@ const config: Config = {
       },
       letterSpacing: {
         tightish: '-0.01em',
-        tighter2: '-0.03em',
+        tighter2: '-0.02em',
       },
       transitionTimingFunction: {
         'out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',

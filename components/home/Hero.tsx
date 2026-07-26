@@ -73,13 +73,13 @@ export function Hero({ videoSrc }: { videoSrc?: string }) {
               animate={show ? { opacity: 1, y: 0 } : undefined}
               transition={{ duration: 0.8, delay: 0.45, ease: EASE }}
             >
-              Landscape design &amp; construction · Sydney
+              Landscape design &amp; construction · Castlecrag
             </motion.div>
 
             <WordRise
               as="h1"
               className="display max-w-4xl"
-              segments={[{ text: 'Gardens that' }, { text: 'hold time.', italic: true }]}
+              segments={[{ text: 'Built to hold' }, { text: 'its line.', italic: true }]}
               play={show}
               delay={0.1}
               stagger={0.08}
@@ -108,10 +108,10 @@ export function Hero({ videoSrc }: { videoSrc?: string }) {
             >
               <div className="meta-sm hidden items-center gap-5 text-paper/75 md:flex" aria-hidden>
                 <span>Design</span>
-                <span className="text-brass">·</span>
+                <span className="text-verde">·</span>
                 <span>Construct</span>
-                <span className="text-brass">·</span>
-                <span>Care</span>
+                <span className="text-verde">·</span>
+                <span>Build</span>
               </div>
               <div className="meta-sm flex items-center gap-3 text-paper/75">
                 <span>Scroll</span>

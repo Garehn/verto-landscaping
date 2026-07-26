@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -31,11 +32,26 @@ export function Header() {
       {/* Solid light bar, always visible, always carrying the CTA */}
       <header className="fixed inset-x-0 top-0 z-[95] border-b border-ink/10 bg-paper/95 backdrop-blur-md">
         <div className="container-x flex h-16 items-center justify-between gap-6 sm:h-20">
-          <Link href="/" className="inline-flex items-center py-2.5 leading-none" onClick={() => setOpen(false)}>
-            <span className="block whitespace-nowrap font-serif text-base tracking-tight sm:text-2xl">
-              VERTO LANDSCAPES
+          <Link
+            href="/"
+            className="inline-flex items-center gap-3 py-2.5 leading-none"
+            onClick={() => setOpen(false)}
+          >
+            <Image
+              src="/images/brand/mark-ink.png"
+              alt=""
+              aria-hidden
+              width={300}
+              height={278}
+              priority
+              className="h-8 w-auto sm:h-10"
+            />
+            <span className="block">
+              <span className="wordmark block whitespace-nowrap text-base leading-none sm:text-xl">
+                Verto Landscapes
+              </span>
+              <span className="meta-sm mt-1.5 hidden text-stone sm:block">Design &amp; Construct</span>
             </span>
-            <span className="meta-sm mt-1 hidden text-stone sm:block">Design &amp; Construct</span>
           </Link>
 
           <nav className="hidden items-center gap-8 lg:flex">
@@ -115,13 +131,13 @@ export function Header() {
                           href={item.href}
                           className={`flex items-baseline gap-5 py-2 font-serif text-4xl tracking-tighter2 sm:text-6xl ${
                             item.href === '/contact'
-                              ? 'italic text-brass'
+                              ? 'italic text-verde'
                               : pathname === item.href
                                 ? 'text-ink'
                                 : 'text-ink/50 hover:text-ink'
                           }`}
                         >
-                          <span className="meta-sm w-7 shrink-0 not-italic text-brass" data-numeric>
+                          <span className="meta-sm w-7 shrink-0 not-italic text-verde" data-numeric>
                             {String(i + 1).padStart(2, '0')}
                           </span>
                           {item.label}

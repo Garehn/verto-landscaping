@@ -1,12 +1,14 @@
 import { z } from 'zod';
 
-export const PROJECT_TYPES = ['design', 'build', 'maintenance', 'not-sure'] as const;
+export const PROJECT_TYPES = ['design', 'paving', 'retaining', 'pool-deck', 'driveway', 'not-sure'] as const;
 export type ProjectType = (typeof PROJECT_TYPES)[number];
 
 export const PROJECT_TYPE_LABELS: Record<ProjectType, string> = {
-  design: 'Garden design',
-  build: 'Landscape build',
-  maintenance: 'Ongoing care',
+  design: 'Design & documentation',
+  paving: 'Paving & stonework',
+  retaining: 'Retaining & structures',
+  'pool-deck': 'Pool surrounds & decking',
+  driveway: 'Driveway & entry',
   'not-sure': 'Not sure yet',
 };
 

@@ -33,7 +33,7 @@ export default function HomePage() {
       <section className="bg-paper text-ink">
         <div className="container-x py-16 lg:py-24">
           <Reveal className="mb-10 flex items-center gap-6">
-            <span className="meta-sm text-brass" data-numeric>05</span>
+            <span className="meta-sm text-verde" data-numeric>05</span>
             <span className="meta text-stone">Before · After</span>
             <span className="h-px flex-1 bg-ink/10" aria-hidden />
           </Reveal>
@@ -43,7 +43,7 @@ export default function HomePage() {
               afterSrc={images.real_facade.src}
               beforeAlt="The same frontage before the works, cracked path, patchy lawn"
               afterAlt={images.real_facade.alt}
-              label="Castlecrag, front garden"
+              label="Castlecrag, arrival court"
             />
           </Reveal>
         </div>

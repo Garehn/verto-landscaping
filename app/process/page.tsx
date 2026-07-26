@@ -1,10 +1,7 @@
 import type { Metadata } from 'next';
 import { process } from '@/lib/content';
-import { images } from '@/lib/unsplash';
 import { FadeIn } from '@/components/site/FadeIn';
 import { Cta } from '@/components/site/Cta';
-import { ParallaxImage } from '@/components/motion/ParallaxImage';
-import { Reveal } from '@/components/motion/Reveal';
 
 export const metadata: Metadata = { title: 'Process' };
 
@@ -33,20 +30,9 @@ export default function ProcessPage() {
                 {step.n}
               </div>
             </div>
-            <div className="md:col-span-5">
+            <div className="md:col-span-7">
               <h2 className="mb-6 font-serif text-4xl tracking-tighter2 text-balance md:text-5xl">{step.title}</h2>
               <p className="text-lg leading-relaxed text-ink/75 text-pretty">{step.body}</p>
-            </div>
-            <div className="md:col-span-5">
-              <Reveal>
-                <ParallaxImage
-                  src={images[step.image].src}
-                  alt={images[step.image].alt}
-                  className="relative aspect-[4/3] bg-cream"
-                  sizes="(min-width: 1024px) 560px, 100vw"
-                  speed={0.06}
-                />
-              </Reveal>
             </div>
           </FadeIn>
           {i < process.length - 1 && (

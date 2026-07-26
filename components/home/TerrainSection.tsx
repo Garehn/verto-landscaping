@@ -52,7 +52,7 @@ export function TerrainSection() {
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-paper via-paper/75 to-transparent" aria-hidden />
           <div className="container-x relative flex h-full flex-col justify-center">
             <Reveal className="mb-10 flex items-center gap-6">
-              <span className="meta-sm text-brass" data-numeric>04</span>
+              <span className="meta-sm text-verde" data-numeric>04</span>
               <span className="meta text-stone">Topography</span>
               <span className="h-px flex-1 bg-paper/10" aria-hidden />
             </Reveal>
@@ -69,7 +69,7 @@ export function TerrainSection() {
 
             <Reveal delay={0.3} className="mt-8 max-w-md">
               <p className="text-base leading-relaxed text-ink/70 sm:text-lg">
-                Levels, drainage, soil and stone, the parts of a garden nobody
+                Levels, drainage, footings and stone. The parts of the job nobody
                 photographs, done so well that everything above them looks inevitable.
               </p>
             </Reveal>
@@ -81,10 +81,10 @@ export function TerrainSection() {
                   {[
                     { n: 'A', title: 'Levels & retaining', body: 'Cut, fill and walls that hold' },
                     { n: 'B', title: 'Drainage & stormwater', body: 'Detention and subsurface systems' },
-                    { n: 'C', title: 'Soil & preparation', body: 'The budget below grade, spent well' },
+                    { n: 'C', title: 'Bases & preparation', body: 'The budget below grade, spent well' },
                   ].map((item) => (
                     <div key={item.n} className="flex items-baseline gap-4">
-                      <span className="meta-sm text-brass" data-numeric>{item.n}</span>
+                      <span className="meta-sm text-verde" data-numeric>{item.n}</span>
                       <span>
                         <span className="meta block text-ink/85">{item.title}</span>
                         <span className="mt-1 block text-xs text-stone">{item.body}</span>

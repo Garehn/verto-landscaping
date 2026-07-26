@@ -8,6 +8,21 @@ import { ParallaxImage } from '@/components/motion/ParallaxImage';
 
 export const metadata: Metadata = { title: 'About' };
 
+const values = [
+  {
+    title: 'Materials that age',
+    body: 'Sandstone, bluestone, hardwood and steel. Nothing that needs replacing in five years.',
+  },
+  {
+    title: 'Base first',
+    body: 'Most failed paving fails underneath. We spend the budget below grade where it counts.',
+  },
+  {
+    title: 'Slow on purpose',
+    body: 'We take six to eight projects a year. Yours is one of them or it is not, we will not stretch.',
+  },
+];
+
 export default function AboutPage() {
   return (
     <>
@@ -15,7 +30,7 @@ export default function AboutPage() {
         <FadeIn>
           <div className="meta mb-6 text-stone">About</div>
           <h1 className="display max-w-5xl text-balance">
-            A small studio, <span className="display-italic">six to eight gardens a year.</span>
+            A small studio, <span className="display-italic">six to eight projects a year.</span>
           </h1>
           <p className="mt-10 body-lg max-w-2xl text-ink/75 text-pretty">{about.lead}</p>
         </FadeIn>
@@ -54,9 +69,9 @@ export default function AboutPage() {
       <section className="bg-paper text-ink">
         <div className="container-x py-24 lg:py-32">
           <FadeIn className="mb-14 flex items-center gap-6">
-            <span className="meta-sm text-brass">01</span>
+            <span className="meta-sm text-verde">01</span>
             <span className="meta text-stone">What we hold to</span>
-            <span className="h-px flex-1 bg-paper-KEEP/10" aria-hidden />
+            <span className="h-px flex-1 bg-ink/10" aria-hidden />
           </FadeIn>
           <FadeIn>
             <h2 className="max-w-3xl font-serif text-4xl tracking-tighter2 text-balance md:text-5xl">
@@ -64,7 +79,7 @@ export default function AboutPage() {
             </h2>
           </FadeIn>
           <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-14">
-            {about.values.map((v, i) => (
+            {values.map((v, i) => (
               <FadeIn key={v.title} delay={i * 0.08}>
                 <div className="font-serif text-5xl tracking-tighter2 text-stone/40" data-numeric>0{i + 1}</div>
                 <h3 className="mt-4 font-serif text-2xl tracking-tighter2">{v.title}</h3>

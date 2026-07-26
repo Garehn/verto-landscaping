@@ -1,32 +1,31 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { images, type ImageRef } from '@/lib/unsplash';
 import { Reveal } from '@/components/motion/Reveal';
 
-const cards: { title: string; body: string; image: ImageRef; href: string }[] = [
+const cards: { title: string; body: string; image: string; href: string }[] = [
   {
     title: 'Design',
-    body: 'Site survey, master plan and planting design, measured drawings.',
-    image: 'svc_design',
+    body: 'Survey, levels and full construction drawings.',
+    image: '/images/real/gen/svc-design.jpg',
     href: '/services#design',
   },
   {
-    title: 'Construction',
-    body: 'Stone, timber, water and steel, built by crews we keep.',
-    image: 'svc_construct',
-    href: '/services#build',
+    title: 'Paving & stone',
+    body: 'Sandstone, bluestone and granite cobble, laid to line.',
+    image: '/images/projects/arrival-6.jpg',
+    href: '/services#paving',
   },
   {
-    title: 'Planting',
-    body: 'Palettes built for the soil and climate, grown on at our nursery.',
-    image: 'svc_planting',
-    href: '/services#planting',
+    title: 'Retaining',
+    body: 'Sandstone block, masonry, steps and structures.',
+    image: '/images/projects/terraces-3.jpg',
+    href: '/services#retaining',
   },
   {
-    title: 'Care',
-    body: 'Quarterly visits that hold the garden while it grows in.',
-    image: 'svc_care',
-    href: '/services#care',
+    title: 'Pools & decking',
+    body: 'Coping, surrounds, hardwood decks and glass fencing.',
+    image: '/images/projects/deck-3.jpg',
+    href: '/services#pools',
   },
 ];
 
@@ -35,7 +34,7 @@ export function ServiceCards() {
     <section className="bg-paper text-ink">
       <div className="container-x pb-20 lg:pb-28">
         <Reveal className="mb-12 flex items-center gap-6">
-          <span className="meta-sm text-brass" data-numeric>02</span>
+          <span className="meta-sm text-verde" data-numeric>02</span>
           <span className="meta text-stone">What we do</span>
           <span className="h-px flex-1 bg-ink/10" aria-hidden />
         </Reveal>
@@ -46,8 +45,8 @@ export function ServiceCards() {
               <Link href={card.href} className="group block">
                 <div className="relative aspect-[4/5] overflow-hidden bg-cream">
                   <Image
-                    src={images[card.image].src}
-                    alt={images[card.image].alt}
+                    src={card.image}
+                    alt={card.title}
                     fill
                     sizes="(min-width: 1024px) 320px, 50vw"
                     className="grade object-cover transition-transform duration-[1200ms] ease-out-expo group-hover:scale-[1.05]"

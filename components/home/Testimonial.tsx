@@ -7,7 +7,7 @@ export function Testimonial() {
     <section className="bg-paper text-ink">
       <div className="container-x py-20 lg:py-28">
         <Reveal className="mb-10 flex items-center gap-6">
-          <span className="meta-sm text-brass" data-numeric>06</span>
+          <span className="meta-sm text-verde" data-numeric>06</span>
           <span className="meta text-stone">From a client</span>
           <span className="h-px flex-1 bg-ink/10" aria-hidden />
         </Reveal>
@@ -19,7 +19,7 @@ export function Testimonial() {
               className="display-md max-w-4xl font-serif italic text-pretty"
             />
             <Reveal delay={0.15} className="mt-10 flex items-center gap-4">
-              <span className="h-px w-10 bg-brass" aria-hidden />
+              <span className="h-px w-10 bg-verde" aria-hidden />
               <span className="meta text-ink/60">
                 {home.testimonial.author} · {home.testimonial.project}
               </span>

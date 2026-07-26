@@ -10,7 +10,7 @@ export function Footer() {
           <div className="md:col-span-5">
             <Image src="/images/real/logo-white.png" alt="Verto Landscapes, Design & Construct" width={220} height={176} className="mb-8 h-28 w-auto opacity-95" />
             <div className="font-serif italic text-4xl tracking-tighter2 text-balance md:text-5xl">
-              Quiet gardens, <br className="hidden md:inline" /> built to last.
+              Built to hold <br className="hidden md:inline" /> its line.
             </div>
             <Link href="/contact" className="btn-cta group mt-10">
               Begin a project <span aria-hidden className="arrow">→</span>
@@ -64,7 +64,7 @@ export function Footer() {
           <div>
             © {new Date().getFullYear()} {studio.name}. All rights reserved.
           </div>
-          <div className="meta-sm">Garden design &amp; build · Castlecrag, Sydney</div>
+          <div className="meta-sm">Landscape design &amp; construction · Castlecrag, Sydney</div>
         </div>
       </div>
 
