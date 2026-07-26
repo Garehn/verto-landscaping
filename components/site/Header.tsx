@@ -76,16 +76,14 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-3 sm:gap-5">
+            {/* Primary action is a click to call, so the number is the label. */}
             <a
               href={studio.phoneHref}
-              className="meta hidden text-stone transition-colors hover:text-ink xl:inline-block"
+              className="btn-cta min-h-[40px] whitespace-nowrap !px-3 !py-2 !tracking-[0.1em] text-[10px] sm:!px-6 sm:!py-3 sm:!tracking-[0.16em] sm:text-xs"
               data-numeric
             >
-              {studio.phone}
+              Call Us - {studio.phone}
             </a>
-            <Link href="/contact" className="btn-cta group min-h-[40px] whitespace-nowrap !gap-1.5 !px-3 !py-2 text-[10px] sm:!gap-3 sm:!px-7 sm:!py-3 sm:text-xs">
-              Get a quote <span aria-hidden className="arrow">→</span>
-            </Link>
             <button
               aria-label={open ? 'Close menu' : 'Open menu'}
               aria-expanded={open}
