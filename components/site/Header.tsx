@@ -46,12 +46,15 @@ export function Header() {
               priority
               className="h-8 w-auto sm:h-10"
             />
-            <span className="block">
-              <span className="wordmark block whitespace-nowrap text-base leading-none sm:text-xl">
+            {/* Below sm the mark carries the brand on its own, so the CTA and
+                menu always have room. */}
+            <span className="hidden sm:block">
+              <span className="wordmark block whitespace-nowrap text-lg leading-none lg:text-xl">
                 Verto Landscapes
               </span>
-              <span className="meta-sm mt-1.5 hidden text-stone sm:block">Design &amp; Construct</span>
+              <span className="meta-sm mt-1.5 block text-stone">Design &amp; Construct</span>
             </span>
+            <span className="sr-only">Verto Landscapes, Design &amp; Construct</span>
           </Link>
 
           <nav className="hidden items-center gap-8 lg:flex">
