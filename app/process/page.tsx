@@ -15,7 +15,7 @@ export default function ProcessPage() {
             How a project moves through <span className="display-italic">the studio.</span>
           </h1>
           <p className="mt-10 body-lg max-w-2xl text-ink/75 text-pretty">
-            From the first walk-through to the third year of care, the path is the same. Slower than most. More thorough. Worth it.
+            From the first walk-through to the final set-out, the path is the same. Slower than most. More thorough. Worth it.
           </p>
         </FadeIn>
       </section>
