@@ -133,14 +133,17 @@ export type Project = {
 };
 
 // Completed projects, photographed on site. Every image inside a project is
-// the SAME property: Edinburgh Rd is the professionally shot set, The
-// Battlement its own build. Nothing here is generated.
+// the SAME property, and nothing here is generated.
+//
+// Locations are given as the SUBURB only. These are private homes: the street
+// is the client's address, not a credential, and it is the one detail a
+// portfolio does not need in order to be verifiable.
 export const projects: Project[] = [
   {
-    id: 'edinburgh-rd',
+    id: 'pool-terrace',
     title: 'Pool terrace & arrival court',
     subtitle: 'Stone to the water line',
-    location: 'Edinburgh Rd, Castlecrag',
+    location: 'Castlecrag, NSW',
     year: '2025',
     scope: ['Design', 'Pool surrounds', 'Stone paving', 'Driveway'],
     blurb:
@@ -153,19 +156,19 @@ export const projects: Project[] = [
       'The sandstone shelf at the side of the house was kept and built around rather than cut out. Low brass uplighting is set into the beds and the stone, enough to carry the arrival after dark without lighting the house back at itself.',
     ],
     images: [
-      '/images/proj/edinburgh/pool.jpg',
-      '/images/proj/edinburgh/aerial.jpg',
-      '/images/proj/edinburgh/garage.jpg',
-      '/images/proj/edinburgh/planting.jpg',
-      '/images/proj/edinburgh/boulder.jpg',
-      '/images/proj/edinburgh/entry.jpg',
+      '/images/proj/pool-terrace/pool.jpg',
+      '/images/proj/pool-terrace/aerial.jpg',
+      '/images/proj/pool-terrace/garage.jpg',
+      '/images/proj/pool-terrace/planting.jpg',
+      '/images/proj/pool-terrace/boulder.jpg',
+      '/images/proj/pool-terrace/entry.jpg',
     ],
   },
   {
-    id: 'the-battlement',
+    id: 'cobblestone-drive',
     title: 'Cobblestone drive & courtyard',
     subtitle: 'A clean line through the block',
-    location: 'The Battlement, Castlecrag',
+    location: 'Castlecrag, NSW',
     year: '2024',
     scope: ['Driveway', 'Stone paving', 'Drainage', 'Stone edging'],
     blurb:
@@ -178,12 +181,12 @@ export const projects: Project[] = [
       'Down the side, sandstone treads sit in white pebble on a compacted base, so the passage drains through rather than across. The sandstone outcrop at the front was retained and the new walls built to meet it.',
     ],
     images: [
-      '/images/proj/battlement/drive.jpg',
-      '/images/proj/battlement/courtyard.jpg',
-      '/images/proj/battlement/stepping.jpg',
-      '/images/proj/battlement/joint-detail.jpg',
-      '/images/proj/battlement/boulder.jpg',
-      '/images/proj/battlement/night.jpg',
+      '/images/proj/cobble-court/drive.jpg',
+      '/images/proj/cobble-court/courtyard.jpg',
+      '/images/proj/cobble-court/stepping.jpg',
+      '/images/proj/cobble-court/joint-detail.jpg',
+      '/images/proj/cobble-court/boulder.jpg',
+      '/images/proj/cobble-court/night.jpg',
     ],
   },
 ];

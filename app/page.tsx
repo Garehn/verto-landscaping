@@ -39,11 +39,11 @@ export default function HomePage() {
           </Reveal>
           <Reveal>
             <BeforeAfter
-              beforeSrc="/images/proj/before/edinburgh-street.jpg"
-              afterSrc="/images/proj/edinburgh/street.jpg"
-              beforeAlt="Edinburgh Rd from the street before the works, the house hidden behind an overgrown hedge and a grey wall"
+              beforeSrc="/images/proj/before/site-a-street.jpg"
+              afterSrc="/images/proj/pool-terrace/street.jpg"
+              beforeAlt="The frontage before the works, the house hidden behind an overgrown hedge and a grey wall"
               afterAlt="The same view after: white rendered frontage, olives in sandstone-edged beds and a cobbled arrival court"
-              label="Edinburgh Rd, Castlecrag · the same view"
+              label="Castlecrag · the same view"
             />
           </Reveal>
         </div>

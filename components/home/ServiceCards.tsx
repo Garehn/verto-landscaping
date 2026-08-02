@@ -6,13 +6,13 @@ const cards: { title: string; body: string; image: string; href: string }[] = [
   {
     title: 'Design',
     body: 'Survey, levels and full construction drawings.',
-    image: '/images/proj/edinburgh/aerial.jpg',
+    image: '/images/proj/pool-terrace/aerial.jpg',
     href: '/services#design',
   },
   {
     title: 'Paving & stone',
     body: 'Sandstone, bluestone and granite cobble, laid to line.',
-    image: '/images/proj/battlement/cobble-texture.jpg',
+    image: '/images/proj/cobble-court/cobble-texture.jpg',
     href: '/services#paving',
   },
   {
@@ -24,7 +24,7 @@ const cards: { title: string; body: string; image: string; href: string }[] = [
   {
     title: 'Pools & decking',
     body: 'Coping, surrounds, hardwood decks and glass fencing.',
-    image: '/images/proj/edinburgh/pool-detail.jpg',
+    image: '/images/proj/pool-terrace/pool-detail.jpg',
     href: '/services#pools',
   },
 ];
