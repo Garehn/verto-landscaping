@@ -57,7 +57,7 @@ export function Cta({
 
           <Reveal delay={0.3} className="lg:col-span-4 lg:col-start-9">
             <div className="space-y-6 border-l border-paper/15 pl-8">
-              <Image src="/images/real/logo-white.png" alt="" aria-hidden width={160} height={128} className="h-20 w-auto opacity-90" />
+              <Image src="/images/brand/logo-white.png" alt="" aria-hidden width={160} height={128} className="h-20 w-auto opacity-90" />
               <div>
                 <div className="meta-sm mb-2 text-sage">Studio</div>
                 <div className="text-sm leading-relaxed text-paper/75">

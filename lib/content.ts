@@ -132,131 +132,58 @@ export type Project = {
   images: string[];
 };
 
-// Five completed projects. Every image inside a project is the same site.
+// Completed projects, photographed on site. Every image inside a project is
+// the SAME property: Edinburgh Rd is the professionally shot set, The
+// Battlement its own build. Nothing here is generated.
 export const projects: Project[] = [
   {
-    id: 'castlecrag-terrace',
-    title: 'Pool & harbour terrace',
-    subtitle: 'Stone on the edge',
-    location: 'Castlecrag, NSW',
+    id: 'edinburgh-rd',
+    title: 'Pool terrace & arrival court',
+    subtitle: 'Stone to the water line',
+    location: 'Edinburgh Rd, Castlecrag',
     year: '2025',
-    scope: ['Design', 'Pool surrounds', 'Stone paving'],
+    scope: ['Design', 'Pool surrounds', 'Stone paving', 'Driveway'],
     blurb:
-      'An infinity edge cut into the slope, pale stone surrounds, and a terrace set out to run straight at the water.',
+      'A whole-property rebuild: an infinity edge over the harbour, a cobbled arrival court, and sandstone-edged planters front to back.',
     intro:
-      'The best view on the street sat behind a tired paved terrace with nothing to frame it. The brief was a pool that would sit in the view rather than in front of it.',
+      'From the street the house had disappeared behind an overgrown hedge and a grey wall. The brief covered the whole property, from the arrival court to the pool terrace holding the view.',
     body: [
-      'We cut the pool into the existing level so the water line reads flat against the harbour, then rebuilt the terrace around it. The surrounds are a pale sandstone laid to a tight joint, set out from the pool edge so every course runs parallel to the water rather than to the house.',
-      'Falls are carried away from the coping into a subsurface line at the boundary wall, which keeps the stone dry underfoot and the joints clean. The boundary wall was rebuilt and capped in the same stone to close the composition.',
-      'Everything above ground is quiet on purpose. One material, one colour, and a single strong horizontal so the view does the work.',
+      'The pool was set out so its water line reads flat against the harbour, and the surrounds are a pale stone laid to a tight joint running parallel to the water rather than to the house. Potted olives sit on the boundary wall at the spacing of the coping slabs, which keeps the eye moving along the edge instead of stopping at the corner.',
+      'At the front the drive is granite cobble on a full concrete base, edged with sandstone bands that turn the corner and carry through to the entry path. Planters are built in the same sandstone, so the beds read as part of the structure rather than as something placed on top of it. Levels were reworked so water leaves at the crossover instead of pooling at the garage.',
+      'The sandstone shelf at the side of the house was kept and built around rather than cut out. Low brass uplighting is set into the beds and the stone, enough to carry the arrival after dark without lighting the house back at itself.',
     ],
     images: [
-      '/images/real/pool.jpg',
-      '/images/real/gen/angle-pool-2.jpg',
-      '/images/projects/terrace-4.jpg',
-      '/images/projects/terrace-5.jpg',
-      '/images/real/gen/angle-pool-3.jpg',
-      '/images/projects/terrace-6.jpg',
+      '/images/proj/edinburgh/pool.jpg',
+      '/images/proj/edinburgh/aerial.jpg',
+      '/images/proj/edinburgh/garage.jpg',
+      '/images/proj/edinburgh/planting.jpg',
+      '/images/proj/edinburgh/boulder.jpg',
+      '/images/proj/edinburgh/entry.jpg',
     ],
   },
   {
-    id: 'middle-cove-deck',
-    title: 'Hardwood pool deck',
-    subtitle: 'An outdoor room',
-    location: 'Middle Cove, NSW',
-    year: '2025',
-    scope: ['Decking', 'Glass fencing', 'Stone coping'],
-    blurb:
-      'A wide hardwood deck laid flush with the interior floor, wrapping a pool the family could barely reach before.',
-    intro:
-      'The house opened straight onto a pool with no deck, no shade and nowhere to sit. The owners asked for an outdoor room rather than a walkway around the water.',
-    body: [
-      'The deck is laid flush with the internal floor level so the threshold disappears and the two spaces read as one. Boards run out from the house on a single direction, which pulls the eye toward the water and makes the deck feel wider than it is.',
-      'Frameless glass fencing sits on the deck line rather than in front of it, so the barrier does its job without cutting the space in half. Where deck meets pool the hardwood stops against a stone coping with a consistent shadow gap, a detail that hides the movement timber makes through the year.',
-      'Lighting is set low into the deck edge and the steps, enough to use the space after dark without lighting the house back at itself.',
-    ],
-    images: [
-      '/images/real/deck.jpg',
-      '/images/projects/deck-4.jpg',
-      '/images/projects/deck-3.jpg',
-      '/images/projects/deck-5.jpg',
-      '/images/real/gen/angle-deck-2.jpg',
-      '/images/projects/deck-6.jpg',
-    ],
-  },
-  {
-    id: 'castlecrag-arrival',
-    title: 'Cobblestone arrival court',
-    subtitle: 'Worth the address',
-    location: 'Castlecrag, NSW',
+    id: 'the-battlement',
+    title: 'Cobblestone drive & courtyard',
+    subtitle: 'A clean line through the block',
+    location: 'The Battlement, Castlecrag',
     year: '2024',
-    scope: ['Driveway', 'Stone edging', 'Entry paths'],
+    scope: ['Driveway', 'Stone paving', 'Drainage', 'Stone edging'],
     blurb:
-      'Granite cobble laid in course, sandstone edge bands, and an entry sequence rebuilt from the street to the door.',
+      'Cracked concrete and a rubble wall replaced with granite cobble, sandstone stepping stones and a drainage line that keeps the whole surface dry.',
     intro:
-      'A cracked concrete drive and a frontage that apologised for the house behind it. The brief came in one line: make the arrival worth the address.',
+      'The frontage was cracked concrete against a rubble retaining wall, and the side of the house was gravel and rotting timber steps. The brief was one continuous surface from the street to the back door.',
     body: [
-      'The court is granite cobble laid in a running course on a full concrete base, edged with a sandstone band that turns the corner and carries through to the entry path. Setting the cobble in course rather than fan pattern keeps the surface calm enough to read as one plane from the street.',
-      'Levels were reworked so water leaves the court at the crossover instead of pooling at the garage, and the whole area drains to a single line under the edge band.',
-      'The same stone continues down the side of the house, so the passage reads as part of the arrival rather than a leftover. Low lighting is set into the edge to carry the sequence after dark.',
+      'The court is Brighton cobble laid in a running course on a full concrete base, with Dijon slabs where the surface has to read flat. Setting the cobble in course rather than fan pattern keeps it calm enough to read as one plane from the street, and the change between the two stones falls on a single straight joint rather than a cut line.',
+      'A slot drain runs across the courtyard threshold and ties into a subsurface line, which is why the cobble stays dry underfoot and the joints stay clean. Getting that right is most of the work and none of the photographs.',
+      'Down the side, sandstone treads sit in white pebble on a compacted base, so the passage drains through rather than across. The sandstone outcrop at the front was retained and the new walls built to meet it.',
     ],
     images: [
-      '/images/real/driveway.jpg',
-      '/images/real/facade.jpg',
-      '/images/projects/arrival-6.jpg',
-      '/images/real/passage.jpg',
-      '/images/real/planting.jpg',
-      '/images/real/gen/angle-arrival-2.jpg',
-    ],
-  },
-  {
-    id: 'northbridge-terraces',
-    title: 'Sandstone terracing',
-    subtitle: 'Three levels from one slope',
-    location: 'Northbridge, NSW',
-    year: '2024',
-    scope: ['Retaining walls', 'Sandstone steps', 'Earthworks'],
-    blurb:
-      'A steep, unusable backyard cut into three sandstone terraces with a full flight of steps climbing between them.',
-    intro:
-      'The yard fell away so steeply from the house that the family used almost none of it. The brief was to win back level ground without the result reading as a retaining job.',
-    body: [
-      'We cut the slope into three terraces held by dry-stacked sandstone block. Each wall is founded on engineered footings with an agricultural line and free-draining backfill behind it, so the hydraulic load never reaches the face. The block coursing was set out to keep joint lines running through, and the capping was selected on site.',
-      'A single flight of sandstone treads climbs through all three levels on one axis, which gives the yard a spine and makes the height feel deliberate rather than defensive.',
-      'The top terrace is a flat lawn platform, the middle a paved sitting level, and the lowest holds the fall at the boundary. Step lighting is recessed into the risers to make the climb safe after dark.',
-    ],
-    images: [
-      '/images/projects/terraces-1.jpg',
-      '/images/projects/terraces-2.jpg',
-      '/images/projects/terraces-3.jpg',
-      '/images/projects/terraces-4.jpg',
-      '/images/projects/terraces-5.jpg',
-      '/images/projects/terraces-6.jpg',
-    ],
-  },
-  {
-    id: 'willoughby-courtyard',
-    title: 'Courtyard & screen',
-    subtitle: 'A room without a roof',
-    location: 'Willoughby, NSW',
-    year: '2023',
-    scope: ['Bluestone paving', 'Timber screen', 'Stone bench'],
-    blurb:
-      'Large format bluestone, a full height timber batten screen and a built-in stone bench in a tight rear courtyard.',
-    intro:
-      'A small walled courtyard hemmed in on three sides, overlooked and unused. The brief was to make it feel like a room rather than the space left over behind the house.',
-    body: [
-      'Large format bluestone runs the full width in a single direction with a consistent joint, which makes the floor read as one surface and the courtyard read wider. The slabs were set out from the door threshold so the first cut lands at the far wall, not underfoot.',
-      'A full height timber batten screen covers the worst of the overlooking without closing the space in. The batten spacing was set on site against the sightlines, close enough for privacy and open enough to keep air and light moving through.',
-      'A sandstone bench is built into the base of the screen wall, which gives the courtyard permanent seating without furniture eating the floor. Concealed lighting behind the screen washes the battens after dark and turns the wall into the light source for the whole room.',
-    ],
-    images: [
-      '/images/projects/courtyard-1.jpg',
-      '/images/projects/courtyard-2.jpg',
-      '/images/projects/courtyard-3.jpg',
-      '/images/projects/courtyard-4.jpg',
-      '/images/projects/courtyard-5.jpg',
-      '/images/projects/courtyard-6.jpg',
+      '/images/proj/battlement/drive.jpg',
+      '/images/proj/battlement/courtyard.jpg',
+      '/images/proj/battlement/stepping.jpg',
+      '/images/proj/battlement/joint-detail.jpg',
+      '/images/proj/battlement/boulder.jpg',
+      '/images/proj/battlement/night.jpg',
     ],
   },
 ];

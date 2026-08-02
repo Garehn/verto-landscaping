@@ -2,7 +2,7 @@
 // meta, console errors, per page. Far more reliable than eyeballing screenshots.
 import { chromium } from 'playwright';
 
-const pages = ['/', '/portfolio', '/portfolio/castlecrag-terrace', '/portfolio/middle-cove-deck', '/portfolio/castlecrag-arrival', '/portfolio/northbridge-terraces', '/portfolio/willoughby-courtyard', '/services', '/contact'];
+const pages = ['/', '/portfolio', '/portfolio/edinburgh-rd', '/portfolio/the-battlement', '/services', '/contact'];
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 375, height: 812 }, deviceScaleFactor: 2 });
 

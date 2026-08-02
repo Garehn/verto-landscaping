@@ -64,6 +64,13 @@ export function Hero({ videoSrc }: { videoSrc?: string }) {
             </motion.div>
           </motion.div>
           <div className="grade-overlay absolute inset-0" aria-hidden />
+          {/* The real photography is bright where the type sits, unlike the
+              generated image this replaced. A dedicated bottom scrim keeps the
+              eyebrow and headline legible without darkening the whole frame. */}
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-ink/85 via-ink/45 to-transparent"
+            aria-hidden
+          />
 
           {/* Content, short, with a large CTA */}
           <div className="relative flex h-full flex-col justify-end p-6 sm:p-10 lg:p-14">

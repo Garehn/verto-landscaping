@@ -8,7 +8,7 @@ export function Footer() {
       <div className="container-x pb-8 pt-20 lg:pt-28">
         <div className="grid gap-14 md:grid-cols-12">
           <div className="md:col-span-5">
-            <Image src="/images/real/logo-white.png" alt="Verto Landscapes, Design & Construct" width={220} height={176} className="mb-8 h-28 w-auto opacity-95" />
+            <Image src="/images/brand/logo-white.png" alt="Verto Landscapes, Design & Construct" width={220} height={176} className="mb-8 h-28 w-auto opacity-95" />
             <div className="font-serif italic text-4xl tracking-tighter2 text-balance md:text-5xl">
               Built to hold <br className="hidden md:inline" /> its line.
             </div>
