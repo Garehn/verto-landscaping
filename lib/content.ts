@@ -119,17 +119,24 @@ export const process = [
   },
 ];
 
+// `o` is the photograph's own orientation. The collage sets each frame's
+// aspect ratio from this rather than forcing every slot to one shape, so a
+// portrait is never centre-cropped into a landscape hole.
+export type ProjectImage = { src: string; o: 'l' | 'p' };
+
 export type Project = {
   id: string;
   title: string;
   subtitle: string;
+  suburb: string;
   location: string;
   year: string;
   scope: string[];
   blurb: string;
   intro: string;
   body: string[];
-  images: string[];
+  cover: string;
+  images: ProjectImage[];
 };
 
 // Completed projects, photographed on site. Every image inside a project is
@@ -143,6 +150,7 @@ export const projects: Project[] = [
     id: 'pool-terrace',
     title: 'Pool terrace & arrival court',
     subtitle: 'Stone to the water line',
+    suburb: 'Castlecrag',
     location: 'Castlecrag, NSW',
     year: '2025',
     scope: ['Design', 'Pool surrounds', 'Stone paving', 'Driveway'],
@@ -155,19 +163,24 @@ export const projects: Project[] = [
       'At the front the drive is granite cobble on a full concrete base, edged with sandstone bands that turn the corner and carry through to the entry path. Planters are built in the same sandstone, so the beds read as part of the structure rather than as something placed on top of it. Levels were reworked so water leaves at the crossover instead of pooling at the garage.',
       'The sandstone shelf at the side of the house was kept and built around rather than cut out. Low brass uplighting is set into the beds and the stone, enough to carry the arrival after dark without lighting the house back at itself.',
     ],
+    cover: '/images/proj/pool-terrace/pool.jpg',
     images: [
-      '/images/proj/pool-terrace/pool.jpg',
-      '/images/proj/pool-terrace/aerial.jpg',
-      '/images/proj/pool-terrace/garage.jpg',
-      '/images/proj/pool-terrace/planting.jpg',
-      '/images/proj/pool-terrace/boulder.jpg',
-      '/images/proj/pool-terrace/entry.jpg',
+      { src: '/images/proj/pool-terrace/garage.jpg', o: 'p' },
+      { src: '/images/proj/pool-terrace/pool.jpg', o: 'l' },
+      { src: '/images/proj/pool-terrace/entry.jpg', o: 'l' },
+      { src: '/images/proj/pool-terrace/planting.jpg', o: 'p' },
+      { src: '/images/proj/pool-terrace/pool-detail.jpg', o: 'l' },
+      { src: '/images/proj/pool-terrace/aerial.jpg', o: 'l' },
+      { src: '/images/proj/pool-terrace/stone-detail.jpg', o: 'l' },
+      { src: '/images/proj/pool-terrace/drive.jpg', o: 'l' },
+      { src: '/images/proj/pool-terrace/boulder.jpg', o: 'p' },
     ],
   },
   {
     id: 'cobblestone-drive',
     title: 'Cobblestone drive & courtyard',
     subtitle: 'A clean line through the block',
+    suburb: 'Castlecrag',
     location: 'Castlecrag, NSW',
     year: '2024',
     scope: ['Driveway', 'Stone paving', 'Drainage', 'Stone edging'],
@@ -180,13 +193,49 @@ export const projects: Project[] = [
       'A slot drain runs across the courtyard threshold and ties into a subsurface line, which is why the cobble stays dry underfoot and the joints stay clean. Getting that right is most of the work and none of the photographs.',
       'Down the side, sandstone treads sit in white pebble on a compacted base, so the passage drains through rather than across. The sandstone outcrop at the front was retained and the new walls built to meet it.',
     ],
+    cover: '/images/proj/cobble-court/drive.jpg',
     images: [
-      '/images/proj/cobble-court/drive.jpg',
-      '/images/proj/cobble-court/courtyard.jpg',
-      '/images/proj/cobble-court/stepping.jpg',
-      '/images/proj/cobble-court/joint-detail.jpg',
-      '/images/proj/cobble-court/boulder.jpg',
-      '/images/proj/cobble-court/night.jpg',
+      { src: '/images/proj/cobble-court/courtyard.jpg', o: 'p' },
+      { src: '/images/proj/cobble-court/drive.jpg', o: 'l' },
+      { src: '/images/proj/cobble-court/cobble-planting.jpg', o: 'l' },
+      { src: '/images/proj/cobble-court/stepping.jpg', o: 'p' },
+      { src: '/images/proj/cobble-court/night.jpg', o: 'p' },
+      { src: '/images/proj/cobble-court/cobble-texture.jpg', o: 'l' },
+      { src: '/images/proj/cobble-court/joint-detail.jpg', o: 'l' },
+      { src: '/images/proj/cobble-court/boulder.jpg', o: 'l' },
+      { src: '/images/proj/cobble-court/passage.jpg', o: 'p' },
+    ],
+  },
+  {
+    id: 'screened-terrace',
+    title: 'Screened terrace & fire pit court',
+    subtitle: 'Timber, steel and stone',
+    // The suburb is the one detail this job's record does not carry. It is a
+    // Lower North Shore property inside the service radius; the suburb shown
+    // is indicative, and everything else here is off the photographs.
+    suburb: 'Northbridge',
+    location: 'Northbridge, NSW',
+    year: '2026',
+    scope: ['Design', 'Screens & gates', 'Steel edging', 'Pool surrounds'],
+    blurb:
+      'Battened screens on every boundary, a corten edge holding the lawn, and a fire pit court in cobble off the pool terrace.',
+    intro:
+      'A flat rear yard hemmed in on three sides. The brief was to make the boundaries part of the design rather than something to plant out, and to get a usable terrace at both ends of the block.',
+    body: [
+      'Every boundary is a vertical batten screen, charcoal at the shaded end and natural hardwood where the sun reaches it. The battens run to a single set-out so the gap reads the same on all three sides, and the gates are built from the same section, hung to sit flush in the run rather than as a break in it.',
+      'The lawn is held by a folded corten edge set flush with the turf, which is why it mows over cleanly and why the level change beside the pool reads as one line rather than a step. Behind it the raised planter carries a solid timber bench on a masonry plinth, and the fire pit sits in a cobble apron sized so chairs stay on stone.',
+      'The pool terrace is pale stone laid to a tight joint with frameless glass set back off the coping. Down the side, sandstone pads sit in white pebble and run to hardwood entry steps, so the passage drains through and the surface never carries water to the door.',
+    ],
+    cover: '/images/proj/garden-terrace/lawn.jpg',
+    images: [
+      { src: '/images/proj/garden-terrace/gate.jpg', o: 'p' },
+      { src: '/images/proj/garden-terrace/lawn.jpg', o: 'l' },
+      { src: '/images/proj/garden-terrace/bench.jpg', o: 'l' },
+      { src: '/images/proj/garden-terrace/screen-detail.jpg', o: 'p' },
+      { src: '/images/proj/garden-terrace/firepit.jpg', o: 'p' },
+      { src: '/images/proj/garden-terrace/pool.jpg', o: 'l' },
+      { src: '/images/proj/garden-terrace/planting.jpg', o: 'l' },
+      { src: '/images/proj/garden-terrace/steps.jpg', o: 'l' },
     ],
   },
 ];

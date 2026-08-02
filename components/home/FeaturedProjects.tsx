@@ -31,7 +31,7 @@ export function FeaturedProjects() {
                 <Link href={`/portfolio/${project.id}`} className="block">
                   <div className="overflow-hidden">
                     <ParallaxImage
-                      src={project.images[0]}
+                      src={project.cover}
                       alt={`${project.title}, ${project.location}`}
                       className="relative aspect-[16/10] bg-cream transition-transform duration-[1200ms] ease-out-expo group-hover:scale-[1.02]"
                       sizes="(min-width: 1024px) 900px, 100vw"
