@@ -5,7 +5,7 @@ import { Marquee } from '@/components/motion/Marquee';
 import { WordRise, type WordSegment } from '@/components/motion/WordRise';
 import { Reveal } from '@/components/motion/Reveal';
 
-const marqueeItems = ['Verto Landscapes', 'Castlecrag', 'Sydney', 'Design', 'Construct', 'Stone'];
+const marqueeItems = ['Verto Landscapes', 'Sydney', 'Design', 'Construct', 'Stone', 'Timber'];
 
 type Props = {
   title?: string;

@@ -72,10 +72,13 @@ export function BeforeAfter({
           updateFromClientX(e.clientX);
         }}
       >
-        {/* Before (base) */}
+        {/* After (base). The overlay below is clipped from the right, so it
+            covers the LEFT of the frame. Before therefore has to be the
+            overlay and after the base, or the two sides land under the wrong
+            labels. */}
         <Image
-          src={beforeSrc}
-          alt={beforeAlt}
+          src={afterSrc}
+          alt={afterAlt}
           fill
           sizes="(min-width: 1024px) 1100px, 100vw"
           className="object-cover"
@@ -83,14 +86,14 @@ export function BeforeAfter({
           draggable={false}
         />
 
-        {/* After (clipped overlay) */}
+        {/* Before (clipped overlay, occupying the left of the handle) */}
         <div
           className="absolute inset-0"
           style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
         >
           <Image
-            src={afterSrc}
-            alt={afterAlt}
+            src={beforeSrc}
+            alt={beforeAlt}
             fill
             sizes="(min-width: 1024px) 1100px, 100vw"
             className="object-cover"
@@ -99,7 +102,7 @@ export function BeforeAfter({
         </div>
 
         {/* Labels */}
-        <div className="absolute top-4 left-4 px-3 py-1.5 bg-paper-KEEP/85 text-ink text-[10px] uppercase tracking-[0.2em] backdrop-blur-sm pointer-events-none">
+        <div className="absolute top-4 left-4 px-3 py-1.5 bg-paper/95 text-ink text-[10px] uppercase tracking-[0.2em] pointer-events-none">
           Before
         </div>
         <div className="absolute top-4 right-4 px-3 py-1.5 bg-paper/95 text-ink text-[10px] uppercase tracking-[0.2em] pointer-events-none">

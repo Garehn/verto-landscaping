@@ -3,15 +3,15 @@
 
 
 export const images = {
-  /** Home hero. A real photograph of a completed Castlecrag pool terrace. */
+  /** Home hero. A real photograph of a completed pool terrace. */
   hero: {
     src: '/images/proj/pool-terrace/pool-harbour.jpg',
-    alt: 'Infinity pool over the harbour in Castlecrag, pale stone coping and potted olives on the boundary wall',
+    alt: 'Infinity pool over the harbour, pale stone coping and potted olives on the boundary wall',
   },
   /** About page. Real, from the same property. */
   about: {
     src: '/images/proj/pool-terrace/entry.jpg',
-    alt: 'Stone-clad entry and lawn on a Castlecrag project',
+    alt: 'Stone-clad entry and lawn on a completed project',
   },
 };
 

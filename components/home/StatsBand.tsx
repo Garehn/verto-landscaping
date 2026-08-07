@@ -12,7 +12,7 @@ const stats = [
     value: 15,
     suffix: 'km',
     label: 'Service radius',
-    detail: 'Every suburb within 15km of the studio in Castlecrag.',
+    detail: 'Every suburb within 15km of the studio, across the Lower North Shore.',
   },
   {
     value: 2,

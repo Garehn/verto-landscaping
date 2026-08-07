@@ -46,7 +46,6 @@ export function FeaturedProjects() {
                   <span className="text-verde" data-numeric>
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <span>{project.location}</span>
                   <span data-numeric>{project.year}</span>
                 </div>
                 <h3 className="font-serif text-3xl tracking-tighter2 sm:text-4xl">

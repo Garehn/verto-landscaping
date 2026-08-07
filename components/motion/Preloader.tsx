@@ -58,7 +58,7 @@ export function Preloader() {
             Verto Landscapes
           </div>
           <div className="absolute right-6 top-6 sm:right-8 sm:top-8 meta text-stone">
-            Castlecrag, Sydney
+            Sydney
           </div>
 
           <div className="flex h-full items-center justify-center overflow-hidden">

@@ -32,15 +32,15 @@ const plexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Verto Landscapes, Landscape design & construction, Castlecrag Sydney',
+    default: 'Verto Landscapes, Landscape design & construction, Sydney',
     template: '%s · Verto Landscapes',
   },
   description:
-    'Landscape design and construction studio in Castlecrag. Paving, stonework, retaining walls, pool surrounds, decking and driveways across Sydney’s Lower North Shore.',
+    'Landscape design and construction studio on Sydney’s Lower North Shore. Paving, stonework, retaining walls, pool surrounds, decking, driveways and planting.',
   openGraph: {
     title: 'Verto Landscapes',
     description:
-      'Landscape design and construction studio in Castlecrag. Paving, stonework, retaining walls, pool surrounds, decking and driveways.',
+      'Landscape design and construction studio on Sydney’s Lower North Shore. Paving, stonework, retaining walls, pool surrounds, decking, driveways and planting.',
     type: 'website',
   },
 };

@@ -64,7 +64,7 @@ export function Footer() {
           <div>
             © {new Date().getFullYear()} {studio.name}. All rights reserved.
           </div>
-          <div className="meta-sm">Landscape design &amp; construction · Castlecrag, Sydney</div>
+          <div className="meta-sm">Landscape design &amp; construction · Sydney</div>
         </div>
       </div>
 

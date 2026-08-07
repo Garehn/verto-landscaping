@@ -22,9 +22,8 @@ export default function ServicesPage() {
         />
         <Reveal delay={0.2}>
           <p className="body-lg mt-8 max-w-2xl text-ink/70 text-pretty">
-            We build the permanent parts of a property: stone, timber, steel and
-            the ground underneath them. We do not take on planting or garden
-            maintenance.
+            We build the permanent parts of a property, including stone, timber,
+            steel, all aspects of softscaping and the ground underneath them.
           </p>
         </Reveal>
       </section>
@@ -94,9 +93,9 @@ export default function ServicesPage() {
           </Reveal>
           <Reveal delay={0.15} className="lg:col-span-6 lg:col-start-7 lg:self-center">
             <p className="text-base leading-relaxed text-ink/70 text-pretty">
-              We work a tight radius around {studio.address.suburb} on purpose. It
-              keeps our crews on site rather than in traffic, and it means the
-              project lead can be at your place on an hour&rsquo;s notice.
+              We work a tight radius on purpose. It keeps our crews on site
+              rather than in traffic, and it means the project lead can be at
+              your place on an hour&rsquo;s notice.
             </p>
             <ul className="mt-6 flex flex-wrap gap-x-3 gap-y-2">
               {studio.suburbs.map((suburb) => (

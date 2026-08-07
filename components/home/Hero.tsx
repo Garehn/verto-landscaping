@@ -80,7 +80,7 @@ export function Hero({ videoSrc }: { videoSrc?: string }) {
               animate={show ? { opacity: 1, y: 0 } : undefined}
               transition={{ duration: 0.8, delay: 0.45, ease: EASE }}
             >
-              Landscape design &amp; construction · Castlecrag
+              Landscape design &amp; construction · Sydney
             </motion.div>
 
             <WordRise

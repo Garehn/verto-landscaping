@@ -17,7 +17,8 @@ export function Statement() {
         />
         <Reveal delay={0.2} className="mt-8 flex flex-wrap items-center gap-x-10 gap-y-4">
           <p className="max-w-md text-lg leading-relaxed text-ink/70 text-pretty">
-            A Castlecrag studio working in stone, timber and steel. Six to eight projects a year, never more.
+            A tight knit team working throughout hardscape and softscape landscapes.
+            Six to eight projects a year.
           </p>
         </Reveal>
       </div>

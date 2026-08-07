@@ -13,10 +13,9 @@ export const studio = {
     postcode: '2068',
   },
   coords: '33.79°S · 151.22°E',
-  // Strictly hardscaping: design and construction. No planting, no maintenance.
   discipline: 'Landscape design & construction',
   radiusKm: 15,
-  area: 'Every suburb within 15km of Castlecrag',
+  area: 'Every suburb within 15km of the studio',
   suburbs: [
     'Castlecrag',
     'Northbridge',
@@ -42,21 +41,21 @@ export const nav = [
 
 export const home = {
   hero: {
-    eyebrow: 'Landscape design & construction · Castlecrag',
+    eyebrow: 'Landscape design & construction · Sydney',
     title: 'Built to hold its line.',
     sub: 'A design and construction studio working in stone, timber and steel across Sydney’s Lower North Shore.',
   },
   intro:
-    'We design and build the permanent parts of a property. Paving, stonework, retaining, pool surrounds, decking and driveways, set out precisely and built to stay true. The work is slow on purpose, and we take a small number of projects each year.',
+    'We design and build the permanent parts of a property. Paving, stonework, retaining, pool surrounds, decking, driveways and planting, set out precisely and built to stay true. The work is slow on purpose, and we take a small number of projects each year.',
   testimonial: {
     quote:
       'They set it out, they built it, and every line is still true three years on. Nothing has moved, nothing has cracked.',
     author: 'Private clients',
-    project: 'Castlecrag, pool terrace',
+    project: 'Pool terrace',
   },
 };
 
-// Six hardscaping capabilities. Design and construction only.
+// Six capabilities. Design and construction.
 export const coreServices = [
   {
     id: 'design',
@@ -79,14 +78,14 @@ export const coreServices = [
   {
     id: 'pools',
     title: 'Pool Surrounds & Decking',
-    body: 'Coping, surrounds, hardwood decking and frameless glass fencing, detailed to sit flush with the house.',
-    scope: ['Coping', 'Hardwood decks', 'Glass fencing'],
+    body: 'Pool tiling and remediation works, hardwood decking, and all aspects of pool fencing from glass to stainless steel.',
+    scope: ['Pool tiling', 'Hardwood decks', 'Glass & steel fencing'],
   },
   {
     id: 'driveways',
-    title: 'Driveways & Entries',
-    body: 'Cobble and stone driveways, crossovers, entry paths and thresholds built on properly prepared bases.',
-    scope: ['Driveways', 'Crossovers', 'Entry paths'],
+    title: 'Driveways & Frontages',
+    body: 'Concrete and stone driveways, crossovers, full landscape frontages, garages, carports and pergolas.',
+    scope: ['Driveways', 'Crossovers', 'Garages & carports'],
   },
   {
     id: 'sitework',
@@ -148,14 +147,14 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: 'pool-terrace',
-    title: 'Pool terrace & arrival court',
+    title: 'Pool terrace & front landscaping',
     subtitle: 'Stone to the water line',
     suburb: 'Castlecrag',
     location: 'Castlecrag, NSW',
-    year: '2025',
-    scope: ['Design', 'Pool surrounds', 'Stone paving', 'Driveway'],
+    year: '2026',
+    scope: ['Design', 'Pool surrounds', 'Cobblestone driveway', 'Planting & lighting'],
     blurb:
-      'A whole-property rebuild: an infinity edge over the harbour, a cobbled arrival court, and sandstone-edged planters front to back.',
+      'Full property rebuild designed around an infinity pool with large street appeal. From a cobblestone driveway, cladding and stone edging to plants and lighting.',
     intro:
       'From the street the house had disappeared behind an overgrown hedge and a grey wall. The brief covered the whole property, from the arrival court to the pool terrace holding the view.',
     body: [
@@ -183,60 +182,66 @@ export const projects: Project[] = [
     suburb: 'Castlecrag',
     location: 'Castlecrag, NSW',
     year: '2024',
-    scope: ['Driveway', 'Stone paving', 'Drainage', 'Stone edging'],
+    scope: ['Driveway', 'Stone paving', 'Screens & gates', 'Pool surrounds'],
     blurb:
-      'Cracked concrete and a rubble wall replaced with granite cobble, sandstone stepping stones and a drainage line that keeps the whole surface dry.',
+      'New concrete driveway topped with cobblestone, surrounding a new garage clad in aluminium battens to suit the hardwood privacy screens around the property.',
     intro:
-      'The frontage was cracked concrete against a rubble retaining wall, and the side of the house was gravel and rotting timber steps. The brief was one continuous surface from the street to the back door.',
+      'The frontage was cracked concrete against a rubble retaining wall, the garage was open to the weather, and the rear yard sat hemmed in on three sides. The brief ran the whole property: one continuous surface from the street to the back door, and boundaries built as part of the design rather than something to plant out.',
     body: [
-      'The court is Brighton cobble laid in a running course on a full concrete base, with Dijon slabs where the surface has to read flat. Setting the cobble in course rather than fan pattern keeps it calm enough to read as one plane from the street, and the change between the two stones falls on a single straight joint rather than a cut line.',
-      'A slot drain runs across the courtyard threshold and ties into a subsurface line, which is why the cobble stays dry underfoot and the joints stay clean. Getting that right is most of the work and none of the photographs.',
-      'Down the side, sandstone treads sit in white pebble on a compacted base, so the passage drains through rather than across. The sandstone outcrop at the front was retained and the new walls built to meet it.',
+      'The court is Brighton cobble laid in a running course on a full concrete base, with Dijon slabs where the surface has to read flat. Setting the cobble in course rather than fan pattern keeps it calm enough to read as one plane from the street, and the change between the two stones falls on a single straight joint rather than a cut line. The new garage is clad in aluminium battens set to the same rhythm as the hardwood screens further into the property.',
+      'Every boundary is a vertical batten screen, charcoal at the shaded end and natural hardwood where the sun reaches it. The battens run to a single set-out so the gap reads the same on all three sides, and the gates are built from the same section, hung to sit flush in the run rather than as a break in it. The lawn is held by a folded corten edge set flush with the turf, which is why it mows over cleanly and why the level change beside the pool reads as one line rather than a step.',
+      'A slot drain runs across the courtyard threshold and ties into a subsurface line, which is why the cobble stays dry underfoot and the joints stay clean. Getting that right is most of the work and none of the photographs. Down the side, sandstone pads sit in white pebble and run to hardwood entry steps, so the passage drains through rather than across, and the pool terrace is pale stone laid to a tight joint with frameless glass set back off the coping.',
     ],
     cover: '/images/proj/cobble-court/drive.jpg',
     images: [
-      { src: '/images/proj/cobble-court/courtyard.jpg', o: 'p' },
-      { src: '/images/proj/cobble-court/drive.jpg', o: 'l' },
-      { src: '/images/proj/cobble-court/cobble-planting.jpg', o: 'l' },
-      { src: '/images/proj/cobble-court/stepping.jpg', o: 'p' },
-      { src: '/images/proj/cobble-court/night.jpg', o: 'p' },
-      { src: '/images/proj/cobble-court/cobble-texture.jpg', o: 'l' },
-      { src: '/images/proj/cobble-court/joint-detail.jpg', o: 'l' },
-      { src: '/images/proj/cobble-court/boulder.jpg', o: 'l' },
-      { src: '/images/proj/cobble-court/passage.jpg', o: 'p' },
-    ],
-  },
-  {
-    id: 'screened-terrace',
-    title: 'Screened terrace & fire pit court',
-    subtitle: 'Timber, steel and stone',
-    // The suburb is the one detail this job's record does not carry. It is a
-    // Lower North Shore property inside the service radius; the suburb shown
-    // is indicative, and everything else here is off the photographs.
-    suburb: 'Northbridge',
-    location: 'Northbridge, NSW',
-    year: '2026',
-    scope: ['Design', 'Screens & gates', 'Steel edging', 'Pool surrounds'],
-    blurb:
-      'Battened screens on every boundary, a corten edge holding the lawn, and a fire pit court in cobble off the pool terrace.',
-    intro:
-      'A flat rear yard hemmed in on three sides. The brief was to make the boundaries part of the design rather than something to plant out, and to get a usable terrace at both ends of the block.',
-    body: [
-      'Every boundary is a vertical batten screen, charcoal at the shaded end and natural hardwood where the sun reaches it. The battens run to a single set-out so the gap reads the same on all three sides, and the gates are built from the same section, hung to sit flush in the run rather than as a break in it.',
-      'The lawn is held by a folded corten edge set flush with the turf, which is why it mows over cleanly and why the level change beside the pool reads as one line rather than a step. Behind it the raised planter carries a solid timber bench on a masonry plinth, and the fire pit sits in a cobble apron sized so chairs stay on stone.',
-      'The pool terrace is pale stone laid to a tight joint with frameless glass set back off the coping. Down the side, sandstone pads sit in white pebble and run to hardwood entry steps, so the passage drains through and the surface never carries water to the door.',
-    ],
-    cover: '/images/proj/garden-terrace/lawn.jpg',
-    images: [
       { src: '/images/proj/garden-terrace/gate.jpg', o: 'p' },
+      { src: '/images/proj/cobble-court/drive.jpg', o: 'l' },
       { src: '/images/proj/garden-terrace/lawn.jpg', o: 'l' },
-      { src: '/images/proj/garden-terrace/bench.jpg', o: 'l' },
       { src: '/images/proj/garden-terrace/screen-detail.jpg', o: 'p' },
       { src: '/images/proj/garden-terrace/firepit.jpg', o: 'p' },
+      { src: '/images/proj/cobble-court/cobble-texture.jpg', o: 'l' },
+      { src: '/images/proj/garden-terrace/bench.jpg', o: 'l' },
       { src: '/images/proj/garden-terrace/pool.jpg', o: 'l' },
-      { src: '/images/proj/garden-terrace/planting.jpg', o: 'l' },
-      { src: '/images/proj/garden-terrace/steps.jpg', o: 'l' },
+      { src: '/images/proj/cobble-court/courtyard.jpg', o: 'p' },
     ],
+  },
+];
+
+// Before and after, each pair shot from the same position on the same site.
+// site-a is the pool terrace; site-b is the cobblestone property, which is why
+// the batten-screen yard and the cobble drive appear under one project.
+export const beforeAfter = [
+  {
+    id: 'frontage',
+    label: 'The frontage',
+    before: '/images/proj/before/site-a-street.jpg',
+    after: '/images/proj/pool-terrace/street.jpg',
+    beforeAlt: 'The frontage before the works, the house hidden behind an overgrown hedge and a grey wall',
+    afterAlt: 'The same view after: white rendered frontage, olives in stone-edged beds and a cobbled arrival court',
+  },
+  {
+    id: 'garage',
+    label: 'The garage and drive',
+    before: '/images/proj/before/site-b-yard.jpg',
+    after: '/images/proj/cobble-court/drive.jpg',
+    beforeAlt: 'The garage before the works, an open roller door over a cracked concrete apron',
+    afterAlt: 'The same view after: a rendered garage clad in aluminium battens over a cobblestone drive',
+  },
+  {
+    id: 'yard',
+    label: 'The rear yard',
+    before: '/images/proj/before/site-b-drive.jpg',
+    after: '/images/proj/garden-terrace/lawn.jpg',
+    beforeAlt: 'The rear yard before the works, lawn running to a rubble edge and an ageing timber pool surround',
+    afterAlt: 'The same view after: lawn held by a folded steel edge, batten screens and a rebuilt pool terrace',
+  },
+  {
+    id: 'passage',
+    label: 'The side passage',
+    before: '/images/proj/before/site-b-passage.jpg',
+    after: '/images/proj/garden-terrace/steps.jpg',
+    beforeAlt: 'The side passage before the works, bare concrete under a timber frame',
+    afterAlt: 'The same view after: hardwood steps and sandstone pads set in white pebble',
   },
 ];
 
@@ -245,10 +250,10 @@ export const portfolio = projects;
 
 export const about = {
   lead:
-    'Verto Landscapes is a landscape design and construction studio in Castlecrag. We build the permanent parts of a property and nothing else.',
+    'Verto Landscapes is a landscape design and construction studio on Sydney’s Lower North Shore. We build the permanent parts of a property, and the planting that sits against them.',
   body: [
     'The studio was founded on a simple idea: that the built parts of a landscape are structures, and deserve to be documented, set out and constructed like structures.',
-    'We draw in measured plans, we build with crews we have worked with for years, and we do not take on planting or maintenance. What we build is meant to outlast us.',
+    'We draw in measured plans and we build with crews we have worked with for years, across both the hard landscape and the soft. What we build is meant to outlast us.',
   ],
   pullQuote:
     'We are not the cheapest and we are not the fastest. We are the ones whose set-out is still true in year ten.',
