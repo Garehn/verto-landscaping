@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verto — Layout Studio</title>
+<style>
+  :root{
+    --ink:#3A3F42; --verde:#648574; --paper:#F4F4F1; --cream:#E7E8E3;
+    --stone:#868A88; --line:#DCDDD8; --warn:#B4553F; --blue:#4C8DBF;
+    --chrome:#22262a; --chrome2:#2b3035; --chrome3:#363c42;
+    --txt:#e8eaec; --txt-dim:#9aa2a8; --topbar:52px; --palette:296px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font:13px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;
+       background:var(--chrome);color:var(--txt);overflow:hidden}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  .ph{width:100%;height:100%;background-size:cover;background-position:center;background-repeat:no-repeat}
+
+  .top{height:var(--topbar);display:flex;align-items:center;gap:16px;padding:0 14px;
+       background:var(--chrome2);border-bottom:1px solid #14171a;position:relative;z-index:40}
+  .brand{font-weight:600;white-space:nowrap}
+  .brand span{color:var(--txt-dim);font-weight:400}
+  .tabs{display:flex;gap:2px;overflow-x:auto;flex:1;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{padding:6px 12px;border-radius:5px;color:var(--txt-dim);white-space:nowrap;font-size:12.5px}
+  .tab:hover{background:var(--chrome3);color:var(--txt)}
+  .tab.on{background:var(--verde);color:#fff}
+  .tools{display:flex;align-items:center;gap:7px}
+  .btn{padding:6px 12px;border-radius:5px;background:var(--chrome3);font-size:12.5px;white-space:nowrap}
+  .btn:hover{background:#454c53}
+  .btn.primary{background:var(--verde)}
+  .btn.primary:hover{background:#71947f}
+  .icon{width:32px;height:30px;display:grid;place-items:center;border-radius:5px;
+        background:var(--chrome3);font-size:16px;line-height:1}
+  .icon:hover{background:#454c53}
+  .icon:disabled{opacity:.35;cursor:default;background:var(--chrome3)}
+  .zoom{display:flex;align-items:center;gap:6px;color:var(--txt-dim);font-size:12px}
+  .zoom input{width:88px;accent-color:var(--verde)}
+  .badge{background:var(--verde);color:#fff;border-radius:20px;padding:1px 8px;font-size:11px;font-weight:600}
+  .badge.zero{background:var(--chrome3);color:var(--txt-dim)}
+  .badge.warn{background:var(--warn)}
+
+  .shell{display:flex;height:calc(100% - var(--topbar))}
+  .palette{width:var(--palette);flex:none;background:var(--chrome2);
+           border-right:1px solid #14171a;display:flex;flex-direction:column}
+  .palette h2{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt-dim);
+              padding:13px 14px 7px;font-weight:600;display:flex;justify-content:space-between}
+  .search{padding:0 14px 8px}
+  .search input{width:100%;padding:7px 10px;border-radius:5px;border:1px solid #14171a;
+                background:var(--chrome);color:var(--txt);font:inherit;font-size:12.5px}
+  .search input:focus{outline:0;border-color:var(--verde)}
+  .aitoggle{padding:0 14px 10px;display:flex;align-items:center;gap:7px;font-size:12px;color:var(--txt-dim)}
+  .aitoggle input{accent-color:var(--warn)}
+  .pal-scroll{flex:1;overflow-y:auto;padding:0 10px 24px}
+  .grp{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt-dim);
+       margin:14px 4px 7px;font-weight:600}
+  .grp.danger{color:#e0907c}
+  .grp small{display:block;letter-spacing:0;text-transform:none;font-weight:400;
+             color:var(--txt-dim);margin-top:3px;font-size:10.5px;line-height:1.35}
+  .pal-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+  .chip{position:relative;border-radius:5px;overflow:hidden;cursor:grab;background:var(--chrome3);
+        aspect-ratio:4/3;border:2px solid transparent}
+  .chip:hover{border-color:var(--verde)}
+  .chip.ai{border-color:rgba(180,85,63,.5)}
+  .chip.ai .ph{filter:saturate(.55)}
+  .chip.used::after{content:'';position:absolute;top:5px;right:5px;width:7px;height:7px;
+        border-radius:50%;background:var(--verde);box-shadow:0 0 0 2px rgba(0,0,0,.45)}
+  .chip .nm{position:absolute;left:0;right:0;bottom:0;padding:8px 5px 3px;font-size:9.5px;
+        line-height:1.25;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.85));
+        pointer-events:none;word-break:break-word}
+  .chip .aitag{position:absolute;top:4px;left:4px;background:var(--warn);color:#fff;
+        font:700 8px/1 ui-monospace,monospace;padding:3px 4px;border-radius:2px}
+  .hide{display:none!important}
+
+  .canvas-wrap{flex:1;overflow:auto;background:#1a1d20;padding:32px 40px 140px}
+  .sizer{margin:0 auto;position:relative}
+  .canvas{width:1440px;transform-origin:0 0;background:var(--paper);color:var(--ink);
+          box-shadow:0 0 0 1px #000,0 18px 60px rgba(0,0,0,.55)}
+  .page{display:none} .page.on{display:block}
+  .sec-label{font:600 10px/1 ui-monospace,monospace;letter-spacing:.22em;text-transform:uppercase;
+             color:var(--stone);padding:38px 4.4% 14px;display:flex;align-items:center;gap:14px}
+  .sec-label::after{content:'';flex:1;height:1px;background:var(--line)}
+
+  .slot{position:relative;background:var(--cream);overflow:hidden;cursor:grab;touch-action:none}
+  .slot.moving{cursor:grabbing}
+  .slot::after{content:'';position:absolute;inset:0;border:2px solid transparent;
+               transition:border-color .1s;pointer-events:none;z-index:5}
+  .slot:hover::after{border-color:rgba(100,133,116,.75)}
+  .slot.over::after{border-color:var(--verde);border-width:3px}
+  .slot.over{filter:brightness(1.06)}
+  .slot.changed .tag{display:block}
+  .slot.hasai::after{border-color:var(--warn);border-width:3px}
+  .slot.hasai .tag{background:var(--warn);display:block}
+  .tag{display:none;position:absolute;top:7px;left:7px;z-index:6;background:var(--verde);color:#fff;
+       font:600 9px/1 ui-monospace,monospace;letter-spacing:.1em;padding:4px 6px;border-radius:3px}
+  .slot .cap{position:absolute;left:0;right:0;bottom:0;z-index:6;padding:16px 8px 5px;
+       font:9px/1.2 ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;color:#fff;
+       background:linear-gradient(transparent,rgba(0,0,0,.7));opacity:0;transition:opacity .12s;pointer-events:none}
+  .slot:hover .cap{opacity:1}
+
+  /* Selection overlay. It sits in the unscaled sizer, outside the frame's
+     overflow:hidden and outside the canvas transform, so handles are never
+     clipped and stay the same size at any zoom. */
+  .selbox{position:absolute;z-index:30;pointer-events:none;display:none;
+          outline:2px solid var(--blue);outline-offset:0}
+  .selbox.on{display:block}
+  .hnd{position:absolute;pointer-events:auto;background:#fff;border:1.5px solid var(--blue);
+       width:10px;height:10px;border-radius:1px}
+  .hnd[data-h="nw"]{left:-6px;top:-6px;cursor:nwse-resize}
+  .hnd[data-h="ne"]{right:-6px;top:-6px;cursor:nesw-resize}
+  .hnd[data-h="sw"]{left:-6px;bottom:-6px;cursor:nesw-resize}
+  .hnd[data-h="se"]{right:-6px;bottom:-6px;cursor:nwse-resize}
+  .hnd[data-h="n"]{left:50%;top:-6px;margin-left:-5px;cursor:ns-resize}
+  .hnd[data-h="s"]{left:50%;bottom:-6px;margin-left:-5px;cursor:ns-resize}
+  .hnd[data-h="w"]{left:-6px;top:50%;margin-top:-5px;cursor:ew-resize}
+  .hnd[data-h="e"]{right:-6px;top:50%;margin-top:-5px;cursor:ew-resize}
+  .dims{position:absolute;left:50%;transform:translateX(-50%);bottom:-26px;
+        background:var(--blue);color:#fff;font:600 10px/1 ui-monospace,monospace;padding:4px 7px;
+        border-radius:3px;white-space:nowrap;pointer-events:none}
+
+  .btn.save{background:var(--verde);font-weight:600;padding:7px 16px}
+  .btn.save:hover{background:#71947f}
+  .ver{font:600 11px/1 ui-monospace,monospace;color:var(--txt-dim);
+       background:var(--chrome3);border-radius:4px;padding:5px 8px}
+  .impbtn{margin:0 14px 10px;display:block;width:calc(100% - 28px);text-align:center;
+          padding:7px 0;border-radius:5px;background:var(--chrome3);font-size:12px}
+  .impbtn:hover{background:#454c53}
+  .scrim{position:fixed;inset:0;z-index:70;background:rgba(10,12,14,.72);
+         display:none;align-items:center;justify-content:center;padding:24px}
+  .scrim.on{display:flex}
+  .modal{width:min(620px,100%);background:var(--chrome2);border:1px solid #14171a;border-radius:10px;
+         box-shadow:0 24px 70px rgba(0,0,0,.6);padding:22px 24px}
+  .modal h3{font-size:16px;margin-bottom:6px}
+  .modal p{color:var(--txt-dim);font-size:12.5px;line-height:1.6;margin-bottom:14px}
+  .linkrow{display:flex;gap:8px;margin-bottom:12px}
+  .linkrow input{flex:1;background:var(--chrome);border:1px solid #14171a;border-radius:5px;
+                 padding:9px 11px;color:var(--txt);font:11px/1.3 ui-monospace,monospace}
+  .linkrow input:focus{outline:0;border-color:var(--verde)}
+  .modal .row{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+  .note{background:rgba(180,85,63,.16);border:1px solid rgba(180,85,63,.5);border-radius:6px;
+        padding:10px 12px;font-size:12px;line-height:1.55;color:#f0c4b8;margin-bottom:12px;display:none}
+  .note.on{display:block}
+  .ph.missing{background:repeating-linear-gradient(45deg,#ddd,#ddd 8px,#ccc 8px,#ccc 16px)}
+  .slot .miss{position:absolute;inset:0;z-index:7;display:none;align-items:center;justify-content:center;
+       text-align:center;padding:12px;font:10px/1.4 ui-monospace,monospace;color:#5c5c5c}
+  .slot.ismissing .miss{display:flex}
+
+  .deco{position:absolute;pointer-events:none}
+  .rows{padding:0 4.4%;display:flex;flex-direction:column;gap:56px}
+  .row{display:grid;grid-template-columns:2fr 1fr;gap:32px;align-items:end}
+  .row:nth-child(even){grid-template-columns:1fr 2fr}
+  .row:nth-child(even) .slot{order:2}
+  .ghost{height:100%;min-height:90px;border-left:2px solid var(--line);padding-left:18px;
+         display:flex;flex-direction:column;justify-content:flex-end;gap:9px}
+  .gline{height:9px;background:var(--line);border-radius:2px}
+  .gline.s{width:38%} .gline.m{width:68%} .gline.l{width:88%}
+  .svcs{padding:0 4.4%;display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+  .svc .lbl{margin-top:12px;font:600 11px/1 ui-monospace,monospace;letter-spacing:.16em;
+            text-transform:uppercase;color:var(--stone)}
+  .bas{padding:0 4.4%;display:grid;grid-template-columns:1fr 1fr;gap:34px 26px}
+  .ba .pair{position:relative;display:grid;grid-template-columns:1fr 1fr;aspect-ratio:16/10}
+  .ba .pair .slot{height:100%}
+  .ba .knob{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:40px;height:40px;
+            border-radius:50%;background:#fff;z-index:4;box-shadow:0 3px 14px rgba(0,0,0,.3);pointer-events:none}
+  .ba .side{position:absolute;top:11px;z-index:3;background:rgba(244,244,241,.95);color:var(--ink);
+            font:9px/1 ui-monospace,monospace;letter-spacing:.18em;padding:5px 8px;pointer-events:none}
+  .ba .side.b{left:11px} .ba .side.a{right:11px}
+  .ba .cp{margin-top:11px;font:9px/1 ui-monospace,monospace;letter-spacing:.18em;
+          text-transform:uppercase;color:var(--stone)}
+  .g24{display:grid;grid-template-columns:repeat(24,minmax(0,1fr));gap:1.1%;align-items:start;padding-top:12px}
+
+  .inspector{position:fixed;right:16px;bottom:16px;z-index:50;width:340px;background:var(--chrome2);
+             border:1px solid #14171a;border-radius:8px;box-shadow:0 14px 44px rgba(0,0,0,.55);
+             padding:13px 14px;display:none}
+  .inspector.on{display:block}
+  .inspector h3{font-size:12px;margin-bottom:9px;display:flex;justify-content:space-between;gap:8px}
+  .inspector .k{color:var(--txt-dim);font-size:11px;margin-top:8px}
+  .inspector .v{font:11px/1.4 ui-monospace,monospace;word-break:break-all}
+  .inspector .x{color:var(--txt-dim);font-size:16px;line-height:1}
+  .xy{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+  .xy label{display:flex;align-items:center;gap:5px;background:var(--chrome);border:1px solid #14171a;
+            border-radius:4px;padding:4px 7px;font:10px/1 ui-monospace,monospace;color:var(--txt-dim)}
+  .xy input{width:100%;background:none;border:0;color:var(--txt);font:11px/1 ui-monospace,monospace}
+  .xy input:focus{outline:0}
+  .zrow{display:flex;gap:6px;margin-top:9px}
+  .zrow .btn{flex:1;text-align:center;font-size:11.5px;padding:5px 0}
+  .hint{position:fixed;left:calc(var(--palette) + 22px);bottom:18px;z-index:45;color:var(--txt-dim);
+        font-size:11.5px;background:rgba(34,38,42,.94);padding:9px 13px;border-radius:6px;
+        border:1px solid #14171a;max-width:560px;line-height:1.6}
+  .hint b{color:var(--txt);font-weight:600}
+  .toast{position:fixed;left:50%;top:66px;transform:translateX(-50%);z-index:60;background:var(--verde);
+         color:#fff;padding:9px 17px;border-radius:6px;font-size:12.5px;opacity:0;transition:opacity .2s;
+         pointer-events:none;font-weight:500;max-width:70vw;text-align:center}
+  .toast.on{opacity:1}
+  .toast.warn{background:var(--warn)}
+
+  /* every photograph, embedded once */
+  .f-before-site-a-front{background-image:url(/studio/photos/before__site-a-front.jpg)}
+.t-before-site-a-front{background-image:url(/studio/thumbs/before__site-a-front.jpg)}
+.f-before-site-a-street{background-image:url(/studio/photos/before__site-a-street.jpg)}
+.t-before-site-a-street{background-image:url(/studio/thumbs/before__site-a-street.jpg)}
+.f-before-site-b-drive{background-image:url(/studio/photos/before__site-b-drive.jpg)}
+.t-before-site-b-drive{background-image:url(/studio/thumbs/before__site-b-drive.jpg)}
+.f-before-site-b-passage{background-image:url(/studio/photos/before__site-b-passage.jpg)}
+.t-before-site-b-passage{background-image:url(/studio/thumbs/before__site-b-passage.jpg)}
+.f-before-site-b-yard{background-image:url(/studio/photos/before__site-b-yard.jpg)}
+.t-before-site-b-yard{background-image:url(/studio/thumbs/before__site-b-yard.jpg)}
+.f-cobble-court-boulder{background-image:url(/studio/photos/cobble-court__boulder.jpg)}
+.t-cobble-court-boulder{background-image:url(/studio/thumbs/cobble-court__boulder.jpg)}
+.f-cobble-court-cobble-planting{background-image:url(/studio/photos/cobble-court__cobble-planting.jpg)}
+.t-cobble-court-cobble-planting{background-image:url(/studio/thumbs/cobble-court__cobble-planting.jpg)}
+.f-cobble-court-cobble-texture{background-image:url(/studio/photos/cobble-court__cobble-texture.jpg)}
+.t-cobble-court-cobble-texture{background-image:url(/studio/thumbs/cobble-court__cobble-texture.jpg)}
+.f-cobble-court-courtyard{background-image:url(/studio/photos/cobble-court__courtyard.jpg)}
+.t-cobble-court-courtyard{background-image:url(/studio/thumbs/cobble-court__courtyard.jpg)}
+.f-cobble-court-drive{background-image:url(/studio/photos/cobble-court__drive.jpg)}
+.t-cobble-court-drive{background-image:url(/studio/thumbs/cobble-court__drive.jpg)}
+.f-cobble-court-joint-detail{background-image:url(/studio/photos/cobble-court__joint-detail.jpg)}
+.t-cobble-court-joint-detail{background-image:url(/studio/thumbs/cobble-court__joint-detail.jpg)}
+.f-cobble-court-night{background-image:url(/studio/photos/cobble-court__night.jpg)}
+.t-cobble-court-night{background-image:url(/studio/thumbs/cobble-court__night.jpg)}
+.f-cobble-court-passage{background-image:url(/studio/photos/cobble-court__passage.jpg)}
+.t-cobble-court-passage{background-image:url(/studio/thumbs/cobble-court__passage.jpg)}
+.f-cobble-court-stepping{background-image:url(/studio/photos/cobble-court__stepping.jpg)}
+.t-cobble-court-stepping{background-image:url(/studio/thumbs/cobble-court__stepping.jpg)}
+.f-garden-terrace-bench{background-image:url(/studio/photos/garden-terrace__bench.jpg)}
+.t-garden-terrace-bench{background-image:url(/studio/thumbs/garden-terrace__bench.jpg)}
+.f-garden-terrace-firepit{background-image:url(/studio/photos/garden-terrace__firepit.jpg)}
+.t-garden-terrace-firepit{background-image:url(/studio/thumbs/garden-terrace__firepit.jpg)}
+.f-garden-terrace-gate{background-image:url(/studio/photos/garden-terrace__gate.jpg)}
+.t-garden-terrace-gate{background-image:url(/studio/thumbs/garden-terrace__gate.jpg)}
+.f-garden-terrace-lawn{background-image:url(/studio/photos/garden-terrace__lawn.jpg)}
+.t-garden-terrace-lawn{background-image:url(/studio/thumbs/garden-terrace__lawn.jpg)}
+.f-garden-terrace-planting{background-image:url(/studio/photos/garden-terrace__planting.jpg)}
+.t-garden-terrace-planting{background-image:url(/studio/thumbs/garden-terrace__planting.jpg)}
+.f-garden-terrace-pool{background-image:url(/studio/photos/garden-terrace__pool.jpg)}
+.t-garden-terrace-pool{background-image:url(/studio/thumbs/garden-terrace__pool.jpg)}
+.f-garden-terrace-screen-detail{background-image:url(/studio/photos/garden-terrace__screen-detail.jpg)}
+.t-garden-terrace-screen-detail{background-image:url(/studio/thumbs/garden-terrace__screen-detail.jpg)}
+.f-garden-terrace-steps{background-image:url(/studio/photos/garden-terrace__steps.jpg)}
+.t-garden-terrace-steps{background-image:url(/studio/thumbs/garden-terrace__steps.jpg)}
+.f-pool-terrace-aerial{background-image:url(/studio/photos/pool-terrace__aerial.jpg)}
+.t-pool-terrace-aerial{background-image:url(/studio/thumbs/pool-terrace__aerial.jpg)}
+.f-pool-terrace-boulder{background-image:url(/studio/photos/pool-terrace__boulder.jpg)}
+.t-pool-terrace-boulder{background-image:url(/studio/thumbs/pool-terrace__boulder.jpg)}
+.f-pool-terrace-drive{background-image:url(/studio/photos/pool-terrace__drive.jpg)}
+.t-pool-terrace-drive{background-image:url(/studio/thumbs/pool-terrace__drive.jpg)}
+.f-pool-terrace-entry{background-image:url(/studio/photos/pool-terrace__entry.jpg)}
+.t-pool-terrace-entry{background-image:url(/studio/thumbs/pool-terrace__entry.jpg)}
+.f-pool-terrace-garage{background-image:url(/studio/photos/pool-terrace__garage.jpg)}
+.t-pool-terrace-garage{background-image:url(/studio/thumbs/pool-terrace__garage.jpg)}
+.f-pool-terrace-planting{background-image:url(/studio/photos/pool-terrace__planting.jpg)}
+.t-pool-terrace-planting{background-image:url(/studio/thumbs/pool-terrace__planting.jpg)}
+.f-pool-terrace-pool-detail{background-image:url(/studio/photos/pool-terrace__pool-detail.jpg)}
+.t-pool-terrace-pool-detail{background-image:url(/studio/thumbs/pool-terrace__pool-detail.jpg)}
+.f-pool-terrace-pool-harbour{background-image:url(/studio/photos/pool-terrace__pool-harbour.jpg)}
+.t-pool-terrace-pool-harbour{background-image:url(/studio/thumbs/pool-terrace__pool-harbour.jpg)}
+.f-pool-terrace-pool{background-image:url(/studio/photos/pool-terrace__pool.jpg)}
+.t-pool-terrace-pool{background-image:url(/studio/thumbs/pool-terrace__pool.jpg)}
+.f-pool-terrace-stone-detail{background-image:url(/studio/photos/pool-terrace__stone-detail.jpg)}
+.t-pool-terrace-stone-detail{background-image:url(/studio/thumbs/pool-terrace__stone-detail.jpg)}
+.f-pool-terrace-street{background-image:url(/studio/photos/pool-terrace__street.jpg)}
+.t-pool-terrace-street{background-image:url(/studio/thumbs/pool-terrace__street.jpg)}
+.f-archive-deck{background-image:url(/studio/photos/archive__deck.jpg)}
+.t-archive-deck{background-image:url(/studio/thumbs/archive__deck.jpg)}
+.f-archive-driveway{background-image:url(/studio/photos/archive__driveway.jpg)}
+.t-archive-driveway{background-image:url(/studio/thumbs/archive__driveway.jpg)}
+.f-archive-facade{background-image:url(/studio/photos/archive__facade.jpg)}
+.t-archive-facade{background-image:url(/studio/thumbs/archive__facade.jpg)}
+.f-archive-passage{background-image:url(/studio/photos/archive__passage.jpg)}
+.t-archive-passage{background-image:url(/studio/thumbs/archive__passage.jpg)}
+.f-archive-planting{background-image:url(/studio/photos/archive__planting.jpg)}
+.t-archive-planting{background-image:url(/studio/thumbs/archive__planting.jpg)}
+.f-archive-pool{background-image:url(/studio/photos/archive__pool.jpg)}
+.t-archive-pool{background-image:url(/studio/thumbs/archive__pool.jpg)}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="brand">Verto <span>Layout Studio</span></div>
+  <div class="tabs" id="tabs"></div>
+  <div class="tools">
+    <button class="icon" id="undo" title="Undo (Cmd/Ctrl+Z)" disabled>&#8630;</button>
+    <button class="icon" id="redo" title="Redo (Cmd/Ctrl+Shift+Z)" disabled>&#8631;</button>
+    <span class="badge zero" id="count">0 changes</span>
+    <div class="zoom"><input type="range" id="zoom" min="25" max="150" value="70"><span id="zoomv">70%</span></div>
+    <span class="ver" id="ver">v1</span>
+    <button class="btn" id="reset">Reset</button>
+    <button class="btn save" id="savedesign">Save this design</button>
+  </div>
+</div>
+<div class="shell">
+  <aside class="palette">
+    <h2><span>Photographs</span><span id="palcount"></span></h2>
+    <div class="search"><input id="q" placeholder="Filter by name…" autocomplete="off"></div>
+    <div class="aitoggle"><input type="checkbox" id="showai" checked><label for="showai">Show retired AI images</label></div>
+    <button class="impbtn" id="importbtn">+ Import your own photos</button>
+    <input type="file" id="importfile" accept="image/*" multiple hidden>
+    <div class="pal-scroll" id="pal"><div class="grp" data-g="pool-terrace">Project 01 · pool terrace · 11</div><div class="pal-grid" data-g="pool-terrace"><div class="chip used" draggable="true" data-k="pool-terrace/aerial" title="pool-terrace/aerial  (2200×1465)"><div class="ph t-pool-terrace-aerial"></div><div class="nm">aerial</div></div><div class="chip used" draggable="true" data-k="pool-terrace/boulder" title="pool-terrace/boulder  (1466×2200)"><div class="ph t-pool-terrace-boulder"></div><div class="nm">boulder</div></div><div class="chip used" draggable="true" data-k="pool-terrace/drive" title="pool-terrace/drive  (2200×1466)"><div class="ph t-pool-terrace-drive"></div><div class="nm">drive</div></div><div class="chip used" draggable="true" data-k="pool-terrace/entry" title="pool-terrace/entry  (2200×1466)"><div class="ph t-pool-terrace-entry"></div><div class="nm">entry</div></div><div class="chip used" draggable="true" data-k="pool-terrace/garage" title="pool-terrace/garage  (1466×2200)"><div class="ph t-pool-terrace-garage"></div><div class="nm">garage</div></div><div class="chip used" draggable="true" data-k="pool-terrace/planting" title="pool-terrace/planting  (1466×2200)"><div class="ph t-pool-terrace-planting"></div><div class="nm">planting</div></div><div class="chip used" draggable="true" data-k="pool-terrace/pool-detail" title="pool-terrace/pool-detail  (2200×1466)"><div class="ph t-pool-terrace-pool-detail"></div><div class="nm">pool-detail</div></div><div class="chip used" draggable="true" data-k="pool-terrace/pool-harbour" title="pool-terrace/pool-harbour  (2400×1600)"><div class="ph t-pool-terrace-pool-harbour"></div><div class="nm">pool-harbour</div></div><div class="chip used" draggable="true" data-k="pool-terrace/pool" title="pool-terrace/pool  (2200×1466)"><div class="ph t-pool-terrace-pool"></div><div class="nm">pool</div></div><div class="chip used" draggable="true" data-k="pool-terrace/stone-detail" title="pool-terrace/stone-detail  (2200×1466)"><div class="ph t-pool-terrace-stone-detail"></div><div class="nm">stone-detail</div></div><div class="chip used" draggable="true" data-k="pool-terrace/street" title="pool-terrace/street  (2200×1466)"><div class="ph t-pool-terrace-street"></div><div class="nm">street</div></div></div><div class="grp" data-g="cobble-court">Project 02 · cobblestone drive · 9</div><div class="pal-grid" data-g="cobble-court"><div class="chip" draggable="true" data-k="cobble-court/boulder" title="cobble-court/boulder  (2200×1650)"><div class="ph t-cobble-court-boulder"></div><div class="nm">boulder</div></div><div class="chip" draggable="true" data-k="cobble-court/cobble-planting" title="cobble-court/cobble-planting  (2200×1466)"><div class="ph t-cobble-court-cobble-planting"></div><div class="nm">cobble-planting</div></div><div class="chip used" draggable="true" data-k="cobble-court/cobble-texture" title="cobble-court/cobble-texture  (2200×1466)"><div class="ph t-cobble-court-cobble-texture"></div><div class="nm">cobble-texture</div></div><div class="chip used" draggable="true" data-k="cobble-court/courtyard" title="cobble-court/courtyard  (1466×2200)"><div class="ph t-cobble-court-courtyard"></div><div class="nm">courtyard</div></div><div class="chip used" draggable="true" data-k="cobble-court/drive" title="cobble-court/drive  (2200×2200)"><div class="ph t-cobble-court-drive"></div><div class="nm">drive</div></div><div class="chip" draggable="true" data-k="cobble-court/joint-detail" title="cobble-court/joint-detail  (2200×1466)"><div class="ph t-cobble-court-joint-detail"></div><div class="nm">joint-detail</div></div><div class="chip" draggable="true" data-k="cobble-court/night" title="cobble-court/night  (1650×2200)"><div class="ph t-cobble-court-night"></div><div class="nm">night</div></div><div class="chip" draggable="true" data-k="cobble-court/passage" title="cobble-court/passage  (1466×2200)"><div class="ph t-cobble-court-passage"></div><div class="nm">passage</div></div><div class="chip" draggable="true" data-k="cobble-court/stepping" title="cobble-court/stepping  (1235×2200)"><div class="ph t-cobble-court-stepping"></div><div class="nm">stepping</div></div></div><div class="grp" data-g="garden-terrace">Project 02 · screened terrace · 8</div><div class="pal-grid" data-g="garden-terrace"><div class="chip used" draggable="true" data-k="garden-terrace/bench" title="garden-terrace/bench  (2200×1466)"><div class="ph t-garden-terrace-bench"></div><div class="nm">bench</div></div><div class="chip used" draggable="true" data-k="garden-terrace/firepit" title="garden-terrace/firepit  (1466×2200)"><div class="ph t-garden-terrace-firepit"></div><div class="nm">firepit</div></div><div class="chip used" draggable="true" data-k="garden-terrace/gate" title="garden-terrace/gate  (1466×2200)"><div class="ph t-garden-terrace-gate"></div><div class="nm">gate</div></div><div class="chip used" draggable="true" data-k="garden-terrace/lawn" title="garden-terrace/lawn  (2200×1466)"><div class="ph t-garden-terrace-lawn"></div><div class="nm">lawn</div></div><div class="chip" draggable="true" data-k="garden-terrace/planting" title="garden-terrace/planting  (2200×1466)"><div class="ph t-garden-terrace-planting"></div><div class="nm">planting</div></div><div class="chip used" draggable="true" data-k="garden-terrace/pool" title="garden-terrace/pool  (2200×1466)"><div class="ph t-garden-terrace-pool"></div><div class="nm">pool</div></div><div class="chip used" draggable="true" data-k="garden-terrace/screen-detail" title="garden-terrace/screen-detail  (1466×2200)"><div class="ph t-garden-terrace-screen-detail"></div><div class="nm">screen-detail</div></div><div class="chip used" draggable="true" data-k="garden-terrace/steps" title="garden-terrace/steps  (2200×1466)"><div class="ph t-garden-terrace-steps"></div><div class="nm">steps</div></div></div><div class="grp" data-g="before">Before shots · 5</div><div class="pal-grid" data-g="before"><div class="chip" draggable="true" data-k="before/site-a-front" title="before/site-a-front  (2200×1650)"><div class="ph t-before-site-a-front"></div><div class="nm">site-a-front</div></div><div class="chip used" draggable="true" data-k="before/site-a-street" title="before/site-a-street  (2200×1650)"><div class="ph t-before-site-a-street"></div><div class="nm">site-a-street</div></div><div class="chip used" draggable="true" data-k="before/site-b-drive" title="before/site-b-drive  (2200×1650)"><div class="ph t-before-site-b-drive"></div><div class="nm">site-b-drive</div></div><div class="chip used" draggable="true" data-k="before/site-b-passage" title="before/site-b-passage  (2200×1650)"><div class="ph t-before-site-b-passage"></div><div class="nm">site-b-passage</div></div><div class="chip used" draggable="true" data-k="before/site-b-yard" title="before/site-b-yard  (2200×1650)"><div class="ph t-before-site-b-yard"></div><div class="nm">site-b-yard</div></div></div><div class="grp" data-g="archive">Archive · early real photos · 6</div><div class="pal-grid" data-g="archive"><div class="chip" draggable="true" data-k="archive/deck" title="archive/deck  (2000×1500)"><div class="ph t-archive-deck"></div><div class="nm">deck</div></div><div class="chip" draggable="true" data-k="archive/driveway" title="archive/driveway  (1500×2000)"><div class="ph t-archive-driveway"></div><div class="nm">driveway</div></div><div class="chip" draggable="true" data-k="archive/facade" title="archive/facade  (1500×1125)"><div class="ph t-archive-facade"></div><div class="nm">facade</div></div><div class="chip" draggable="true" data-k="archive/passage" title="archive/passage  (1500×2000)"><div class="ph t-archive-passage"></div><div class="nm">passage</div></div><div class="chip" draggable="true" data-k="archive/planting" title="archive/planting  (1500×2000)"><div class="ph t-archive-planting"></div><div class="nm">planting</div></div><div class="chip" draggable="true" data-k="archive/pool" title="archive/pool  (1500×2000)"><div class="ph t-archive-pool"></div><div class="nm">pool</div></div></div></div>
+  </aside>
+  <main class="canvas-wrap" id="wrap">
+    <div class="sizer" id="sizer"><div class="canvas" id="canvas"><div class="page on" data-page="home"><div class="sec-label">Hero</div><div class="slot" data-id="home.hero" draggable="true" style="aspect-ratio:16/9;"><div class="tag">CHANGED</div><div class="ph f-pool-terrace-pool-harbour" data-k="pool-terrace/pool-harbour"></div><div class="cap">pool-terrace/pool-harbour</div></div><div class="sec-label">Selected work</div><div class="rows"><div class="row"><div class="slot" data-id="home.featured.0" draggable="true" style="aspect-ratio:16/10;"><div class="tag">CHANGED</div><div class="ph f-pool-terrace-pool" data-k="pool-terrace/pool"></div><div class="cap">pool-terrace/pool</div></div><div class="ghost"><div class="gline s"></div><div class="gline l"></div><div class="gline m"></div></div></div><div class="row"><div class="slot" data-id="home.featured.1" draggable="true" style="aspect-ratio:16/10;"><div class="tag">CHANGED</div><div class="ph f-cobble-court-drive" data-k="cobble-court/drive"></div><div class="cap">cobble-court/drive</div></div><div class="ghost"><div class="gline s"></div><div class="gline l"></div><div class="gline m"></div></div></div></div><div class="sec-label">What we do</div><div class="svcs"><div class="svc"><div class="slot" data-id="home.service.design" draggable="true" style="aspect-ratio:4/5;"><div class="tag">CHANGED</div><div class="ph f-pool-terrace-aerial" data-k="pool-terrace/aerial"></div><div class="cap">pool-terrace/aerial</div></div><div class="lbl">Design</div></div><div class="svc"><div class="slot" data-id="home.service.paving" draggable="true" style="aspect-ratio:4/5;"><div class="tag">CHANGED</div><div class="ph f-cobble-court-cobble-texture" data-k="cobble-court/cobble-texture"></div><div class="cap">cobble-court/cobble-texture</div></div><div class="lbl">Paving & stone</div></div><div class="svc"><div class="slot" data-id="home.service.retaining" draggable="true" style="aspect-ratio:4/5;"><div class="tag">CHANGED</div><div class="ph f-garden-terrace-bench" data-k="garden-terrace/bench"></div><div class="cap">garden-terrace/bench</div></div><div class="lbl">Retaining</div></div><div class="svc"><div class="slot" data-id="home.service.pools" draggable="true" style="aspect-ratio:4/5;"><div class="tag">CHANGED</div><div class="ph f-pool-terrace-pool-detail" data-k="pool-terrace/pool-detail"></div><div class="cap">pool-terrace/pool-detail</div></div><div class="lbl">Pools & decking</div></div></div><div class="sec-label">Before · After</div><div class="bas"><div class="ba"><div class="pair"><div class="slot" data-id="home.ba.frontage.before" draggable="true" style=""><div class="tag">CHANGED</div><div class="ph f-before-site-a-street" data-k="before/site-a-street"></div><div class="cap">before/site-a-street</div></div><div class="slot" data-id="home.ba.frontage.after" draggable="true" style=""><div class="tag">CHANGED</div><div class="ph f-pool-terrace-street" data-k="pool-terrace/street"></div><div class="cap">pool-terrace/street</div></div><div class="side b">BEFORE</div><div class="side a">AFTER</div><div class="knob"></div></div><div class="cp">The frontage</div></div><div class="ba"><div class="pair"><div class="slot" data-id="home.ba.garage.before" draggable="true" style=""><div class="tag">CHANGED</div><div class="ph f-before-site-b-yard" data-k="before/site-b-yard"></div><div class="cap">before/site-b-yard</div></div><div class="slot" data-id="home.ba.garage.after" draggable="true" style=""><div class="tag">CHANGED</div><div class="ph f-cobble-court-drive" data-k="cobble-court/drive"></div><div class="cap">cobble-court/drive</div></div><div class="side b">BEFORE</div><div class="side a">AFTER</div><div class="knob"></div></div><div class="cp">The garage and drive</div></div><div class="ba"><div class="pair"><div class="slot" data-id="home.ba.yard.before" draggable="true" style=""><div class="tag">CHANGED</div><div class="ph f-before-site-b-drive" data-k="before/site-b-drive"></div><div class="cap">before/site-b-drive</div></div><div class="slot" data-id="home.ba.yard.after" draggable="true" style=""><div class="tag">CHANGED</div><div class="ph f-garden-terrace-lawn" data-k="garden-terrace/lawn"></div><div class="cap">garden-terrace/lawn</div></div><div class="side b">BEFORE</div><div class="side a">AFTER</div><div class="knob"></div></div><div class="cp">The rear yard</div></div><div class="ba"><div class="pair"><div class="slot" data-id="home.ba.passage.before" draggable="true" style=""><div class="tag">CHANGED</div><div class="ph f-before-site-b-passage" data-k="before/site-b-passage"></div><div class="cap">before/site-b-passage</div></div><div class="slot" data-id="home.ba.passage.after" draggable="true" style=""><div class="tag">CHANGED</div><div class="ph f-garden-terrace-steps" data-k="garden-terrace/steps"></div><div class="cap">garden-terrace/steps</div></div><div class="side b">BEFORE</div><div class="side a">AFTER</div><div class="knob"></div></div><div class="cp">The side passage</div></div></div></div><div class="page" data-page="projects"><div class="sec-label">Scattered index</div><div class="g24"><div class="slot" data-id="index.tile.0" draggable="true" style="aspect-ratio:4/3;grid-column:2 / span 12;"><div class="tag">CHANGED</div><div class="ph f-pool-terrace-pool" data-k="pool-terrace/pool"></div><div class="cap">pool-terrace/pool</div></div><div class="slot" data-id="index.tile.1" draggable="true" style="aspect-ratio:3/4;grid-column:15 / span 9;margin-top:30%;"><div class="tag">CHANGED</div><div class="ph f-cobble-court-drive" data-k="cobble-court/drive"></div><div class="cap">cobble-court/drive</div></div></div></div><div class="page" data-page="project-pool-terrace"><div class="sec-label">Collage</div><div class="g24"><div class="slot" data-id="project.pool-terrace.img.0" draggable="true" style="aspect-ratio:2/3;grid-column:1 / span 6;"><div class="tag">CHANGED</div><div class="ph f-pool-terrace-garage" data-k="pool-terrace/garage"></div><div class="cap">pool-terrace/garage</div></div><div class="slot" data-id="project.pool-terrace.img.1" draggable="true" style="aspect-ratio:3/2;grid-column:8 / span 17;margin-top:6%;"><div class="tag">CHANGED</div><div class="ph f-pool-terrace-pool" data-k="pool-terrace/pool"></div><div class="cap">pool-terrace/pool</div></div><div class="slot" data-id="project.pool-terrace.img.2" draggable="true" style="aspect-ratio:3/2;grid-column:2 / span 9;"><div class="tag">CHANGED</div><div class="ph f-pool-terrace-entry" data-k="pool-terrace/entry"></div><div class="cap">pool-terrace/entry</div></div><div class="slot" data-id="project.pool-terrace.img.3" draggable="true" style="aspect-ratio:2/3;grid-column:11 / span 6;"><div class="tag">CHANGED</div><div class="ph f-pool-terrace-planting" data-k="pool-terrace/planting"></div><div class="cap">pool-terrace/planting</div></div><div class="slot" data-id="project.pool-terrace.img.4" draggable="true" style="aspect-ratio:3/2;grid-column:18 / span 6;margin-top:7%;"><div class="tag">CHANGED</div><div class="ph f-pool-terrace-pool-detail" data-k="pool-terrace/pool-detail"></div><div class="cap">pool-terrace/pool-detail</div></div><div class="slot" data-id="project.pool-terrace.img.5" draggable="true" style="aspect-ratio:16/9;grid-column:2 / span 22;"><div class="tag">CHANGED</div><div class="ph f-pool-terrace-aerial" data-k="pool-terrace/aerial"></div><div class="cap">pool-terrace/aerial</div></div><div class="slot" data-id="project.pool-terrace.img.6" draggable="true" style="aspect-ratio:3/2;grid-column:2 / span 7;"><div class="tag">CHANGED</div><div class="ph f-pool-terrace-stone-detail" data-k="pool-terrace/stone-detail"></div><div class="cap">pool-terrace/stone-detail</div></div><div class="slot" data-id="project.pool-terrace.img.7" draggable="true" style="aspect-ratio:3/2;grid-column:1 / span 18;"><div class="tag">CHANGED</div><div class="ph f-pool-terrace-drive" data-k="pool-terrace/drive"></div><div class="cap">pool-terrace/drive</div></div><div class="slot" data-id="project.pool-terrace.img.8" draggable="true" style="aspect-ratio:2/3;grid-column:20 / span 5;margin-top:5%;"><div class="tag">CHANGED</div><div class="ph f-pool-terrace-boulder" data-k="pool-terrace/boulder"></div><div class="cap">pool-terrace/boulder</div></div></div></div><div class="page" data-page="project-cobblestone-drive"><div class="sec-label">Collage</div><div class="g24"><div class="slot" data-id="project.cobblestone-drive.img.0" draggable="true" style="aspect-ratio:2/3;grid-column:1 / span 6;"><div class="tag">CHANGED</div><div class="ph f-garden-terrace-gate" data-k="garden-terrace/gate"></div><div class="cap">garden-terrace/gate</div></div><div class="slot" data-id="project.cobblestone-drive.img.1" draggable="true" style="aspect-ratio:3/2;grid-column:8 / span 17;margin-top:6%;"><div class="tag">CHANGED</div><div class="ph f-cobble-court-drive" data-k="cobble-court/drive"></div><div class="cap">cobble-court/drive</div></div><div class="slot" data-id="project.cobblestone-drive.img.2" draggable="true" style="aspect-ratio:3/2;grid-column:2 / span 9;"><div class="tag">CHANGED</div><div class="ph f-garden-terrace-lawn" data-k="garden-terrace/lawn"></div><div class="cap">garden-terrace/lawn</div></div><div class="slot" data-id="project.cobblestone-drive.img.3" draggable="true" style="aspect-ratio:2/3;grid-column:11 / span 6;"><div class="tag">CHANGED</div><div class="ph f-garden-terrace-screen-detail" data-k="garden-terrace/screen-detail"></div><div class="cap">garden-terrace/screen-detail</div></div><div class="slot" data-id="project.cobblestone-drive.img.4" draggable="true" style="aspect-ratio:2/3;grid-column:18 / span 6;margin-top:7%;"><div class="tag">CHANGED</div><div class="ph f-garden-terrace-firepit" data-k="garden-terrace/firepit"></div><div class="cap">garden-terrace/firepit</div></div><div class="slot" data-id="project.cobblestone-drive.img.5" draggable="true" style="aspect-ratio:16/9;grid-column:2 / span 22;"><div class="tag">CHANGED</div><div class="ph f-cobble-court-cobble-texture" data-k="cobble-court/cobble-texture"></div><div class="cap">cobble-court/cobble-texture</div></div><div class="slot" data-id="project.cobblestone-drive.img.6" draggable="true" style="aspect-ratio:3/2;grid-column:2 / span 7;"><div class="tag">CHANGED</div><div class="ph f-garden-terrace-bench" data-k="garden-terrace/bench"></div><div class="cap">garden-terrace/bench</div></div><div class="slot" data-id="project.cobblestone-drive.img.7" draggable="true" style="aspect-ratio:3/2;grid-column:1 / span 18;"><div class="tag">CHANGED</div><div class="ph f-garden-terrace-pool" data-k="garden-terrace/pool"></div><div class="cap">garden-terrace/pool</div></div><div class="slot" data-id="project.cobblestone-drive.img.8" draggable="true" style="aspect-ratio:2/3;grid-column:20 / span 5;margin-top:5%;"><div class="tag">CHANGED</div><div class="ph f-cobble-court-courtyard" data-k="cobble-court/courtyard"></div><div class="cap">cobble-court/courtyard</div></div></div></div></div><div class="selbox" id="selbox"><div class="hnd" data-h="nw"></div><div class="hnd" data-h="n"></div><div class="hnd" data-h="ne"></div><div class="hnd" data-h="e"></div><div class="hnd" data-h="se"></div><div class="hnd" data-h="s"></div><div class="hnd" data-h="sw"></div><div class="hnd" data-h="w"></div><div class="dims" id="dims"></div></div></div>
+  </main>
+</div>
+<div class="inspector" id="insp">
+  <h3><span id="i-title">Frame</span><button class="x" id="i-close">×</button></h3>
+  <div class="k">Image</div><div class="v" id="i-img"></div>
+  <div class="xy">
+    <label>X <input id="f-x" type="number" step="1"></label>
+    <label>Y <input id="f-y" type="number" step="1"></label>
+    <label>W <input id="f-w" type="number" step="1" min="20"></label>
+    <label>H <input id="f-h" type="number" step="1" min="20"></label>
+  </div>
+  <div class="zrow">
+    <button class="btn" id="z-front">Bring to front</button>
+    <button class="btn" id="z-back">Send to back</button>
+  </div>
+  <div class="k">Changes in the repo</div><div class="v" id="i-tgt"></div>
+</div>
+<div class="hint">
+  <b>Drag</b> a frame to move it · <b>corner handles</b> to resize · <b>Shift</b> while resizing keeps the ratio<br>
+  <b>Arrow keys</b> nudge 1px, <b>Shift+arrow</b> 10px · <b>Alt+drag</b> onto another frame swaps their photos<br>
+  <b>Save this design</b> gives you a link that restores everything — send it to whoever needs it.<br>
+  Drag a photo from the left onto a frame to replace it. Frames overlap freely.
+</div>
+<div class="scrim" id="scrim">
+  <div class="modal">
+    <h3 id="m-title">Design saved</h3>
+    <p id="m-sub">Copy this link and keep it somewhere safe. Opening it restores this exact design — every photo, position and size.</p>
+    <div class="note" id="m-note"></div>
+    <div class="linkrow"><input id="m-link" readonly><button class="btn save" id="m-copy">Copy link</button></div>
+    <div class="row">
+      <button class="btn" id="m-json">Also download JSON</button>
+      <button class="btn" id="m-close">Done</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+window.PHOTOS=[{"key": "before/site-a-front", "group": "before", "ai": false, "o": "l", "w": 2200, "h": 1650, "cls": "before-site-a-front"}, {"key": "before/site-a-street", "group": "before", "ai": false, "o": "l", "w": 2200, "h": 1650, "cls": "before-site-a-street"}, {"key": "before/site-b-drive", "group": "before", "ai": false, "o": "l", "w": 2200, "h": 1650, "cls": "before-site-b-drive"}, {"key": "before/site-b-passage", "group": "before", "ai": false, "o": "l", "w": 2200, "h": 1650, "cls": "before-site-b-passage"}, {"key": "before/site-b-yard", "group": "before", "ai": false, "o": "l", "w": 2200, "h": 1650, "cls": "before-site-b-yard"}, {"key": "cobble-court/boulder", "group": "cobble-court", "ai": false, "o": "l", "w": 2200, "h": 1650, "cls": "cobble-court-boulder"}, {"key": "cobble-court/cobble-planting", "group": "cobble-court", "ai": false, "o": "l", "w": 2200, "h": 1466, "cls": "cobble-court-cobble-planting"}, {"key": "cobble-court/cobble-texture", "group": "cobble-court", "ai": false, "o": "l", "w": 2200, "h": 1466, "cls": "cobble-court-cobble-texture"}, {"key": "cobble-court/courtyard", "group": "cobble-court", "ai": false, "o": "p", "w": 1466, "h": 2200, "cls": "cobble-court-courtyard"}, {"key": "cobble-court/drive", "group": "cobble-court", "ai": false, "o": "l", "w": 2200, "h": 2200, "cls": "cobble-court-drive"}, {"key": "cobble-court/joint-detail", "group": "cobble-court", "ai": false, "o": "l", "w": 2200, "h": 1466, "cls": "cobble-court-joint-detail"}, {"key": "cobble-court/night", "group": "cobble-court", "ai": false, "o": "p", "w": 1650, "h": 2200, "cls": "cobble-court-night"}, {"key": "cobble-court/passage", "group": "cobble-court", "ai": false, "o": "p", "w": 1466, "h": 2200, "cls": "cobble-court-passage"}, {"key": "cobble-court/stepping", "group": "cobble-court", "ai": false, "o": "p", "w": 1235, "h": 2200, "cls": "cobble-court-stepping"}, {"key": "garden-terrace/bench", "group": "garden-terrace", "ai": false, "o": "l", "w": 2200, "h": 1466, "cls": "garden-terrace-bench"}, {"key": "garden-terrace/firepit", "group": "garden-terrace", "ai": false, "o": "p", "w": 1466, "h": 2200, "cls": "garden-terrace-firepit"}, {"key": "garden-terrace/gate", "group": "garden-terrace", "ai": false, "o": "p", "w": 1466, "h": 2200, "cls": "garden-terrace-gate"}, {"key": "garden-terrace/lawn", "group": "garden-terrace", "ai": false, "o": "l", "w": 2200, "h": 1466, "cls": "garden-terrace-lawn"}, {"key": "garden-terrace/planting", "group": "garden-terrace", "ai": false, "o": "l", "w": 2200, "h": 1466, "cls": "garden-terrace-planting"}, {"key": "garden-terrace/pool", "group": "garden-terrace", "ai": false, "o": "l", "w": 2200, "h": 1466, "cls": "garden-terrace-pool"}, {"key": "garden-terrace/screen-detail", "group": "garden-terrace", "ai": false, "o": "p", "w": 1466, "h": 2200, "cls": "garden-terrace-screen-detail"}, {"key": "garden-terrace/steps", "group": "garden-terrace", "ai": false, "o": "l", "w": 2200, "h": 1466, "cls": "garden-terrace-steps"}, {"key": "pool-terrace/aerial", "group": "pool-terrace", "ai": false, "o": "l", "w": 2200, "h": 1465, "cls": "pool-terrace-aerial"}, {"key": "pool-terrace/boulder", "group": "pool-terrace", "ai": false, "o": "p", "w": 1466, "h": 2200, "cls": "pool-terrace-boulder"}, {"key": "pool-terrace/drive", "group": "pool-terrace", "ai": false, "o": "l", "w": 2200, "h": 1466, "cls": "pool-terrace-drive"}, {"key": "pool-terrace/entry", "group": "pool-terrace", "ai": false, "o": "l", "w": 2200, "h": 1466, "cls": "pool-terrace-entry"}, {"key": "pool-terrace/garage", "group": "pool-terrace", "ai": false, "o": "p", "w": 1466, "h": 2200, "cls": "pool-terrace-garage"}, {"key": "pool-terrace/planting", "group": "pool-terrace", "ai": false, "o": "p", "w": 1466, "h": 2200, "cls": "pool-terrace-planting"}, {"key": "pool-terrace/pool-detail", "group": "pool-terrace", "ai": false, "o": "l", "w": 2200, "h": 1466, "cls": "pool-terrace-pool-detail"}, {"key": "pool-terrace/pool-harbour", "group": "pool-terrace", "ai": false, "o": "l", "w": 2400, "h": 1600, "cls": "pool-terrace-pool-harbour"}, {"key": "pool-terrace/pool", "group": "pool-terrace", "ai": false, "o": "l", "w": 2200, "h": 1466, "cls": "pool-terrace-pool"}, {"key": "pool-terrace/stone-detail", "group": "pool-terrace", "ai": false, "o": "l", "w": 2200, "h": 1466, "cls": "pool-terrace-stone-detail"}, {"key": "pool-terrace/street", "group": "pool-terrace", "ai": false, "o": "l", "w": 2200, "h": 1466, "cls": "pool-terrace-street"}, {"key": "archive/deck", "group": "archive", "ai": false, "o": "l", "w": 2000, "h": 1500, "cls": "archive-deck"}, {"key": "archive/driveway", "group": "archive", "ai": false, "o": "p", "w": 1500, "h": 2000, "cls": "archive-driveway"}, {"key": "archive/facade", "group": "archive", "ai": false, "o": "l", "w": 1500, "h": 1125, "cls": "archive-facade"}, {"key": "archive/passage", "group": "archive", "ai": false, "o": "p", "w": 1500, "h": 2000, "cls": "archive-passage"}, {"key": "archive/planting", "group": "archive", "ai": false, "o": "p", "w": 1500, "h": 2000, "cls": "archive-planting"}, {"key": "archive/pool", "group": "archive", "ai": false, "o": "p", "w": 1500, "h": 2000, "cls": "archive-pool"}];
+window.LAYOUT={"version": 1, "note": "Each slot's `target` names the exact place in the verto-landscaping repo that this image is read from. Change an image here, hand this file back, and the edit is mechanical.", "pages": [{"id": "home", "title": "Home", "sections": [{"id": "hero", "label": "Hero", "kind": "hero", "slots": [{"id": "home.hero", "target": "lib/unsplash.ts \u2192 images.hero.src", "ratio": "16/9"}]}, {"id": "featured", "label": "Selected work", "kind": "featured", "slots": [{"id": "home.featured.0", "target": "lib/content.ts \u2192 projects[0].cover", "ratio": "16/10"}, {"id": "home.featured.1", "target": "lib/content.ts \u2192 projects[1].cover", "ratio": "16/10"}]}, {"id": "services", "label": "What we do", "kind": "services", "slots": [{"id": "home.service.design", "target": "components/home/ServiceCards.tsx \u2192 cards[0].image", "ratio": "4/5", "caption": "Design"}, {"id": "home.service.paving", "target": "components/home/ServiceCards.tsx \u2192 cards[1].image", "ratio": "4/5", "caption": "Paving & stone"}, {"id": "home.service.retaining", "target": "components/home/ServiceCards.tsx \u2192 cards[2].image", "ratio": "4/5", "caption": "Retaining"}, {"id": "home.service.pools", "target": "components/home/ServiceCards.tsx \u2192 cards[3].image", "ratio": "4/5", "caption": "Pools & decking"}]}, {"id": "beforeafter", "label": "Before \u00b7 After", "kind": "beforeafter", "pairs": [{"caption": "The frontage", "before": {"id": "home.ba.frontage.before", "target": "lib/content.ts \u2192 beforeAfter[0].before"}, "after": {"id": "home.ba.frontage.after", "target": "lib/content.ts \u2192 beforeAfter[0].after"}}, {"caption": "The garage and drive", "before": {"id": "home.ba.garage.before", "target": "lib/content.ts \u2192 beforeAfter[1].before"}, "after": {"id": "home.ba.garage.after", "target": "lib/content.ts \u2192 beforeAfter[1].after"}}, {"caption": "The rear yard", "before": {"id": "home.ba.yard.before", "target": "lib/content.ts \u2192 beforeAfter[2].before"}, "after": {"id": "home.ba.yard.after", "target": "lib/content.ts \u2192 beforeAfter[2].after"}}, {"caption": "The side passage", "before": {"id": "home.ba.passage.before", "target": "lib/content.ts \u2192 beforeAfter[3].before"}, "after": {"id": "home.ba.passage.after", "target": "lib/content.ts \u2192 beforeAfter[3].after"}}]}]}, {"id": "projects", "title": "Projects index", "sections": [{"id": "tiles", "label": "Scattered index", "kind": "tiles", "slots": [{"id": "index.tile.0", "target": "lib/content.ts \u2192 projects[0].cover", "col": "2 / span 12", "ratio": "4/3", "lift": 0, "mirrors": "home.featured.0"}, {"id": "index.tile.1", "target": "lib/content.ts \u2192 projects[1].cover", "col": "15 / span 9", "ratio": "3/4", "lift": 30, "mirrors": "home.featured.1"}]}]}, {"id": "project-pool-terrace", "title": "Project 01 \u2014 Pool terrace & front landscaping", "sections": [{"id": "collage", "label": "Collage", "kind": "collage", "slots": [{"id": "project.pool-terrace.img.0", "target": "lib/content.ts \u2192 projects[0].images[0]", "col": "1 / span 6", "lift": 0}, {"id": "project.pool-terrace.img.1", "target": "lib/content.ts \u2192 projects[0].images[1]", "col": "8 / span 17", "lift": 6}, {"id": "project.pool-terrace.img.2", "target": "lib/content.ts \u2192 projects[0].images[2]", "col": "2 / span 9", "lift": 0}, {"id": "project.pool-terrace.img.3", "target": "lib/content.ts \u2192 projects[0].images[3]", "col": "11 / span 6", "lift": 0}, {"id": "project.pool-terrace.img.4", "target": "lib/content.ts \u2192 projects[0].images[4]", "col": "18 / span 6", "lift": 7}, {"id": "project.pool-terrace.img.5", "target": "lib/content.ts \u2192 projects[0].images[5]", "col": "2 / span 22", "lift": 0, "fixedRatio": "16/9"}, {"id": "project.pool-terrace.img.6", "target": "lib/content.ts \u2192 projects[0].images[6]", "col": "2 / span 7", "lift": 0}, {"id": "project.pool-terrace.img.7", "target": "lib/content.ts \u2192 projects[0].images[7]", "col": "1 / span 18", "lift": 0, "fixedRatio": "3/2"}, {"id": "project.pool-terrace.img.8", "target": "lib/content.ts \u2192 projects[0].images[8]", "col": "20 / span 5", "lift": 5}]}]}, {"id": "project-cobblestone-drive", "title": "Project 02 \u2014 Cobblestone drive & courtyard", "sections": [{"id": "collage", "label": "Collage", "kind": "collage", "slots": [{"id": "project.cobblestone-drive.img.0", "target": "lib/content.ts \u2192 projects[1].images[0]", "col": "1 / span 6", "lift": 0}, {"id": "project.cobblestone-drive.img.1", "target": "lib/content.ts \u2192 projects[1].images[1]", "col": "8 / span 17", "lift": 6}, {"id": "project.cobblestone-drive.img.2", "target": "lib/content.ts \u2192 projects[1].images[2]", "col": "2 / span 9", "lift": 0}, {"id": "project.cobblestone-drive.img.3", "target": "lib/content.ts \u2192 projects[1].images[3]", "col": "11 / span 6", "lift": 0}, {"id": "project.cobblestone-drive.img.4", "target": "lib/content.ts \u2192 projects[1].images[4]", "col": "18 / span 6", "lift": 7}, {"id": "project.cobblestone-drive.img.5", "target": "lib/content.ts \u2192 projects[1].images[5]", "col": "2 / span 22", "lift": 0, "fixedRatio": "16/9"}, {"id": "project.cobblestone-drive.img.6", "target": "lib/content.ts \u2192 projects[1].images[6]", "col": "2 / span 7", "lift": 0}, {"id": "project.cobblestone-drive.img.7", "target": "lib/content.ts \u2192 projects[1].images[7]", "col": "1 / span 18", "lift": 0, "fixedRatio": "3/2"}, {"id": "project.cobblestone-drive.img.8", "target": "lib/content.ts \u2192 projects[1].images[8]", "col": "20 / span 5", "lift": 5}]}]}], "assignments": {"home.hero": "pool-terrace/pool-harbour", "home.featured.0": "pool-terrace/pool", "home.featured.1": "cobble-court/drive", "home.service.design": "pool-terrace/aerial", "home.service.paving": "cobble-court/cobble-texture", "home.service.retaining": "garden-terrace/bench", "home.service.pools": "pool-terrace/pool-detail", "home.ba.frontage.before": "before/site-a-street", "home.ba.frontage.after": "pool-terrace/street", "home.ba.garage.before": "before/site-b-yard", "home.ba.garage.after": "cobble-court/drive", "home.ba.yard.before": "before/site-b-drive", "home.ba.yard.after": "garden-terrace/lawn", "home.ba.passage.before": "before/site-b-passage", "home.ba.passage.after": "garden-terrace/steps", "index.tile.0": "pool-terrace/pool", "index.tile.1": "cobble-court/drive", "project.pool-terrace.img.0": "pool-terrace/garage", "project.pool-terrace.img.1": "pool-terrace/pool", "project.pool-terrace.img.2": "pool-terrace/entry", "project.pool-terrace.img.3": "pool-terrace/planting", "project.pool-terrace.img.4": "pool-terrace/pool-detail", "project.pool-terrace.img.5": "pool-terrace/aerial", "project.pool-terrace.img.6": "pool-terrace/stone-detail", "project.pool-terrace.img.7": "pool-terrace/drive", "project.pool-terrace.img.8": "pool-terrace/boulder", "project.cobblestone-drive.img.0": "garden-terrace/gate", "project.cobblestone-drive.img.1": "cobble-court/drive", "project.cobblestone-drive.img.2": "garden-terrace/lawn", "project.cobblestone-drive.img.3": "garden-terrace/screen-detail", "project.cobblestone-drive.img.4": "garden-terrace/firepit", "project.cobblestone-drive.img.5": "cobble-court/cobble-texture", "project.cobblestone-drive.img.6": "garden-terrace/bench", "project.cobblestone-drive.img.7": "garden-terrace/pool", "project.cobblestone-drive.img.8": "cobble-court/courtyard"}};
+
+const KEY='verto-layout-studio-v4';
+const BASE=Object.freeze({...LAYOUT.assignments});
+const byKey=Object.fromEntries(PHOTOS.map(p=>[p.key,p]));
+const SLOTS={};
+for(const pg of LAYOUT.pages) for(const s of pg.sections){
+  for(const sl of (s.slots||[])) SLOTS[sl.id]=sl;
+  for(const pr of (s.pairs||[])){
+    SLOTS[pr.before.id]={...pr.before,caption:pr.caption+' — before'};
+    SLOTS[pr.after.id]={...pr.after,caption:pr.caption+' — after'};
+  }
+}
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const IMPORTED={};                       // key -> {key,name,url,w,h,o,imported}
+const IMP_KEY='verto-imports-v1', VER_KEY='verto-version-v1';
+const photo=k=>byKey[k]||IMPORTED[k]||null;
+const isAI=k=>{const p=photo(k);return !!(p&&p.ai);};
+let VER=1;
+const R=n=>Math.round(n);
+
+let A={...BASE};          // frame -> image key
+let G={};                 // frame -> {x,y,w,h,z}   canvas units, 1440 wide
+let BASE_G={};            // pristine geometry, measured from the real site layout
+let past=[], future=[], selected=null, scale=0.7, zTop=0;
+const pageOf={}, pageH={};
+
+/* ---------- freeze the flow layout into absolute geometry ---------- */
+function absolutise(){
+  const pages=$$('.page');
+  for(const pg of pages){
+    const wasOn=pg.classList.contains('on');
+    if(!wasOn) pg.classList.add('on');
+    const pr=pg.getBoundingClientRect();
+    const h=pg.scrollHeight;
+    const moves=[];
+    for(const el of pg.querySelectorAll('.slot, .sec-label, .ghost, .lbl, .cp, .side, .knob')){
+      const r=el.getBoundingClientRect();
+      moves.push([el,{x:r.left-pr.left,y:r.top-pr.top,w:r.width,h:r.height}]);
+    }
+    for(const [el,box] of moves){
+      const isSlot=el.classList.contains('slot');
+      if(!isSlot) el.classList.add('deco');
+      el.style.position='absolute';
+      el.style.left=box.x+'px'; el.style.top=box.y+'px';
+      el.style.width=box.w+'px'; el.style.height=box.h+'px';
+      el.style.margin='0'; el.style.aspectRatio='auto'; el.style.transform='none';
+      pg.appendChild(el);
+      if(isSlot){
+        const id=el.dataset.id;
+        G[id]={x:box.x,y:box.y,w:box.w,h:box.h,z:++zTop};
+        pageOf[id]=pg.dataset.page;
+      }
+    }
+    // the old flow containers have served their purpose
+    for(const c of pg.querySelectorAll('.rows,.svcs,.bas,.g24,.row,.svc,.ba,.pair')) c.remove();
+    pg.style.position='relative'; pg.style.height=h+'px';
+    pageH[pg.dataset.page]=h;
+    if(!wasOn) pg.classList.remove('on');
+  }
+  BASE_G=JSON.parse(JSON.stringify(G));
+}
+
+/* ---------- painting ---------- */
+function applyGeom(id){
+  const el=document.querySelector('.slot[data-id="'+CSS.escape(id)+'"]'); if(!el) return;
+  const g=G[id];
+  el.style.left=g.x+'px'; el.style.top=g.y+'px';
+  el.style.width=g.w+'px'; el.style.height=g.h+'px'; el.style.zIndex=g.z;
+  if(id===selected) positionSel();
+}
+/* The overlay lives in unscaled space, so multiply canvas units by the zoom. */
+function positionSel(){
+  const sb=document.getElementById('selbox');
+  if(!selected||!G[selected]){ sb.classList.remove('on'); return; }
+  const g=G[selected];
+  sb.classList.add('on');
+  sb.style.left=(g.x*scale)+'px'; sb.style.top=(g.y*scale)+'px';
+  sb.style.width=(g.w*scale)+'px'; sb.style.height=(g.h*scale)+'px';
+  document.getElementById('dims').textContent=R(g.w)+' × '+R(g.h);
+}
+function paint(id){
+  const el=document.querySelector('.slot[data-id="'+CSS.escape(id)+'"]'); if(!el) return;
+  const key=A[id], p=photo(key), img=el.querySelector('.ph');
+  img.dataset.k=key;
+  if(p&&p.imported){ img.className='ph'; img.style.backgroundImage='url('+p.url+')'; }
+  else if(p){ img.className='ph f-'+p.cls; img.style.backgroundImage=''; }
+  else { img.className='ph missing'; img.style.backgroundImage=''; }
+  let miss=el.querySelector('.miss');
+  if(!miss){ miss=document.createElement('div'); miss.className='miss'; el.appendChild(miss); }
+  miss.textContent = p ? '' : 'Missing photo\n'+key.replace('import/','')+'\nask for the file';
+  el.classList.toggle('ismissing', !p);
+  el.querySelector('.cap').textContent=key;
+  el.classList.toggle('changed', key!==BASE[id]);
+  el.classList.toggle('hasai', !!(p&&p.ai));
+  el.classList.toggle('sel', selected===id);
+  el.querySelector('.tag').textContent = (p&&p.ai) ? 'AI IMAGE' : 'CHANGED';
+  applyGeom(id);
+}
+function paintAll(){ Object.keys(A).forEach(paint); markUsed(); persist(); syncInspector(); }
+function markUsed(){ const u=new Set(Object.values(A));
+  $$('.chip').forEach(c=>c.classList.toggle('used',u.has(c.dataset.k))); }
+function moved(){ return Object.keys(G).filter(id=>{const a=G[id],b=BASE_G[id];
+  return !b||R(a.x)!==R(b.x)||R(a.y)!==R(b.y)||R(a.w)!==R(b.w)||R(a.h)!==R(b.h);}); }
+function changedImgs(){ return Object.keys(A).filter(k=>A[k]!==BASE[k]); }
+function aiUsed(){ return Object.keys(A).filter(k=>isAI(A[k])); }
+function persist(){
+  try{localStorage.setItem(KEY,JSON.stringify({A,G}));}catch(e){}
+  const n=changedImgs().length, m=moved().length, ai=aiUsed().length, b=$('#count');
+  const bits=[]; if(n) bits.push(n+' swapped'); if(m) bits.push(m+' moved');
+  b.textContent = bits.length?bits.join(' · ')+(ai?' · '+ai+' AI':''):'0 changes';
+  b.className='badge'+(ai?' warn':((n||m)?'':' zero'));
+  $('#undo').disabled=!past.length; $('#redo').disabled=!future.length;
+}
+function snap(){ past.push(JSON.stringify({A,G})); if(past.length>120) past.shift(); future=[]; }
+function restore(s){ const o=JSON.parse(s); A=o.A; G=o.G; paintAll(); }
+
+/* ---------- zoom ---------- */
+function setZoom(v){
+  scale=v/100; $('#zoomv').textContent=v+'%';
+  $('#canvas').style.transform='scale('+scale+')';
+  const pg=$('.page.on');
+  $('#sizer').style.width=(1440*scale)+'px';
+  $('#sizer').style.height=((pageH[pg.dataset.page]||1000)*scale)+'px';
+  positionSel();
+}
+
+/* ---------- move + resize ---------- */
+let drag=null;
+function onDown(e, el, handle){
+  if(e.button!==0) return;
+  e.preventDefault(); e.stopPropagation();
+  const id=el.dataset.id;
+  select(id);
+  snap();
+  drag={id,handle,sx:e.clientX,sy:e.clientY,start:{...G[id]},alt:e.altKey,didMove:false};
+  if(!handle){ el.classList.add('moving'); G[id].z=++zTop; applyGeom(id); }
+  (e.currentTarget.setPointerCapture?e.currentTarget:el).setPointerCapture(e.pointerId);
+}
+function onMove(e){
+  if(!drag) return;
+  const dx=(e.clientX-drag.sx)/scale, dy=(e.clientY-drag.sy)/scale;
+  if(Math.abs(dx)>1||Math.abs(dy)>1) drag.didMove=true;
+  const g=G[drag.id], s=drag.start, MIN=24;
+  if(!drag.handle){
+    // plain move; Shift constrains to one axis
+    let nx=s.x+dx, ny=s.y+dy;
+    if(e.shiftKey){ Math.abs(dx)>Math.abs(dy) ? ny=s.y : nx=s.x; }
+    g.x=Math.round(nx); g.y=Math.round(ny);
+  } else {
+    const h=drag.handle, ratio=s.w/s.h;
+    let x=s.x,y=s.y,w=s.w,ht=s.h;
+    if(h.includes('e')) w=Math.max(MIN,s.w+dx);
+    if(h.includes('s')) ht=Math.max(MIN,s.h+dy);
+    if(h.includes('w')){ w=Math.max(MIN,s.w-dx); x=s.x+(s.w-w); }
+    if(h.includes('n')){ ht=Math.max(MIN,s.h-dy); y=s.y+(s.h-ht); }
+    if(e.shiftKey && h.length===2){           // corner + Shift keeps the ratio
+      ht=w/ratio;
+      if(h.includes('n')) y=s.y+(s.h-ht);
+    }
+    g.x=Math.round(x); g.y=Math.round(y); g.w=Math.round(w); g.h=Math.round(ht);
+  }
+  applyGeom(drag.id); syncInspector();
+}
+function onUp(e){
+  if(!drag) return;
+  const el=document.querySelector('.slot[data-id="'+CSS.escape(drag.id)+'"]');
+  el&&el.classList.remove('moving');
+  // Alt + drop onto another frame swaps the two photographs
+  if(drag.alt && drag.didMove){
+    el.style.pointerEvents='none';
+    const under=document.elementFromPoint(e.clientX,e.clientY);
+    el.style.pointerEvents='';
+    const other=under&&under.closest?under.closest('.slot'):null;
+    if(other&&other.dataset.id!==drag.id){
+      const a=drag.id,b=other.dataset.id, t=A[a]; A[a]=A[b]; A[b]=t;
+      G[a]={...drag.start};
+      toast('Swapped photos');
+    }
+  }
+  if(!drag.didMove){ past.pop(); }   // a click, not a drag — don't bank an undo step
+  drag=null; paintAll();
+}
+function select(id){ selected=id; $$('.slot').forEach(s=>s.classList.toggle('sel',s.dataset.id===id));
+  positionSel();
+  if(id){ $('#insp').classList.add('on'); syncInspector(); } }
+function syncInspector(){
+  if(!selected||!G[selected]) return;
+  const s=SLOTS[selected]||{}, g=G[selected];
+  $('#i-title').textContent=s.caption||'Frame';
+  $('#i-img').textContent=A[selected]+(isAI(A[selected])?'   ⚠ AI':'');
+  $('#i-tgt').textContent=s.target||'—';
+  if(document.activeElement.tagName!=='INPUT'){
+    $('#f-x').value=R(g.x); $('#f-y').value=R(g.y); $('#f-w').value=R(g.w); $('#f-h').value=R(g.h);
+  }
+}
+
+/* ---------- wiring ---------- */
+function toast(m,warn){const t=$('#toast');t.textContent=m;t.className='toast on'+(warn?' warn':'');
+  clearTimeout(t._t);t._t=setTimeout(()=>t.className='toast',3200);}
+
+/* ---------- importing your own photographs ---------- */
+function loadImports(){
+  try{ const s=localStorage.getItem(IMP_KEY); if(s) Object.assign(IMPORTED,JSON.parse(s)); }catch(e){}
+  try{ VER=parseInt(localStorage.getItem(VER_KEY)||'1',10)||1; }catch(e){}
+  $('#ver').textContent='v'+VER;
+  renderImports();
+}
+function saveImports(){
+  try{ localStorage.setItem(IMP_KEY,JSON.stringify(IMPORTED)); }
+  catch(e){ toast('This browser cannot store any more photos — the newest may be lost on reload',true); }
+}
+function shrink(file,max,q){
+  return new Promise((res,rej)=>{
+    const fr=new FileReader();
+    fr.onerror=()=>rej(new Error('read failed'));
+    fr.onload=()=>{ const im=new Image();
+      im.onerror=()=>rej(new Error('decode failed'));
+      im.onload=()=>{ const sc=Math.min(1,max/Math.max(im.width,im.height));
+        const c=document.createElement('canvas');
+        c.width=Math.round(im.width*sc); c.height=Math.round(im.height*sc);
+        c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+        res({url:c.toDataURL('image/jpeg',q),w:c.width,h:c.height}); };
+      im.src=fr.result; };
+    fr.readAsDataURL(file);
+  });
+}
+async function addFiles(list){
+  let n=0, bad=0;
+  for(const f of list){
+    if(!f.type.startsWith('image/')){ bad++; continue; }
+    try{
+      const {url,w,h}=await shrink(f,1200,0.72);
+      const base=f.name.replace(/\.[^.]+$/,'').slice(0,40);
+      let key='import/'+base, i=2;
+      while(photo(key)&&IMPORTED[key]===undefined) key='import/'+base+'-'+(i++);
+      IMPORTED[key]={key,name:f.name,url,w,h,o:h>w?'p':'l',imported:true,group:'import'};
+      n++;
+    }catch(e){ bad++; }
+  }
+  saveImports(); renderImports(); filterPal(); paintAll();
+  toast(n?(n+' photo'+(n===1?'':'s')+' imported'+(bad?', '+bad+' skipped':'')):'Nothing could be imported',!n);
+}
+function renderImports(){
+  const pal=$('#pal');
+  pal.querySelectorAll('[data-g="import"]').forEach(e=>e.remove());
+  const keys=Object.keys(IMPORTED);
+  if(!keys.length) return;
+  const h=document.createElement('div');
+  h.className='grp'; h.dataset.g='import';
+  h.innerHTML='Your imported photos · '+keys.length+
+    '<small>Stored in this browser only. Send the files too if you share the link.</small>';
+  const grid=document.createElement('div'); grid.className='pal-grid'; grid.dataset.g='import';
+  for(const k of keys){
+    const p=IMPORTED[k];
+    const c=document.createElement('div');
+    c.className='chip'; c.draggable=true; c.dataset.k=k; c.title=k+'  ('+p.w+'×'+p.h+')';
+    c.innerHTML='<div class="ph" style="background-image:url('+p.url+')"></div>'+
+                '<div class="nm">'+p.name+'</div>';
+    c.addEventListener('dragstart',e=>{
+      e.dataTransfer.setData('text/plain',JSON.stringify({t:'photo',key:k}));
+      e.dataTransfer.effectAllowed='copy';});
+    grid.appendChild(c);
+  }
+  pal.insertBefore(grid,pal.firstChild); pal.insertBefore(h,grid);
+}
+$('#importbtn').onclick=()=>$('#importfile').click();
+$('#importfile').addEventListener('change',e=>{ addFiles([...e.target.files]); e.target.value=''; });
+$('#wrap').addEventListener('dragover',e=>{ if(e.dataTransfer.types.includes('Files')) e.preventDefault(); });
+
+/* ---------- packing the whole design into a link ---------- */
+const SLOT_IDS=Object.keys(BASE).sort();
+const b64u=b=>btoa(String.fromCharCode(...b)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+const unb64u=s2=>{const t=s2.replace(/-/g,'+').replace(/_/g,'/');
+  return Uint8Array.from(atob(t+'='.repeat((4-t.length%4)%4)),c=>c.charCodeAt(0));};
+function encodeState(){
+  const idx={}; PHOTOS.forEach((p,i)=>idx[p.key]=i);
+  return {v:VER,
+    a:SLOT_IDS.map(id=>idx[A[id]]!==undefined?idx[A[id]]:A[id]),
+    g:SLOT_IDS.map(id=>{const q=G[id]||{};return [R(q.x),R(q.y),R(q.w),R(q.h),q.z|0];})};
+}
+function applyState(o){
+  if(!o||!o.a) return;
+  SLOT_IDS.forEach((id,i)=>{
+    const v=o.a[i];
+    if(typeof v==='number'&&PHOTOS[v]) A[id]=PHOTOS[v].key;
+    else if(typeof v==='string') A[id]=v;
+    const g=o.g&&o.g[i];
+    if(g&&G[id]) G[id]={x:g[0],y:g[1],w:g[2],h:g[3],z:g[4]||G[id].z};
+  });
+  zTop=Math.max(zTop,...Object.values(G).map(g=>g.z||0));
+  if(o.v) { VER=o.v; $('#ver').textContent='v'+VER; }
+}
+async function pack(o){
+  const str=JSON.stringify(o);
+  if(!('CompressionStream' in window)) return 'u'+b64u(new TextEncoder().encode(str));
+  const cs=new Blob([str]).stream().pipeThrough(new CompressionStream('deflate-raw'));
+  return 'z'+b64u(new Uint8Array(await new Response(cs).arrayBuffer()));
+}
+async function unpack(str){
+  const bytes=unb64u(str.slice(1));
+  if(str[0]==='u') return JSON.parse(new TextDecoder().decode(bytes));
+  const ds=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('deflate-raw'));
+  return JSON.parse(await new Response(ds).text());
+}
+
+absolutise();
+
+$$('.slot').forEach(el=>{
+  el.removeAttribute('draggable');
+  el.addEventListener('pointerdown',e=>onDown(e,el,null));
+  el.addEventListener('dragover',e=>{e.preventDefault();el.classList.add('over');});
+  el.addEventListener('dragleave',()=>el.classList.remove('over'));
+  el.addEventListener('drop',e=>{
+    e.preventDefault(); el.classList.remove('over');
+    let p; try{p=JSON.parse(e.dataTransfer.getData('text/plain'));}catch(_){return;}
+    if(p.t!=='photo') return;
+    snap(); A[el.dataset.id]=p.key; paintAll();
+    isAI(p.key)?toast('That is a retired AI image — it will be flagged, not published',true):toast('Replaced');
+  });
+});
+$$('.chip').forEach(c=>c.addEventListener('dragstart',e=>{
+  e.dataTransfer.setData('text/plain',JSON.stringify({t:'photo',key:c.dataset.k}));
+  e.dataTransfer.effectAllowed='copy';}));
+
+for(const d of $$('#selbox .hnd')){
+  d.addEventListener('pointerdown',e=>{
+    if(!selected) return;
+    onDown(e, document.querySelector('.slot[data-id="'+CSS.escape(selected)+'"]'), d.dataset.h);
+  });
+}
+window.addEventListener('pointermove',onMove);
+window.addEventListener('pointerup',onUp);
+window.addEventListener('pointercancel',onUp);
+
+const tabs=$('#tabs');
+LAYOUT.pages.forEach((pg,i)=>{
+  const b=document.createElement('button');
+  b.className='tab'+(i===0?' on':''); b.textContent=pg.title;
+  b.onclick=()=>{ $$('.tab').forEach(t=>t.classList.remove('on')); b.classList.add('on');
+    $$('.page').forEach(p=>p.classList.toggle('on',p.dataset.page===pg.id));
+    select(null); $('#insp').classList.remove('on');
+    setZoom(+$('#zoom').value); $('#wrap').scrollTop=0; };
+  tabs.appendChild(b);
+});
+
+for(const [f,k] of [['#f-x','x'],['#f-y','y'],['#f-w','w'],['#f-h','h']]){
+  $(f).addEventListener('change',e=>{
+    if(!selected) return;
+    const v=parseFloat(e.target.value); if(isNaN(v)) return;
+    snap(); G[selected][k]=(k==='w'||k==='h')?Math.max(24,v):v; paintAll();
+  });
+}
+$('#z-front').onclick=()=>{ if(!selected)return; snap(); G[selected].z=++zTop; paintAll(); };
+$('#z-back').onclick=()=>{ if(!selected)return; snap();
+  const min=Math.min(...Object.values(G).map(g=>g.z)); G[selected].z=min-1; paintAll(); };
+
+function filterPal(){
+  const q=($('#q').value||'').toLowerCase(), showAI=$('#showai').checked;
+  let shown=0;
+  $$('.chip').forEach(c=>{ const p=byKey[c.dataset.k];
+    const hit=(!q||c.dataset.k.toLowerCase().includes(q))&&(showAI||!p.ai);
+    c.classList.toggle('hide',!hit); if(hit) shown++; });
+  $$('.pal-grid').forEach(g=>{
+    const any=[...g.children].some(c=>!c.classList.contains('hide'));
+    g.classList.toggle('hide',!any);
+    const h=g.previousElementSibling; if(h&&h.classList.contains('grp')) h.classList.toggle('hide',!any); });
+  $('#palcount').textContent=shown+' shown';
+}
+$('#q').addEventListener('input',filterPal);
+$('#showai').addEventListener('change',filterPal);
+$('#i-close').onclick=()=>{$('#insp').classList.remove('on');select(null);};
+$('#undo').onclick=()=>{ if(!past.length)return; future.push(JSON.stringify({A,G})); restore(past.pop()); toast('Undone'); };
+$('#redo').onclick=()=>{ if(!future.length)return; past.push(JSON.stringify({A,G})); restore(future.pop()); toast('Redone'); };
+$('#reset').onclick=()=>{ if(!confirm('Reset every photo and every position back to the live website?'))return;
+  snap(); A={...BASE}; G=JSON.parse(JSON.stringify(BASE_G)); paintAll(); toast('Reset to the live site'); };
+function downloadJSON(){
+  const diff=changedImgs(), mv=moved(), ai=aiUsed();
+  const out={savedAt:new Date().toISOString(),
+    changedCount:diff.length, movedCount:mv.length,
+    aiAssignments:ai.map(id=>({slot:id,image:A[id]})),
+    changes:diff.map(id=>({slot:id,from:BASE[id],to:A[id],isAI:isAI(A[id]),target:(SLOTS[id]||{}).target})),
+    moved:mv.map(id=>({slot:id,page:pageOf[id],
+      from:{x:R(BASE_G[id].x),y:R(BASE_G[id].y),w:R(BASE_G[id].w),h:R(BASE_G[id].h)},
+      to:{x:R(G[id].x),y:R(G[id].y),w:R(G[id].w),h:R(G[id].h),z:G[id].z}})),
+    assignments:A, geometry:G, canvasWidth:1440};
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([JSON.stringify(out,null,2)],{type:'application/json'}));
+  a.download='verto-layout.json'; a.click();
+}
+async function saveDesign(){
+  VER++; try{localStorage.setItem(VER_KEY,String(VER));}catch(e){}
+  $('#ver').textContent='v'+VER;
+  const packed=await pack(encodeState());
+  const base=location.origin+location.pathname;
+  const url=base+'#d='+packed;
+  const usedImports=new Set(Object.values(A).filter(k=>IMPORTED[k]));
+  const note=$('#m-note');
+  const warn=[];
+  if(usedImports.size) warn.push('This design uses '+usedImports.size+
+    ' imported photo'+(usedImports.size===1?'':'s')+
+    '. The link cannot carry the image files — send them alongside it or those frames will show as missing.');
+  if(location.protocol==='file:') warn.push(
+    'You opened this from a file on your own machine, so this link only works on your machine. Use the hosted version to share it.');
+  if(url.length>7500) warn.push('This link is unusually long ('+url.length+
+    ' characters) and some chat apps may cut it. Send it as a link, not as text.');
+  note.textContent=warn.join('  ');
+  note.classList.toggle('on',!!warn.length);
+  $('#m-title').textContent='Design saved — v'+VER;
+  $('#m-link').value=url;
+  $('#scrim').classList.add('on');
+  const inp=$('#m-link'); inp.focus(); inp.select();
+  try{ await navigator.clipboard.writeText(url);
+       $('#m-sub').textContent='Copied to your clipboard. Paste it somewhere safe — opening it restores this exact design, every photo, position and size.'; }
+  catch(e){ $('#m-sub').textContent='Press Cmd+C (or Ctrl+C) to copy the highlighted link, then paste it somewhere safe. Opening it restores this exact design.'; }
+}
+$('#savedesign').onclick=saveDesign;
+$('#m-copy').onclick=async()=>{ const inp=$('#m-link'); inp.focus(); inp.select();
+  try{ await navigator.clipboard.writeText(inp.value); toast('Link copied'); }
+  catch(e){ toast('Press Cmd+C to copy the highlighted link',true); } };
+$('#m-json').onclick=downloadJSON;
+$('#m-close').onclick=()=>$('#scrim').classList.remove('on');
+$('#scrim').addEventListener('pointerdown',e=>{ if(e.target.id==='scrim') $('#scrim').classList.remove('on'); });
+$('#zoom').addEventListener('input',e=>setZoom(+e.target.value));
+$('#wrap').addEventListener('pointerdown',e=>{ if(e.target.id==='wrap'||e.target.id==='sizer'||e.target.classList.contains('page')){
+  select(null); $('#insp').classList.remove('on'); }});
+
+document.addEventListener('keydown',e=>{
+  if(/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)) return;
+  const meta=e.metaKey||e.ctrlKey;
+  if(meta&&e.key.toLowerCase()==='z'){ e.preventDefault(); (e.shiftKey?$('#redo'):$('#undo')).click(); return; }
+  if(meta&&e.key.toLowerCase()==='y'){ e.preventDefault(); $('#redo').click(); return; }
+  if(!selected) return;
+  const step=e.shiftKey?10:1, g=G[selected];
+  const map={ArrowLeft:[-step,0],ArrowRight:[step,0],ArrowUp:[0,-step],ArrowDown:[0,step]};
+  if(map[e.key]){ e.preventDefault(); snap(); g.x+=map[e.key][0]; g.y+=map[e.key][1]; paintAll(); }
+  else if(e.key===']'){ e.preventDefault(); $('#z-front').click(); }
+  else if(e.key==='['){ e.preventDefault(); $('#z-back').click(); }
+});
+
+(async ()=>{
+  loadImports();
+  const h=location.hash||'';
+  if(h.startsWith('#d=')){
+    try{ applyState(await unpack(h.slice(3))); toast('Opened a shared design — v'+VER); }
+    catch(e){ toast('That link could not be read, showing the live layout instead',true); }
+  } else {
+    try{ const s=localStorage.getItem(KEY);
+      if(s){ const o=JSON.parse(s); if(o&&o.A&&o.G){ A={...BASE,...o.A};
+        for(const id in G) if(o.G[id]) G[id]=o.G[id];
+        zTop=Math.max(zTop,...Object.values(G).map(g=>g.z||0)); } } }catch(e){}
+  }
+  setZoom(70); paintAll(); filterPal();
+})();
+</script>
+</body>
+</html>

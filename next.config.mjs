@@ -13,6 +13,14 @@ const nextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      // The layout studio is a static tool in public/studio. This lets it
+      // answer on /studio as well as /studio/index.html. It carries a noindex
+      // meta tag, so it stays out of search.
+      { source: '/studio', destination: '/studio/index.html' },
+    ];
+  },
 };
 
 export default nextConfig;
