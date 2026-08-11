@@ -125,6 +125,12 @@
   .btn.save:hover{background:#71947f}
   .ver{font:600 11px/1 ui-monospace,monospace;color:var(--txt-dim);
        background:var(--chrome3);border-radius:4px;padding:5px 8px}
+  .auto{display:none;align-items:center;gap:6px;font-size:11.5px;color:var(--txt-dim);
+        background:var(--chrome3);border-radius:20px;padding:4px 11px 4px 8px;white-space:nowrap}
+  .auto.on{display:flex}
+  .auto i{width:7px;height:7px;border-radius:50%;background:var(--verde);font-style:normal}
+  .auto.saving i{background:#d9a441}
+  .auto.failed i{background:var(--warn)}
   .impbtn{margin:0 14px 10px;display:block;width:calc(100% - 28px);text-align:center;
           padding:7px 0;border-radius:5px;background:var(--chrome3);font-size:12px}
   .impbtn:hover{background:#454c53}
@@ -303,6 +309,7 @@
     <button class="icon" id="redo" title="Redo (Cmd/Ctrl+Shift+Z)" disabled>&#8631;</button>
     <span class="badge zero" id="count">0 changes</span>
     <div class="zoom"><input type="range" id="zoom" min="25" max="150" value="70"><span id="zoomv">70%</span></div>
+    <span class="auto" id="auto" title="Your work is saved to Verto automatically"><i></i><span id="autotxt">Saved</span></span>
     <span class="ver" id="ver">v1</span>
     <button class="btn" id="reset">Reset</button>
     <button class="btn save" id="savedesign">Save this design</button>
@@ -469,6 +476,7 @@ function changedImgs(){ return Object.keys(A).filter(k=>A[k]!==BASE[k]); }
 function aiUsed(){ return Object.keys(A).filter(k=>isAI(A[k])); }
 function persist(){
   try{localStorage.setItem(KEY,JSON.stringify({A,G}));}catch(e){}
+  autosave();
   const n=changedImgs().length, m=moved().length, ai=aiUsed().length, b=$('#count');
   const bits=[]; if(n) bits.push(n+' swapped'); if(m) bits.push(m+' moved');
   b.textContent = bits.length?bits.join(' · ')+(ai?' · '+ai+' AI':''):'0 changes';
@@ -652,6 +660,38 @@ $('#importbtn').onclick=()=>$('#importfile').click();
 $('#importfile').addEventListener('change',e=>{ addFiles([...e.target.files]); e.target.value=''; });
 $('#wrap').addEventListener('dragover',e=>{ if(e.dataTransfer.types.includes('Files')) e.preventDefault(); });
 
+/* ---------- autosave ----------
+   A board name arrives as ?b= in the link the studio was shared with. Every
+   change is written back to that board a couple of seconds later, so whoever
+   sent the link sees the work without anyone clicking Save. The pill in the
+   top bar says so plainly; this is never meant to be silent. */
+const BOARD = (new URLSearchParams(location.search).get('b')||'').toLowerCase()
+                .replace(/[^a-z0-9-]/g,'').slice(0,40);
+let autoTimer=null, autoLast=null;
+function autoPill(state, text){
+  const el=$('#auto'); if(!BOARD) return;
+  el.className='auto on'+(state?' '+state:'');
+  $('#autotxt').textContent=text;
+}
+async function autosaveNow(){
+  if(!BOARD) return;
+  autoPill('saving','Saving…');
+  try{
+    const res=await fetch('/api/studio/design?b='+encodeURIComponent(BOARD),
+      {method:'POST',headers:{'x-studio-key':'verto-studio','content-type':'application/json'},
+       body:JSON.stringify(encodeState())});
+    if(!res.ok) throw new Error(String(res.status));
+    autoLast=new Date();
+    autoPill('', 'Saved '+autoLast.toTimeString().slice(0,5));
+  }catch(e){ autoPill('failed','Not saved'); }
+}
+function autosave(){
+  if(!BOARD) return;
+  clearTimeout(autoTimer);
+  autoPill('saving','Saving…');
+  autoTimer=setTimeout(autosaveNow, 1800);
+}
+
 /* ---------- packing the whole design into a link ---------- */
 const SLOT_IDS=Object.keys(BASE).sort();
 const b64u=b=>btoa(String.fromCharCode(...b)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
@@ -810,7 +850,9 @@ async function saveDesign(){
     ' characters) and some chat apps may cut it. Send it as a link, not as text.');
   note.textContent=warn.join('  ');
   note.classList.toggle('on',!!warn.length);
-  $('#m-title').textContent='Design saved — v'+VER;
+  $('#m-title').textContent = BOARD
+    ? 'Design saved — v'+VER+' · board “'+BOARD+'”'
+    : 'Design saved — v'+VER;
   $('#m-link').value=url;
   $('#scrim').classList.add('on');
   const inp=$('#m-link'); inp.focus(); inp.select();
@@ -878,6 +920,13 @@ document.addEventListener('keydown',e=>{
       toast(bits.join(' '), r.missing.length>0);
     }
     catch(e){ toast('That link could not be read, showing the live layout instead',true); }
+  } else if(BOARD){
+    autoPill('','Loading…');
+    try{
+      const res=await fetch('/api/studio/design?b='+encodeURIComponent(BOARD),{cache:'no-store'});
+      if(res.ok){ applyState(await res.json()); toast('Opened board “'+BOARD+'” where you left it'); }
+    }catch(e){}
+    autoPill('', autoLast?'Saved':'Autosaving');
   } else {
     try{ const s=localStorage.getItem(KEY);
       if(s){ const o=JSON.parse(s); if(o&&o.A&&o.G){ A={...BASE,...o.A};
