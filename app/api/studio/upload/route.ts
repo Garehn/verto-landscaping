@@ -52,12 +52,20 @@ export async function POST(req: Request) {
   // the stored path can't be guessed from the filename.
   const safe = (file.name || 'photo.jpg').replace(/[^a-zA-Z0-9._-]/g, '-').slice(-60);
   try {
+    // The store is private, so the blob is never world-readable. It is served
+    // back through /api/studio/photo, which means the URL saved into a design
+    // is our own and keeps working for as long as the site does.
     const blob = await put(`studio/${safe}`, file, {
-      access: 'public',
+      access: 'private',
       addRandomSuffix: true,
       contentType: file.type,
     });
-    return reply(200, { url: blob.url, name: file.name, bytes: file.size });
+    return reply(200, {
+      url: `/api/studio/photo?p=${encodeURIComponent(blob.pathname)}`,
+      pathname: blob.pathname,
+      name: file.name,
+      bytes: file.size,
+    });
   } catch (err) {
     return reply(502, {
       error: 'upload-failed',
