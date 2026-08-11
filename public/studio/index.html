@@ -588,8 +588,22 @@ function shrink(file,max,q){
     fr.readAsDataURL(file);
   });
 }
+/* Send the shrunk photograph to the site so a link alone can carry it. If
+   there is no store, or we are not running on the site, keep the bytes on this
+   device and let the bundle move them instead. */
+async function upload(dataUrl, name){
+  try{
+    const blob = await (await fetch(dataUrl)).blob();
+    const fd = new FormData();
+    fd.append('file', new File([blob], name, {type:'image/jpeg'}));
+    const res = await fetch('/api/studio/upload', {method:'POST', headers:{'x-studio-key':'verto-studio'}, body:fd});
+    if(!res.ok) return null;
+    const j = await res.json();
+    return j.url || null;
+  }catch(e){ return null; }
+}
 async function addFiles(list){
-  let n=0, bad=0;
+  let n=0, bad=0, stored=0;
   for(const f of list){
     if(!f.type.startsWith('image/')){ bad++; continue; }
     try{
@@ -597,12 +611,19 @@ async function addFiles(list){
       const base=f.name.replace(/\.[^.]+$/,'').slice(0,40);
       let key='import/'+base, i=2;
       while(photo(key)&&IMPORTED[key]===undefined) key='import/'+base+'-'+(i++);
-      IMPORTED[key]={key,name:f.name,url,w,h,o:h>w?'p':'l',imported:true,group:'import'};
+      const remote = await upload(url, f.name);
+      if(remote) stored++;
+      IMPORTED[key]={key,name:f.name,url:remote||url,local:remote?null:url,
+                     remote:!!remote,w,h,o:h>w?'p':'l',imported:true,group:'import'};
       n++;
     }catch(e){ bad++; }
   }
   saveImports(); renderImports(); filterPal(); paintAll();
-  toast(n?(n+' photo'+(n===1?'':'s')+' imported'+(bad?', '+bad+' skipped':'')):'Nothing could be imported',!n);
+  const msg = !n ? 'Nothing could be imported'
+    : n+' photo'+(n===1?'':'s')+' imported'+(bad?', '+bad+' skipped':'')+
+      (stored===n ? ' — saved to the site, a link is enough'
+                  : (stored ? ' — '+stored+' saved to the site' : ' — kept on this device, send the bundle'));
+  toast(msg, !n || stored<n);
 }
 function renderImports(){
   const pal=$('#pal');
@@ -643,13 +664,25 @@ const unb64u=s2=>{const t=s2.replace(/-/g,'+').replace(/_/g,'/');
 function encodeState(){
   const keys=[], ki={};
   const ref=k=>{ if(ki[k]===undefined){ ki[k]=keys.length; keys.push(k); } return ki[k]; };
-  return {v:VER, f:2, k:keys.length?keys:keys, a:SLOT_IDS.map(id=>ref(A[id])),
+  // Imports that reached the store travel in the link as a URL, so the
+  // recipient sees the photograph without needing a bundle.
+  const i={};
+  for(const k of new Set(Object.values(A))){
+    const p=IMPORTED[k];
+    if(p&&p.remote&&p.url) i[k]=[p.url,p.w,p.h];
+  }
+  return {v:VER, f:2, k:keys, a:SLOT_IDS.map(id=>ref(A[id])), i,
     g:SLOT_IDS.map(id=>{const q=G[id]||{};return [R(q.x),R(q.y),R(q.w),R(q.h),q.z|0];})};
 }
 function applyState(o){
   if(!o||!o.a) return {stale:0,missing:[]};
   const legacy = o.f!==2;
   const tbl = legacy ? (window.LEGACY_V1||PHOTOS.map(p=>p.key)) : (o.k||[]);
+  for(const [k,v] of Object.entries(o.i||{})){
+    if(!IMPORTED[k]) IMPORTED[k]={key:k,name:k.replace('import/',''),url:v[0],
+      w:v[1]||1200,h:v[2]||800,o:(v[2]>v[1])?'p':'l',imported:true,remote:true,group:'import'};
+  }
+  if(o.i&&Object.keys(o.i).length){ saveImports(); renderImports(); }
   const missing=[];
   SLOT_IDS.forEach((id,i)=>{
     const v=o.a[i];
@@ -765,7 +798,7 @@ async function saveDesign(){
   const packed=await pack(encodeState());
   const base=location.origin+location.pathname;
   const url=base+'#d='+packed;
-  const usedImports=new Set(Object.values(A).filter(k=>IMPORTED[k]));
+  const usedImports=new Set(Object.values(A).filter(k=>IMPORTED[k]&&!IMPORTED[k].remote));
   const note=$('#m-note');
   const warn=[];
   if(usedImports.size) warn.push('This design uses '+usedImports.size+
