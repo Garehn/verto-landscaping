@@ -54,19 +54,9 @@ const jsonLd = {
   founder: { '@type': 'Person', name: studio.founder },
   email: studio.email,
   telephone: '+61 488 728 767',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: studio.address.street,
-    addressLocality: studio.address.suburb,
-    addressRegion: studio.address.state,
-    postalCode: studio.address.postcode,
-    addressCountry: 'AU',
-  },
-  areaServed: {
-    '@type': 'GeoCircle',
-    geoMidpoint: { '@type': 'GeoCoordinates', latitude: -33.7936, longitude: 151.2244 },
-    geoRadius: '15000',
-  },
+  // No postal address is published anywhere on the site, so none is claimed
+  // here either. The business is described by the ground it covers.
+  areaServed: studio.suburbs.map((name) => ({ '@type': 'Place', name })),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

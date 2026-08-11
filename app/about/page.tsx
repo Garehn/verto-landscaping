@@ -18,8 +18,8 @@ const values = [
     body: 'Most failed paving fails underneath. We spend the budget below grade where it counts.',
   },
   {
-    title: 'Slow on purpose',
-    body: 'We take six to eight projects a year. Yours is one of them or it is not, we will not stretch.',
+    title: 'Anything you can imagine',
+    body: 'Taking time to craft perfection ensures value, care, and lasting satisfaction for any endeavour.',
   },
 ];
 

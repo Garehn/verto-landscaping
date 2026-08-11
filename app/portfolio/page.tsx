@@ -89,13 +89,6 @@ export default function ProjectsPage() {
           segments={[{ text: 'Landscape design and' }, { text: 'construction projects.', italic: true }]}
           stagger={0.05}
         />
-        <Reveal delay={0.2}>
-          <p className="body-lg mt-8 max-w-2xl text-ink/70 text-pretty">
-            Paving, stonework, retaining, pool surrounds and driveways. Every
-            project below sits within {studio.radiusKm}km of the studio in{' '}
-            {studio.address.suburb}.
-          </p>
-        </Reveal>
       </section>
 
       <section className="pb-24 lg:pb-40">

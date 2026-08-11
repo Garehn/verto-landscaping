@@ -6,29 +6,22 @@ export const studio = {
   email: 'rory@vertolandscapes.com',
   phone: '0488 728 767',
   phoneHref: 'tel:+61488728767',
-  address: {
-    street: '164 Edinburgh Rd',
-    suburb: 'Castlecrag',
-    state: 'NSW',
-    postcode: '2068',
-  },
   coords: '33.79°S · 151.22°E',
   discipline: 'Landscape design & construction',
-  radiusKm: 15,
-  area: 'Every suburb within 15km of the studio',
+  // No street address is published. The studio is described by the ground it
+  // covers instead.
+  region: 'Lower North Shore & Northern Beaches',
+  area: 'Anywhere within the Lower North Shore and Northern Beaches',
   suburbs: [
     'Castlecrag',
     'Northbridge',
     'Willoughby',
-    'Middle Cove',
-    'Castle Cove',
-    'Naremburn',
-    'Cammeray',
     'Mosman',
-    'Chatswood',
-    'Lane Cove',
-    'Crows Nest',
-    'Roseville',
+    'Cremorne',
+    'Seaforth',
+    'Balgowlah',
+    'Manly',
+    'Curl Curl',
   ],
 };
 
@@ -46,12 +39,11 @@ export const home = {
     sub: 'A design and construction studio working in stone, timber and steel across Sydney’s Lower North Shore.',
   },
   intro:
-    'We design and build the permanent parts of a property. Paving, stonework, retaining, pool surrounds, decking, driveways and planting, set out precisely and built to stay true. The work is slow on purpose, and we take a small number of projects each year.',
+    'We design and build the permanent parts of a property. Paving, stonework, retaining, pool surrounds, decking, driveways and planting, set out precisely and built to stay true. Anything you can imagine we can create.',
   testimonial: {
     quote:
-      'They set it out, they built it, and every line is still true three years on. Nothing has moved, nothing has cracked.',
+      'They set it out, they built it, and every line is still true three years on. Gardens have flourished and we could be happier.',
     author: 'Private clients',
-    project: 'Pool terrace',
   },
 };
 
@@ -147,20 +139,20 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: 'pool-terrace',
-    title: 'Pool terrace & front landscaping',
+    title: 'Pool Terrace & Front Landscaping',
     subtitle: 'Stone to the water line',
     suburb: 'Castlecrag',
     location: 'Castlecrag, NSW',
     year: '2026',
-    scope: ['Design', 'Pool surrounds', 'Cobblestone driveway', 'Planting & lighting'],
+    scope: ['Design', 'Pool surrounds', 'Cobblestone driveway', 'Cladding', 'Planting & lighting'],
     blurb:
       'Full property rebuild designed around an infinity pool with large street appeal. From a cobblestone driveway, cladding and stone edging to plants and lighting.',
     intro:
-      'From the street the house had disappeared behind an overgrown hedge and a grey wall. The brief covered the whole property, from the arrival court to the pool terrace holding the view.',
+      'From the street the house had disappeared behind overgrown hedges and timber trellis. The brief covered the whole property, from the arrival court to the pool terrace holding the view.',
     body: [
       'The pool was set out so its water line reads flat against the harbour, and the surrounds are a pale stone laid to a tight joint running parallel to the water rather than to the house. Potted olives sit on the boundary wall at the spacing of the coping slabs, which keeps the eye moving along the edge instead of stopping at the corner.',
-      'At the front the drive is granite cobble on a full concrete base, edged with sandstone bands that turn the corner and carry through to the entry path. Planters are built in the same sandstone, so the beds read as part of the structure rather than as something placed on top of it. Levels were reworked so water leaves at the crossover instead of pooling at the garage.',
-      'The sandstone shelf at the side of the house was kept and built around rather than cut out. Low brass uplighting is set into the beds and the stone, enough to carry the arrival after dark without lighting the house back at itself.',
+      'At the front of the drive are cobblestones on a reinforced concrete base, edged with sandstone bands that turn the corner and carry through to the entry path. Planters are built in the same sandstone, so the beds read as part of the structure rather than as something placed on top of it. Levels were reworked so water leaves at the crossover instead of pooling at the garage.',
+      'The limestone cladding at the front of the house was created as a feature wall to soften the house, with aged brass uplighting set into the beds and the stone.',
     ],
     cover: '/images/proj/pool-terrace/entry-path.jpg',
     images: [
@@ -177,20 +169,20 @@ export const projects: Project[] = [
   },
   {
     id: 'cobblestone-drive',
-    title: 'Cobblestone drive & courtyard',
+    title: 'Cobblestone Drive & Courtyard',
     subtitle: 'A clean line through the block',
     suburb: 'Castlecrag',
     location: 'Castlecrag, NSW',
-    year: '2024',
-    scope: ['Driveway', 'Stone paving', 'Screens & gates', 'Pool surrounds'],
+    year: '2025',
+    scope: ['Driveway', 'Stone paving', 'Hardwood timber works', 'Garage rebuild including cabinetry', 'House painting / gutter works', 'Pool surrounds including planting and lighting'],
     blurb:
-      'New concrete driveway topped with cobblestone, surrounding a new garage clad in aluminium battens to suit the hardwood privacy screens around the property.',
+      'New concrete driveway topped with cobblestone, surrounding a new garage cladded in aluminium battens to suit the hardwood privacy screens around the property.',
     intro:
-      'The frontage was cracked concrete against a rubble retaining wall, the garage was open to the weather, and the rear yard sat hemmed in on three sides. The brief ran the whole property: one continuous surface from the street to the back door, and boundaries built as part of the design rather than something to plant out.',
+      'The frontage was concrete pavers on a sand base against a rubble retaining wall, the garage was open to the weather, and the rear yard sat hemmed in on three sides. The brief ran the whole property: one continuous surface from the street to the back door, and boundaries built as part of the design rather than something to plant out. This project also included a full house paint and window repairs, coupled with all new gutters and downpipes around the property.',
     body: [
-      'The court is Brighton cobble laid in a running course on a full concrete base, with Dijon slabs where the surface has to read flat. Setting the cobble in course rather than fan pattern keeps it calm enough to read as one plane from the street, and the change between the two stones falls on a single straight joint rather than a cut line. The new garage is clad in aluminium battens set to the same rhythm as the hardwood screens further into the property.',
-      'Every boundary is a vertical batten screen, charcoal at the shaded end and natural hardwood where the sun reaches it. The battens run to a single set-out so the gap reads the same on all three sides, and the gates are built from the same section, hung to sit flush in the run rather than as a break in it. The lawn is held by a folded corten edge set flush with the turf, which is why it mows over cleanly and why the level change beside the pool reads as one line rather than a step.',
-      'A slot drain runs across the courtyard threshold and ties into a subsurface line, which is why the cobble stays dry underfoot and the joints stay clean. Getting that right is most of the work and none of the photographs. Down the side, sandstone pads sit in white pebble and run to hardwood entry steps, so the passage drains through rather than across, and the pool terrace is pale stone laid to a tight joint with frameless glass set back off the coping.',
+      'The driveway has been topped with cobblestone laid in a running course on a full reinforced concrete base, with limestone format pavers inside the garage. The cobblestones tie this property into its new life, as the street appeal is second to none and frames the extensive house and garage works completed by us. The new garage is cladded in aluminium battens set to the same rhythm as the hardwood around the property.',
+      'The entire property was re-fenced, removing the old brushwood fencing. The contrast between the hardwood and treated pine palings creates a delineation between the modern oasis of the pool area and the rustic fire pit space we created. Any overgrown, un-utilised area let us express our vision for another entertaining space, to get our clients outside looking down at their beautiful backyard.',
+      'Our goal was to create more usable space but at the same time create a sense of order and cleanliness. All areas were revised and delineated into sections with clear areas.',
     ],
     cover: '/images/proj/cobble-court/drive-garage.jpg',
     images: [
@@ -256,7 +248,7 @@ export const about = {
     'We draw in measured plans and we build with crews we have worked with for years, across both the hard landscape and the soft. What we build is meant to outlast us.',
   ],
   pullQuote:
-    'We are not the cheapest and we are not the fastest. We are the ones whose set-out is still true in year ten.',
+    'Our passion for creating outdoor living spaces and street appeal drives us to provide these amazing services. Adding value to your home and a place to enjoy outside.',
 };
 
 export const contact = {

@@ -156,10 +156,7 @@ export function Header() {
                 exit={{ opacity: 0, transition: { duration: 0.2 } }}
                 transition={{ duration: 0.7, delay: 0.5 }}
               >
-                <div>
-                  {studio.address.street}, {studio.address.suburb} {studio.address.state}{' '}
-                  {studio.address.postcode}
-                </div>
+                <div>{studio.area}</div>
                 <div className="flex gap-6">
                   <a href={studio.phoneHref} data-numeric className="hover:text-ink">{studio.phone}</a>
                   <a href={`mailto:${studio.email}`} className="hover:text-ink">{studio.email}</a>

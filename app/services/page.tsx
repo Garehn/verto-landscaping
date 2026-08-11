@@ -17,7 +17,7 @@ export default function ServicesPage() {
         <WordRise
           as="h1"
           className="display max-w-4xl text-balance"
-          segments={[{ text: 'Design and' }, { text: 'construction.', italic: true }]}
+          segments={[{ text: 'Design &' }, { text: 'Construction.', italic: true }]}
           stagger={0.05}
         />
         <Reveal delay={0.2}>
@@ -87,15 +87,15 @@ export default function ServicesPage() {
         <div className="grid gap-10 lg:grid-cols-12">
           <Reveal className="lg:col-span-5">
             <h2 className="display-md max-w-md text-balance">
-              Everything within{' '}
-              <span className="display-italic text-verde">{studio.radiusKm}km</span> of the studio.
+              Anywhere within the{' '}
+              <span className="display-italic text-verde">Lower North Shore</span> and Northern Beaches.
             </h2>
           </Reveal>
           <Reveal delay={0.15} className="lg:col-span-6 lg:col-start-7 lg:self-center">
             <p className="text-base leading-relaxed text-ink/70 text-pretty">
-              We work a tight radius on purpose. It keeps our crews on site
-              rather than in traffic, and it means the project lead can be at
-              your place on an hour&rsquo;s notice.
+              We work a tight radius on purpose. Our passion for creating modern
+              gardens is where we excel, from detailed carpentry works to high end
+              burnished concrete. We can do it all.
             </p>
             <ul className="mt-6 flex flex-wrap gap-x-3 gap-y-2">
               {studio.suburbs.map((suburb) => (
@@ -104,7 +104,7 @@ export default function ServicesPage() {
                   <span className="ml-3 text-verde" aria-hidden>·</span>
                 </li>
               ))}
-              <li className="meta-sm text-ink/60">and every suburb between</li>
+              <li className="meta-sm text-ink/60">and every suburb in between</li>
             </ul>
             <Link href="/contact" className="meta link-underline mt-8 inline-block py-2 text-ink/85">
               Check your address

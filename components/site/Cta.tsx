@@ -59,12 +59,8 @@ export function Cta({
             <div className="space-y-6 border-l border-paper/15 pl-8">
               <Image src="/images/brand/logo-white.png" alt="" aria-hidden width={160} height={128} className="h-20 w-auto opacity-90" />
               <div>
-                <div className="meta-sm mb-2 text-sage">Studio</div>
-                <div className="text-sm leading-relaxed text-paper/75">
-                  {studio.address.street}
-                  <br />
-                  {studio.address.suburb} {studio.address.state} {studio.address.postcode}
-                </div>
+                <div className="meta-sm mb-2 text-sage">Where we work</div>
+                <div className="text-sm leading-relaxed text-paper/75">{studio.area}</div>
               </div>
               <div>
                 <div className="meta-sm mb-2 text-sage">Direct</div>

@@ -93,7 +93,7 @@ export function TerrainSection() {
                   ))}
                 </div>
                 <div className="mt-5 flex items-center justify-between">
-                  <span className="meta-sm text-stone/80">Survey · {studio.address.suburb}</span>
+                  <span className="meta-sm text-stone/80">Survey · {studio.region}</span>
                   <span className="meta-sm text-stone/80" data-numeric>{studio.coords}</span>
                 </div>
               </div>

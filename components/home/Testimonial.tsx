@@ -20,9 +20,7 @@ export function Testimonial() {
             />
             <Reveal delay={0.15} className="mt-10 flex items-center gap-4">
               <span className="h-px w-10 bg-verde" aria-hidden />
-              <span className="meta text-ink/60">
-                {home.testimonial.author} · {home.testimonial.project}
-              </span>
+              <span className="meta text-ink/60">{home.testimonial.author}</span>
             </Reveal>
           </div>
 
