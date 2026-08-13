@@ -42,7 +42,7 @@ export const home = {
     'We design and build the permanent parts of a property. Paving, stonework, retaining, pool surrounds, decking, driveways and planting, set out precisely and built to stay true. Anything you can imagine we can create.',
   testimonial: {
     quote:
-      'They set it out, they built it, and every line is still true three years on. Gardens have flourished and we could be happier.',
+      'They set it out, they built it, and every line is still true three years on. Gardens have flourished and we couldn’t be happier.',
     author: 'Private clients',
   },
 };
@@ -95,7 +95,7 @@ export const process = [
   },
   {
     n: '02',
-    title: 'Design & documentation',
+    title: 'Design & Documentation',
     body: 'Survey, concept and construction drawings. You sign off on the detail before we price the build.',
   },
   {
