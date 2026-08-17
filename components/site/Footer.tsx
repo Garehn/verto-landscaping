@@ -21,7 +21,10 @@ export function Footer() {
             <div className="meta-sm mb-5 text-sage">Studio</div>
             <ul className="space-y-2 text-sm text-paper/75">
               <li>{studio.founder} · Founder</li>
-              <li>{studio.region}</li>
+              <li>{studio.address.street}</li>
+              <li>
+                {studio.address.suburb} {studio.address.state} {studio.address.postcode}
+              </li>
               <li className="pt-1">
                 <a href={studio.phoneHref} className="inline-block py-1.5 hover:text-paper" data-numeric>
                   {studio.phone}

@@ -6,10 +6,17 @@ export const studio = {
   email: 'rory@vertolandscapes.com',
   phone: '0488 728 767',
   phoneHref: 'tel:+61488728767',
+  // Published again so the site's name, address and phone match the Google
+  // Business Profile. Google uses that match to tie the two together, and its
+  // absence was one of the missing signals while the profile was suppressed.
+  address: {
+    street: '164 Edinburgh Rd',
+    suburb: 'Castlecrag',
+    state: 'NSW',
+    postcode: '2068',
+  },
   coords: '33.79°S · 151.22°E',
   discipline: 'Landscape design & construction',
-  // No street address is published. The studio is described by the ground it
-  // covers instead.
   region: 'Lower North Shore & Northern Beaches',
   area: 'Anywhere within the Lower North Shore and Northern Beaches',
   suburbs: [

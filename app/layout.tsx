@@ -54,8 +54,14 @@ const jsonLd = {
   founder: { '@type': 'Person', name: studio.founder },
   email: studio.email,
   telephone: '+61 488 728 767',
-  // No postal address is published anywhere on the site, so none is claimed
-  // here either. The business is described by the ground it covers.
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: studio.address.street,
+    addressLocality: studio.address.suburb,
+    addressRegion: studio.address.state,
+    postalCode: studio.address.postcode,
+    addressCountry: 'AU',
+  },
   areaServed: studio.suburbs.map((name) => ({ '@type': 'Place', name })),
 };
 

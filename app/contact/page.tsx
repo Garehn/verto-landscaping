@@ -23,6 +23,10 @@ export default function ContactPage() {
             <ContactBlock label="Founder" value={studio.founder} />
             <ContactBlock label="Email" value={studio.email} />
             <ContactBlock label="Phone" value={studio.phone} />
+            <ContactBlock
+              label="Studio"
+              value={`${studio.address.street}, ${studio.address.suburb} ${studio.address.state} ${studio.address.postcode}`}
+            />
             <ContactBlock label="Service area" value={studio.area} />
             <ContactBlock label="Studio hours" value={'Mon–Fri · 8am–5pm'} />
           </div>
